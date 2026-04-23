@@ -24,6 +24,22 @@
 	// Track whether we're submitting (use:enhance provides this)
 	let submitting = $state(false);
 
+	// Client-side real-time validation state
+	let liveName = $state('');
+	let liveEmail = $state('');
+	
+	let nameError = $derived(
+		liveName.length > 0 && liveName.length < 3 ? 'Name must be at least 3 characters' : null
+	);
+	let emailError = $derived(
+		liveEmail.length > 0 && !liveEmail.includes('@') ? 'Invalid email format' : null
+	);
+	
+	let isLiveValid = $derived(
+		liveName.length >= 3 && liveEmail.includes('@')
+	);
+	let liveSubmitted = $state(false);
+
 	const actionCode = `// +page.server.ts — Define actions
 import { fail } from '@sveltejs/kit';
 import type { Actions } from './$types';
@@ -145,6 +161,65 @@ export const actions: Actions = {
 				⚠️ Submit WITHOUT use:enhance (triggers reload)
 			</button>
 		</form>
+
+		<div class="separator"></div>
+
+		<!-- Client-side real-time validation demo -->
+		<h3 class="sub-heading">⚡ Client-Side Real-Time Validation</h3>
+		<p class="demo-text">
+			This form uses Svelte 5 <code>$state</code> and <code>$derived</code> to validate as you type. 
+			SvelteKit doesn't have a built-in client validation rule engine, so Svelte reactivity is the standard way to do it.
+		</p>
+		
+		{#if liveSubmitted}
+			<div class="success-banner animate-fade-in" style="background: rgba(88,166,255,0.1); color: var(--color-accent); border-color: var(--color-accent);">
+				✅ Everything is valid! You can now submit this to the server.
+			</div>
+		{/if}
+
+		<div class="contact-form">
+			<div class="field">
+				<label for="live-name">Name (min 3 chars)</label>
+				<!-- Using bind:value gives us the variable instantly on every keystroke -->
+				<input
+					id="live-name"
+					type="text"
+					placeholder="Type your name..."
+					bind:value={liveName}
+					class:invalid={nameError !== null}
+					oninput={() => liveSubmitted = false}
+				/>
+				{#if nameError}
+					<span class="field-error animate-fade-in">⚠️ {nameError}</span>
+				{/if}
+			</div>
+
+			<div class="field">
+				<label for="live-email">Email (must contain @)</label>
+				<input
+					id="live-email"
+					type="email"
+					placeholder="Type your email..."
+					bind:value={liveEmail}
+					class:invalid={emailError !== null}
+					oninput={() => liveSubmitted = false}
+				/>
+				{#if emailError}
+					<span class="field-error animate-fade-in">⚠️ {emailError}</span>
+				{/if}
+			</div>
+
+			<div class="form-actions">
+				<button 
+					type="button" 
+					class="btn btn-primary" 
+					disabled={!isLiveValid}
+					onclick={() => liveSubmitted = true}
+				>
+					{isLiveValid ? 'Ready to Submit' : 'Fix errors to submit'}
+				</button>
+			</div>
+		</div>
 
 		<!-- Messages list -->
 		{#if data.messages.length > 0}
