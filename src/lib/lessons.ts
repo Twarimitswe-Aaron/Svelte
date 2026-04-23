@@ -109,6 +109,15 @@ export const lessons: Lesson[] = [
     description: 'Create REST endpoints with +server.ts. Handle GET, POST, DELETE and understand content negotiation.',
     docUrl: 'https://svelte.dev/docs/kit/routing#server',
     tags: ['advanced']
+  },
+  {
+    id: 11,
+    slug: '11-remote-functions',
+    emoji: '⚡',
+    title: 'Remote Functions',
+    description: 'query, form, command, and prerender from $app/server — server logic callable directly from components via auto-generated HTTP endpoints.',
+    docUrl: 'https://svelte.dev/docs/kit/remote-functions',
+    tags: ['advanced']
   }
 ];
 

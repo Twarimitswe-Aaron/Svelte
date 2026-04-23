@@ -68,7 +68,7 @@ export const load: PageLoad = ({ params }) => {
 	{prev}
 	{next}
 	whatItDoes="SvelteKit uses your file system as the router. Every +page.svelte file corresponds to a URL. Dynamic segments like [slug] capture URL params. +layout.svelte wraps child routes. Navigation between pages is client-side after initial load."
-	whatFails="Without file-based routing, you'd manually configure a router. Without +layout.svelte, every page duplicates shared UI. Without {@render children()}, child pages content never appears — the most common beginner mistake."
+	whatFails="Without file-based routing you'd manually configure a router. Without +layout.svelte every page duplicates shared UI. Without render-children in layout, child pages never appear — the most common beginner mistake."
 >
 	<!-- Current URL display -->
 	<div class="url-display">

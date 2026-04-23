@@ -112,7 +112,8 @@ export const prerender = false; // this one is NOT prerendered`;
 			{/each}
 		</div>
 
-		<div class="option-detail animate-fade-in" key={selected.name}>
+		{#key selected.name}
+		<div class="option-detail animate-fade-in">
 			<div class="option-header">
 				<h3 class="option-name">{selected.emoji} <code>export const {selected.name}</code></h3>
 				<div class="option-meta-row">
@@ -138,6 +139,7 @@ export const prerender = false; // this one is NOT prerendered`;
 
 			<CodeBlock code={selected.example} lang="typescript" filename="+page.ts" />
 		</div>
+		{/key}
 	</div>
 
 	<div class="separator"></div>
