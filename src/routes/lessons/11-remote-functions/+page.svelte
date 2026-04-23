@@ -15,7 +15,7 @@
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
 	// Import remote functions as if they're local — SvelteKit generates the HTTP layer
-	import { getPosts, likePost, addPost } from '$lib/server/remote-demo.remote.js';
+	import { getPosts, likePost, addPost } from '$lib/remote-demo.remote.js';
 
 	const lesson = lessons[10];
 	const { prev, next } = getAdjacentLessons(lesson.slug);
@@ -59,9 +59,10 @@
 	}
 
 	// ── Code examples ────────────────────────────────────────────────────────
-	const remoteFileCode = `// src/lib/server/posts.remote.ts
+	const remoteFileCode = `// src/lib/posts.remote.ts
 // .remote.ts — SvelteKit auto-generates the HTTP endpoint for each export
 // You NEVER write fetch() or +server.ts manually for these
+// ⚠️ NOTE: Must NOT be inside src/lib/server 
 import { query, command, form } from '$app/server';
 
 // query() — server-side read, callable from any component
@@ -87,7 +88,7 @@ export const addPost = form(async ({ title }) => {
 
 	const usageCode = `<!-- +page.svelte — use remote functions like normal async calls -->
 <script lang="ts">
-  import { getPosts, likePost, addPost } from '$lib/server/posts.remote.js';
+  import { getPosts, likePost, addPost } from '$lib/posts.remote.js';
   // ⚡ These look like local functions but they actually call the server!
 
   let posts = $state(getPosts()); // starts as a Promise
