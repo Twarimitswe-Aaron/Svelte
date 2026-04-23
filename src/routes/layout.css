@@ -1,1 +1,7 @@
-@import 'tailwindcss';
+/*
+  layout.css — kept for compatibility (now empty — styles moved to app.css)
+  
+  The original +layout.svelte imported this file.
+  The new layout.svelte imports app.css directly.
+  This file is kept but empty so if any old import remains, it won't error.
+*/
