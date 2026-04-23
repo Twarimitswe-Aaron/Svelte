@@ -1,0 +1,214 @@
+/* 
+  app.css — Global styles for the SvelteKit Learning App
+  WHY THIS FILE EXISTS: Without importing Tailwind here (and then importing this in layout),
+  no Tailwind utility classes would work anywhere in the app.
+*/
+
+/* Tailwind v4 — single @import replaces the old @tailwind directives */
+@import "tailwindcss";
+
+/* =============================================
+   CSS Custom Properties (Design Tokens)
+   Changing these here changes the whole app.
+   ============================================= */
+@layer base {
+  :root {
+    /* Color palette */
+    --color-bg: #0d1117;
+    --color-surface: #161b22;
+    --color-surface-2: #21262d;
+    --color-border: #30363d;
+    --color-text: #e6edf3;
+    --color-text-muted: #8b949e;
+    --color-accent: #58a6ff;
+    --color-accent-2: #bc8cff;
+    --color-success: #3fb950;
+    --color-warning: #d29922;
+    --color-danger: #f85149;
+
+    /* Spacing */
+    --sidebar-width: 280px;
+  }
+
+  /* Base resets */
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  /* Anchor defaults */
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Code defaults */
+  code {
+    font-family: 'Cascadia Code', 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.875em;
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 0.1em 0.35em;
+  }
+
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.875rem;
+  }
+
+  /* Smooth transitions for interactive elements */
+  button, a {
+    transition: all 0.15s ease;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-surface);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+  }
+}
+
+/* =============================================
+   Utility classes (custom, not Tailwind)
+   ============================================= */
+@layer utilities {
+  .glass {
+    background: rgba(22, 27, 34, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn-primary {
+    background: var(--color-accent);
+    color: #0d1117;
+  }
+  .btn-primary:hover {
+    background: #79b8ff;
+    text-decoration: none;
+  }
+  .btn-secondary {
+    background: var(--color-surface-2);
+    color: var(--color-text);
+    border-color: var(--color-border);
+  }
+  .btn-secondary:hover {
+    background: var(--color-border);
+    text-decoration: none;
+  }
+  .btn-danger {
+    background: var(--color-danger);
+    color: #fff;
+  }
+  .btn-danger:hover {
+    background: #ff7b72;
+    text-decoration: none;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .badge-blue {
+    background: rgba(88, 166, 255, 0.15);
+    color: var(--color-accent);
+    border: 1px solid rgba(88, 166, 255, 0.3);
+  }
+  .badge-purple {
+    background: rgba(188, 140, 255, 0.15);
+    color: var(--color-accent-2);
+    border: 1px solid rgba(188, 140, 255, 0.3);
+  }
+  .badge-green {
+    background: rgba(63, 185, 80, 0.15);
+    color: var(--color-success);
+    border: 1px solid rgba(63, 185, 80, 0.3);
+  }
+  .badge-yellow {
+    background: rgba(210, 153, 34, 0.15);
+    color: var(--color-warning);
+    border: 1px solid rgba(210, 153, 34, 0.3);
+  }
+}
+
+/* =============================================
+   Animation keyframes
+   ============================================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(88, 166, 255, 0.3); }
+  50%       { box-shadow: 0 0 0 8px rgba(88, 166, 255, 0); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
