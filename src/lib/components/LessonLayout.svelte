@@ -11,6 +11,7 @@
     - prev / next: adjacent lessons (from getAdjacentLessons)
 -->
 <script lang="ts">
+	import { ChevronLeft, ChevronRight, ExternalLink, BookOpen } from 'lucide-svelte';
 	import type { Lesson } from '$lib/lessons.js';
 	import ConceptCard from './ConceptCard.svelte';
 
@@ -46,7 +47,9 @@
 			<span class="lesson-number">Lesson {lesson.id}</span>
 			<span class="badge badge-blue">{lesson.tags[0]}</span>
 			<a href={lesson.docUrl} target="_blank" rel="noreferrer" class="badge badge-purple">
-				📖 Official Docs ↗
+				<BookOpen size={13} class="icon-inline" />
+				<span>Official Docs</span>
+				<ExternalLink size={11} class="icon-inline opacity-70" />
 			</a>
 		</div>
 		<h1 class="lesson-title">
@@ -84,9 +87,7 @@
 				class="nav-btn nav-prev"
 				aria-label="Previous lesson: {prev.title}"
 			>
-				<svg viewBox="0 0 16 16" width="16" fill="currentColor" aria-hidden="true" focusable="false">
-					<path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06z"/>
-				</svg>
+				<ChevronLeft size={20} />
 				<div class="nav-text">
 					<span class="nav-label">Previous</span>
 					<span class="nav-title">{prev.emoji} {prev.title}</span>
@@ -106,9 +107,7 @@
 					<span class="nav-label">Next</span>
 					<span class="nav-title">{next.emoji} {next.title}</span>
 				</div>
-				<svg viewBox="0 0 16 16" width="16" fill="currentColor" aria-hidden="true" focusable="false">
-					<path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06z"/>
-				</svg>
+				<ChevronRight size={20} />
 			</a>
 		{:else}
 			<div></div>
@@ -133,6 +132,16 @@
 		gap: 0.5rem;
 		margin-bottom: 0.75rem;
 		flex-wrap: wrap;
+	}
+
+	.badge :global(.icon-inline) {
+		display: inline-block;
+		vertical-align: middle;
+		margin-right: 0.25rem;
+	}
+
+	.badge :global(.opacity-70) {
+		opacity: 0.7;
 	}
 
 	.lesson-number {

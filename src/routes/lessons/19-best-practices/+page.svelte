@@ -16,6 +16,7 @@
   import LessonLayout from '$lib/components/LessonLayout.svelte';
   import CodeBlock from '$lib/components/CodeBlock.svelte';
   import { getAdjacentLessons } from '$lib/lessons.js';
+  import { Home, Search, Bell, ChevronRight } from 'lucide-svelte';
 
   const { prev, next, current: lesson } = getAdjacentLessons('19-best-practices');
 
@@ -206,36 +207,29 @@
   ].join('\n');
 
   const iconBad = [
-    '\x3c!-- ❌ BAD: importing from a per-icon library -->',
+    '\x3c!-- ❌ BAD: importing from a non-shakable library -->',
     '\x3cscript>',
-    '  // Each import forces Vite to parse and compile a Svelte file.',
+    '  // Some older libraries force Vite to crawl thousands of files.',
     '  // In large projects, this tanks dev cold start time.',
-    '  import HomeIcon from \'svelte-icons/io/IoMdHome.svelte\';',
-    '  import SearchIcon from \'svelte-icons/io/IoMdSearch.svelte\';',
-    '  import BellIcon from \'svelte-icons/io/IoMdNotifications.svelte\';',
+    '  import { HomeIcon, SearchIcon } from \'some-heavy-icon-lib\';',
     '\x3c/script>',
     '',
     '\x3cHomeIcon />',
-    '\x3cSearchIcon />',
-    '\x3cBellIcon />'
+    '\x3cSearchIcon />'
   ].join('\n');
 
   const iconGood = [
-    '\x3c!-- ✅ GOOD: CSS-based icons (e.g. Iconify) -->',
-    '/* One line in app.css — zero Vite overhead */',
-    '@import url("https://cdn.jsdelivr.net/npm/@iconify/...");',
+    '\x3c!-- ✅ RECOMMENDED: lucide-svelte -->',
+    '\x3cscript>',
+    '  // Lucide icons are individual Svelte components.',
+    '  // Because they are ESM, Vite/Rollup tree-shake them:',
+    '  // ONLY the icons you import are included in your bundle.',
+    '  import { Home, Search, Bell } from \'lucide-svelte\';',
+    '\x3c/script>',
     '',
-    '\x3c!-- In any .svelte file — NO imports whatsoever -->',
-    '\x3cspan class="icon icon-[mdi--home]">\x3c/span>',
-    '\x3cspan class="icon icon-[mdi--magnify]">\x3c/span>',
-    '\x3cspan class="icon icon-[mdi--bell]">\x3c/span>',
-    '',
-    '\x3c!-- For inline SVGs, always annotate for Accessibility: -->',
-    '\x3ca href="/next" aria-label="Next lesson">',
-    '  \x3csvg aria-hidden="true" focusable="false">',
-    '    \x3cpath d="..." />',
-    '  \x3c/svg>',
-    '\x3c/a>'
+    '\x3cHome size={20} />',
+    '\x3cSearch size={20} />',
+    '\x3cBell size={20} />'
   ].join('\n');
 
   const clsBad = [
@@ -439,25 +433,23 @@
       </div>
     {:else}
       <div class="sp-panel sp-good full">
-        <span class="sp-label good">✅ CSS-based via Iconify — zero Vite overhead</span>
+        <span class="sp-label good">✅ lucide-svelte — Premium DX + Tree-shaking</span>
         <div class="vite-sim">
           <div class="vite-track">
             <div class="vite-fill good-vite"></div>
           </div>
-          <p class="vite-note">Vite pre-bundling: <strong>1 CSS import.</strong> ⚡ cold start unchanged.</p>
+          <p class="vite-note">Vite: <strong>3 components imported.</strong> ⚡ Minimal overhead via ESM tree-shaking.</p>
         </div>
         <div class="icon-row">
-          <div class="icon-item"><span>🏠</span><span>home</span></div>
-          <div class="icon-item"><span>🔍</span><span>search</span></div>
-          <div class="icon-item"><span>🔔</span><span>bell</span></div>
+          <div class="icon-item"><Home size={24} /><span>home</span></div>
+          <div class="icon-item"><Search size={24} /><span>search</span></div>
+          <div class="icon-item"><Bell size={24} /><span>bell</span></div>
           <div class="icon-item">
-            <svg viewBox="0 0 16 16" width="24" fill="var(--color-accent)" aria-hidden="true" focusable="false">
-              <path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06z"/>
-            </svg>
-            <span>svg (hidden)</span>
+            <ChevronRight size={24} color="var(--color-accent)" />
+            <span>chevron</span>
           </div>
         </div>
-        <CodeBlock code={iconGood} lang="html" filename="CSS Icons" />
+        <CodeBlock code={iconGood} lang="svelte" filename="Lucide Icons" />
       </div>
     {/if}
   </section>

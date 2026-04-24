@@ -7,6 +7,8 @@
   WHAT FAILS WITHOUT IT: Learners can't easily copy examples; code is unstyled.
 -->
 <script lang="ts">
+	import { Copy, Check } from 'lucide-svelte';
+
 	interface Props {
 		code: string;
 		lang?: string;
@@ -38,9 +40,15 @@
 			aria-label="Copy code to clipboard"
 		>
 			{#if copied}
-				✅ Copied!
+				<div class="btn-content">
+					<Check size={14} class="text-success" />
+					<span>Copied!</span>
+				</div>
 			{:else}
-				📋 Copy
+				<div class="btn-content">
+					<Copy size={14} />
+					<span>Copy</span>
+				</div>
 			{/if}
 		</button>
 	</div>
@@ -98,6 +106,16 @@
 		padding: 0.25rem 0.6rem;
 		cursor: pointer;
 		transition: all 0.15s;
+	}
+
+	.btn-content {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+	}
+
+	.btn-content :global(.text-success) {
+		color: var(--color-success);
 	}
 
 	.copy-btn:hover {
