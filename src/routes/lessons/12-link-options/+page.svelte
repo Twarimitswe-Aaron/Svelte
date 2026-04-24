@@ -1,0 +1,50 @@
+<script lang="ts">
+	import LessonLayout from '$lib/components/LessonLayout.svelte';
+	import CodeBlock from '$lib/components/CodeBlock.svelte';
+	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
+
+	const lesson = lessons[11];
+	const { prev, next } = getAdjacentLessons(lesson.slug);
+
+	const linkOptionsCode = `<a href="/about" data-sveltekit-preload-data="hover">Hover to preload</a>
+<a href="/dashboard" data-sveltekit-noscroll>Do not scroll to top</a>
+<a href="/login" data-sveltekit-reload>Force full page reload</a>
+<a href="/settings" data-sveltekit-replacestate>Replace history state</a>`;
+</script>
+
+<svelte:head>
+	<title>Lesson 12 — Link Options</title>
+</svelte:head>
+
+<LessonLayout
+	{lesson} {prev} {next}
+	whatItDoes="Allows you to configure navigation behavior for specific links using HTML data-attributes."
+	whatFails="Without these attributes, you have to write manual click handlers to prevent scrolling or to preload data."
+>
+	<h3 class="sub-heading">Link Attributes</h3>
+	<ul>
+		<li><code>data-sveltekit-preload-data</code>: Preloads the data for the linked page when the user hovers or taps on the link.</li>
+		<li><code>data-sveltekit-preload-code</code>: Preloads only the JS code, not the data.</li>
+		<li><code>data-sveltekit-reload</code>: Tells SvelteKit not to handle the link, causing a full browser native page reload.</li>
+		<li><code>data-sveltekit-noscroll</code>: Prevents the default behavior of scrolling to the top of the page after navigation.</li>
+		<li><code>data-sveltekit-replacestate</code>: Replaces the current history entry rather than creating a new one.</li>
+	</ul>
+
+	<div class="separator"></div>
+
+	<h3 class="sub-heading">Examples</h3>
+	<CodeBlock code={linkOptionsCode} lang="html" filename="+page.svelte" />
+
+	<div class="example-area" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem">
+		<a href="/lessons/11-remote-functions" data-sveltekit-preload-data="hover" class="badge">Hover me to observe network preload</a>
+		<a href="#" data-sveltekit-noscroll class="badge">Click me (no scroll)</a>
+	</div>
+</LessonLayout>
+<style>
+	.sub-heading { font-size: 0.95rem; font-weight: 700; margin: 0 0 0.75rem; }
+	.separator { height: 1px; background: var(--color-border); margin: 1.5rem 0; }
+	ul { margin-left: 1.5rem; color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.5; }
+	code { background: var(--color-surface-2); padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; font-size: 0.85em; }
+	.badge { display: inline-block; padding: 0.5rem 1rem; border: 1px solid var(--color-border); border-radius: 4px; color: var(--color-accent); text-decoration: none; }
+	.badge:hover { background: var(--color-surface-2); }
+</style>

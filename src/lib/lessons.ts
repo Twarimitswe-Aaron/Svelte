@@ -118,6 +118,69 @@ export const lessons: Lesson[] = [
     description: 'query, form, command, and prerender from $app/server — server logic callable directly from components via auto-generated HTTP endpoints.',
     docUrl: 'https://svelte.dev/docs/kit/remote-functions',
     tags: ['advanced']
+  },
+  {
+    id: 12,
+    slug: '12-link-options',
+    emoji: '🔗',
+    title: 'Link Options',
+    description: 'Preloading data, code, or disabling scroll on links using data-sveltekit-* attributes.',
+    docUrl: 'https://svelte.dev/docs/kit/link-options',
+    tags: ['advanced']
+  },
+  {
+    id: 13,
+    slug: '13-service-workers',
+    emoji: '🛠️',
+    title: 'Service Workers',
+    description: 'Offline support and caching using SvelteKit service workers.',
+    docUrl: 'https://svelte.dev/docs/kit/service-workers',
+    tags: ['advanced']
+  },
+  {
+    id: 14,
+    slug: '14-server-only-modules',
+    emoji: '🔒',
+    title: 'Server-Only Modules',
+    description: 'Protecting server-side secrets using $env/static/private and server-only modules.',
+    docUrl: 'https://svelte.dev/docs/kit/server-only-modules',
+    tags: ['advanced']
+  },
+  {
+    id: 15,
+    slug: '15-snapshots',
+    emoji: '📸',
+    title: 'Snapshots',
+    description: 'Capturing and restoring ephemeral UI state using export const snapshot.',
+    docUrl: 'https://svelte.dev/docs/kit/snapshots',
+    tags: ['advanced']
+  },
+  {
+    id: 16,
+    slug: '16-shallow-routing',
+    emoji: '🚶',
+    title: 'Shallow Routing',
+    description: 'Updating the URL without full navigation using pushState and replaceState.',
+    docUrl: 'https://svelte.dev/docs/kit/shallow-routing',
+    tags: ['advanced']
+  },
+  {
+    id: 17,
+    slug: '17-observability',
+    emoji: '🔭',
+    title: 'Observability',
+    description: 'Logging, tracking errors, and monitoring app performance.',
+    docUrl: 'https://svelte.dev/docs/kit/observability',
+    tags: ['advanced']
+  },
+  {
+    id: 18,
+    slug: '18-packaging',
+    emoji: '📦',
+    title: 'Packaging',
+    description: 'Creating reusable Svelte and SvelteKit component libraries using @sveltejs/package.',
+    docUrl: 'https://svelte.dev/docs/kit/packaging',
+    tags: ['advanced']
   }
 ];
 
