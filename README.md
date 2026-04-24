@@ -1,42 +1,69 @@
-# sv
+# 🚀 SvelteKit Mastery Course
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A comprehensive, hands-on learning application designed to take you from a Svelte beginner to a SvelteKit expert. This project features 19 interactive lessons, each exploring a core framework concept with live demos and annotated code.
 
-## Creating a project
+## ✨ Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Svelte 5 Powered**: Built using the latest Svelte 5 Runes for state management.
+- **Experimental SvelteKit**: Explores cutting-edge features like **Remote Functions** (`query`, `command`, `form`).
+- **Interactive Demos**: Each lesson includes a live, functional demonstration of the concept.
+- **Modern Tech Stack**: TypeScript, Tailwind CSS, Lucide Icons, and Vitest.
+- **Type-Safe Registry**: Centralized lesson management for consistent navigation and metadata.
 
-```sh
-# create a new project
-npx sv create my-app
-```
+## 🛠 Tech Stack
 
-To recreate this project with the same configuration:
+- **Framework**: [SvelteKit](https://kit.svelte.dev/) (v2) + [Svelte 5](https://svelte.dev/)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: [Lucide-Svelte](https://lucide.dev/guide/svelte)
+- **Tooling**: Vite, Prettier, ESLint, Vitest
+- **Database**: SQLite (via `remote-demo.remote.ts`)
 
-```sh
-# recreate this project
-pnpm dlx sv@0.15.1 create --template minimal --types ts --add tailwindcss="plugins:none" prettier eslint vitest="usages:unit,component" --install pnpm blog
-```
+## 📚 Curriculum Roadmap
 
-## Developing
+The course is divided into **Core** and **Advanced** tracks:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### 🟢 Core Concepts (Lessons 01-06)
+1. **Introduction**: Project structure and setup.
+2. **Routing**: File-based routes, layouts, and error boundaries.
+3. **Loading Data**: Server-only vs. Universal load functions.
+4. **Form Actions**: Handling submissions and progressive enhancement.
+5. **Page Options**: PRERENDER, SSR, CSR, and TrailingSlash.
+6. **State Management**: Context API and Snapshot storage.
 
-```sh
-npm run dev
+### 🔴 Advanced SvelteKit (Lessons 07-19)
+7. **Advanced Routing**: Layout groups, matchers, and breakouts.
+8. **Hooks**: Intercepting requests and responses on the server.
+9. **Error Handling**: Expected vs. unexpected errors.
+10. **API Routes**: Building REST endpoints with `+server.ts`.
+11. **Remote Functions**: Revolutionary server logic callable directly from components.
+12. **Link Options**: Preloading and scroll management.
+13. **Service Workers**: Building offline-ready applications.
+14. **Server-Only Modules**: Protecting secrets and private logic.
+15. **Snapshots**: Preserving ephemeral UI state.
+16. **Shallow Routing**: URL updates without full navigation.
+17. **Observability**: Monitoring and logging in production.
+18. **Packaging**: Creating reusable SvelteKit libraries.
+19. **Best Practices**: SEO, performance, accessibility, and auth patterns.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## 🚀 Getting Started
 
-## Building
+1. **Install Dependencies**:
+   ```bash
+   pnpm install
+   ```
 
-To create a production version of your app:
+2. **Run Development Server**:
+   ```bash
+   pnpm dev
+   ```
+   Open `http://localhost:5173` to explore the lessons.
 
-```sh
-npm run build
-```
+3. **Verify Implementation**:
+   ```bash
+   pnpm test:unit
+   ```
 
-You can preview the production build with `npm run preview`.
+## 📄 License
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+This project is intended for educational purposes. Feel free to explore and build upon it!
