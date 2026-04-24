@@ -26,6 +26,19 @@
 	let { lesson, prev = null, next = null, whatItDoes, whatFails, children }: Props = $props();
 </script>
 
+<!--
+  ACCESSIBILITY + SEO: Each lesson page gets a unique <title> so that:
+  - SvelteKit's built-in live region announces the new page name to screen readers on navigation.
+  - Search engines index each lesson with a distinct, descriptive title.
+  - og:description makes shared links informative.
+-->
+<svelte:head>
+	<title>{lesson.emoji} {lesson.title} — SvelteKit Course</title>
+	<meta name="description" content={lesson.description} />
+	<meta property="og:title" content="{lesson.emoji} {lesson.title} — SvelteKit Course" />
+	<meta property="og:description" content={lesson.description} />
+</svelte:head>
+
 <article class="lesson-page animate-fade-in">
 	<!-- Header -->
 	<header class="lesson-header">
@@ -60,9 +73,18 @@
 
 	<!-- Lesson navigation -->
 	<nav class="lesson-nav">
+		<!--
+		  ACCESSIBILITY: The SVGs are decorative (aria-hidden) because the <a> tag's
+		  visible text ("Previous / Next" + lesson title) already describes the destination.
+		  Adding aria-label to the <a> gives assistive tech a clear, full description.
+		-->
 		{#if prev}
-			<a href="/lessons/{prev.slug}" class="nav-btn nav-prev">
-				<svg viewBox="0 0 16 16" width="16" fill="currentColor">
+			<a
+				href="/lessons/{prev.slug}"
+				class="nav-btn nav-prev"
+				aria-label="Previous lesson: {prev.title}"
+			>
+				<svg viewBox="0 0 16 16" width="16" fill="currentColor" aria-hidden="true" focusable="false">
 					<path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06z"/>
 				</svg>
 				<div class="nav-text">
@@ -75,12 +97,16 @@
 		{/if}
 
 		{#if next}
-			<a href="/lessons/{next.slug}" class="nav-btn nav-next">
+			<a
+				href="/lessons/{next.slug}"
+				class="nav-btn nav-next"
+				aria-label="Next lesson: {next.title}"
+			>
 				<div class="nav-text nav-text--right">
 					<span class="nav-label">Next</span>
 					<span class="nav-title">{next.emoji} {next.title}</span>
 				</div>
-				<svg viewBox="0 0 16 16" width="16" fill="currentColor">
+				<svg viewBox="0 0 16 16" width="16" fill="currentColor" aria-hidden="true" focusable="false">
 					<path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06z"/>
 				</svg>
 			</a>

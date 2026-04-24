@@ -181,6 +181,15 @@ export const lessons: Lesson[] = [
     description: 'Creating reusable Svelte and SvelteKit component libraries using @sveltejs/package.',
     docUrl: 'https://svelte.dev/docs/kit/packaging',
     tags: ['advanced']
+  },
+  {
+    id: 19,
+    slug: '19-best-practices',
+    emoji: '✅',
+    title: 'Best Practices',
+    description: 'Icons, Images, SEO meta tags, non-blocking fonts, sitemap.xml, robots.txt, accessibility, and auth integration — all in one lesson.',
+    docUrl: 'https://svelte.dev/docs/kit/performance',
+    tags: ['advanced']
   }
 ];
 

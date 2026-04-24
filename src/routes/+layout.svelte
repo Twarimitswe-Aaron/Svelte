@@ -36,18 +36,30 @@
 </script>
 
 <svelte:head>
-	<!-- 
+	<!--
     These meta tags apply to every page unless a child overrides them.
     Without svelte:head here, pages would have no title/description for SEO.
+
+    BEST PRACTICES applied here:
+    - og:type / og:description / og:url for rich social sharing
+    - Twitter Card for rich Twitter/X link previews
+    - Font loading is handled in app.html (not here) because:
+      Svelte 5 rejects inline string event handlers (onload="..."),
+      but app.html is raw HTML where that pattern is perfectly valid.
   -->
 	<title>SvelteKit Course</title>
 	<meta name="description" content="Learn SvelteKit from scratch with real, interactive demos." />
+
+	<!-- Open Graph -->
 	<meta property="og:title" content="SvelteKit Interactive Course" />
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link
-		href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-		rel="stylesheet"
-	/>
+	<meta property="og:description" content="Master SvelteKit with 19 interactive lessons — routing, hooks, auth, SSR and more." />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://sveltekit-course.dev" />
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="SvelteKit Interactive Course" />
+	<meta name="twitter:description" content="Master SvelteKit with 19 interactive lessons." />
 </svelte:head>
 
 <!-- Mobile overlay -->
