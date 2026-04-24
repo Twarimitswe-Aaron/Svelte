@@ -13,7 +13,7 @@ export interface Lesson {
   id: number;
   slug: string;         // matches src/routes/lessons/[slug]
   title: string;
-  emoji: string;
+  icon: string;         // Lucide-svelte icon name
   description: string;
   docUrl: string;
   tags: string[];
@@ -23,7 +23,7 @@ export const lessons: Lesson[] = [
   {
     id: 1,
     slug: '01-intro',
-    emoji: '🏗️',
+    icon: 'Construction',
     title: 'Introduction & Project Structure',
     description: 'Understand what SvelteKit is, how it differs from plain Svelte, and explore every file in a project.',
     docUrl: 'https://svelte.dev/docs/kit/introduction',
@@ -32,7 +32,7 @@ export const lessons: Lesson[] = [
   {
     id: 2,
     slug: '02-routing',
-    emoji: '🗺️',
+    icon: 'Map',
     title: 'Routing',
     description: 'File-based routing using +page.svelte, +layout.svelte, dynamic [param] segments, and the +error.svelte boundary.',
     docUrl: 'https://svelte.dev/docs/kit/routing',
@@ -41,7 +41,7 @@ export const lessons: Lesson[] = [
   {
     id: 3,
     slug: '03-loading-data',
-    emoji: '📡',
+    icon: 'Satellite',
     title: 'Loading Data',
     description: 'Server-only load(), universal load(), params, streaming with #await blocks, and parent data.',
     docUrl: 'https://svelte.dev/docs/kit/load',
@@ -50,7 +50,7 @@ export const lessons: Lesson[] = [
   {
     id: 4,
     slug: '04-form-actions',
-    emoji: '📝',
+    icon: 'FileText',
     title: 'Form Actions',
     description: 'Default & named actions, anatomy of an action, validation errors, use:enhance for progressive enhancement.',
     docUrl: 'https://svelte.dev/docs/kit/form-actions',
@@ -59,7 +59,7 @@ export const lessons: Lesson[] = [
   {
     id: 5,
     slug: '05-page-options',
-    emoji: '⚙️',
+    icon: 'Settings',
     title: 'Page Options',
     description: 'Control rendering modes: prerender, ssr, csr, and trailingSlash — and know when to use each.',
     docUrl: 'https://svelte.dev/docs/kit/page-options',
@@ -68,7 +68,7 @@ export const lessons: Lesson[] = [
   {
     id: 6,
     slug: '06-state-management',
-    emoji: '🔄',
+    icon: 'RefreshCcw',
     title: 'State Management',
     description: 'Context API, URL state, component state preservation, and ephemeral snapshot storage.',
     docUrl: 'https://svelte.dev/docs/kit/state-management',
@@ -77,7 +77,7 @@ export const lessons: Lesson[] = [
   {
     id: 7,
     slug: '07-advanced-routing',
-    emoji: '🔀',
+    icon: 'Shuffle',
     title: 'Advanced Routing',
     description: 'Rest params, optional params, route matchers, layout groups with (group) notation, and breaking out of layouts.',
     docUrl: 'https://svelte.dev/docs/kit/advanced-routing',
@@ -86,7 +86,7 @@ export const lessons: Lesson[] = [
   {
     id: 8,
     slug: '08-hooks',
-    emoji: '🪝',
+    icon: 'Anchor',
     title: 'Hooks',
     description: 'Server hooks: handle, handleError, handleFetch, locals. Universal hooks: reroute, transport.',
     docUrl: 'https://svelte.dev/docs/kit/hooks',
@@ -95,7 +95,7 @@ export const lessons: Lesson[] = [
   {
     id: 9,
     slug: '09-errors',
-    emoji: '🚨',
+    icon: 'AlertCircle',
     title: 'Error Handling',
     description: 'Expected errors with error(), unexpected errors, +error.svelte pages, and the handleError hook.',
     docUrl: 'https://svelte.dev/docs/kit/errors',
@@ -104,7 +104,7 @@ export const lessons: Lesson[] = [
   {
     id: 10,
     slug: '10-api-routes',
-    emoji: '🌐',
+    icon: 'Globe',
     title: 'API / Server Routes',
     description: 'Create REST endpoints with +server.ts. Handle GET, POST, DELETE and understand content negotiation.',
     docUrl: 'https://svelte.dev/docs/kit/routing#server',
@@ -113,7 +113,7 @@ export const lessons: Lesson[] = [
   {
     id: 11,
     slug: '11-remote-functions',
-    emoji: '⚡',
+    icon: 'Zap',
     title: 'Remote Functions',
     description: 'query, form, command, and prerender from $app/server — server logic callable directly from components via auto-generated HTTP endpoints.',
     docUrl: 'https://svelte.dev/docs/kit/remote-functions',
@@ -122,7 +122,7 @@ export const lessons: Lesson[] = [
   {
     id: 12,
     slug: '12-link-options',
-    emoji: '🔗',
+    icon: 'Link',
     title: 'Link Options',
     description: 'Preloading data, code, or disabling scroll on links using data-sveltekit-* attributes.',
     docUrl: 'https://svelte.dev/docs/kit/link-options',
@@ -131,7 +131,7 @@ export const lessons: Lesson[] = [
   {
     id: 13,
     slug: '13-service-workers',
-    emoji: '🛠️',
+    icon: 'Wrench',
     title: 'Service Workers',
     description: 'Offline support and caching using SvelteKit service workers.',
     docUrl: 'https://svelte.dev/docs/kit/service-workers',
@@ -140,7 +140,7 @@ export const lessons: Lesson[] = [
   {
     id: 14,
     slug: '14-server-only-modules',
-    emoji: '🔒',
+    icon: 'Lock',
     title: 'Server-Only Modules',
     description: 'Protecting server-side secrets using $env/static/private and server-only modules.',
     docUrl: 'https://svelte.dev/docs/kit/server-only-modules',
@@ -149,7 +149,7 @@ export const lessons: Lesson[] = [
   {
     id: 15,
     slug: '15-snapshots',
-    emoji: '📸',
+    icon: 'Camera',
     title: 'Snapshots',
     description: 'Capturing and restoring ephemeral UI state using export const snapshot.',
     docUrl: 'https://svelte.dev/docs/kit/snapshots',
@@ -158,7 +158,7 @@ export const lessons: Lesson[] = [
   {
     id: 16,
     slug: '16-shallow-routing',
-    emoji: '🚶',
+    icon: 'Footprints',
     title: 'Shallow Routing',
     description: 'Updating the URL without full navigation using pushState and replaceState.',
     docUrl: 'https://svelte.dev/docs/kit/shallow-routing',
@@ -167,7 +167,7 @@ export const lessons: Lesson[] = [
   {
     id: 17,
     slug: '17-observability',
-    emoji: '🔭',
+    icon: 'Telescope',
     title: 'Observability',
     description: 'Logging, tracking errors, and monitoring app performance.',
     docUrl: 'https://svelte.dev/docs/kit/observability',
@@ -176,7 +176,7 @@ export const lessons: Lesson[] = [
   {
     id: 18,
     slug: '18-packaging',
-    emoji: '📦',
+    icon: 'Package',
     title: 'Packaging',
     description: 'Creating reusable Svelte and SvelteKit component libraries using @sveltejs/package.',
     docUrl: 'https://svelte.dev/docs/kit/packaging',
@@ -185,7 +185,7 @@ export const lessons: Lesson[] = [
   {
     id: 19,
     slug: '19-best-practices',
-    emoji: '✅',
+    icon: 'ShieldCheck',
     title: 'Best Practices',
     description: 'Icons, Images, SEO meta tags, non-blocking fonts, sitemap.xml, robots.txt, accessibility, and auth integration — all in one lesson.',
     docUrl: 'https://svelte.dev/docs/kit/performance',

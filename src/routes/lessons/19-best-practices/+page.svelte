@@ -16,7 +16,23 @@
   import LessonLayout from '$lib/components/LessonLayout.svelte';
   import CodeBlock from '$lib/components/CodeBlock.svelte';
   import { getAdjacentLessons } from '$lib/lessons.js';
-  import { Home, Search, Bell, ChevronRight } from 'lucide-svelte';
+  import Home from 'lucide-svelte/icons/home';
+  import Search from 'lucide-svelte/icons/search';
+  import Bell from 'lucide-svelte/icons/bell';
+  import ChevronRight from 'lucide-svelte/icons/chevron-right';
+  import CheckCircle from 'lucide-svelte/icons/check-circle';
+  import AlertCircle from 'lucide-svelte/icons/alert-circle';
+  import XCircle from 'lucide-svelte/icons/x-circle';
+  import Clock from 'lucide-svelte/icons/clock';
+  import Play from 'lucide-svelte/icons/play';
+  import Zap from 'lucide-svelte/icons/zap';
+  import Palette from 'lucide-svelte/icons/palette';
+  import Image from 'lucide-svelte/icons/image';
+  import RotateCcw from 'lucide-svelte/icons/rotate-ccw';
+  import AlertTriangle from 'lucide-svelte/icons/alert-triangle';
+  import FileText from 'lucide-svelte/icons/file-text';
+  import Lock from 'lucide-svelte/icons/lock';
+  import Globe from 'lucide-svelte/icons/globe';
 
   const { prev, next, current: lesson } = getAdjacentLessons('19-best-practices');
 
@@ -39,8 +55,8 @@
     authResult = null;
     await new Promise<void>(r => setTimeout(r, 600));
     authResult = authMode === 'session'
-      ? '✅ locals.user = { id: "usr_demo", name: "SvelteKit Learner", role: "student" }'
-      : '⚠️ JWT decoded — but if stolen, attacker keeps access until token expires!';
+      ? 'Verified: locals.user = { id: "usr_demo", name: "SvelteKit Learner", role: "student" }'
+      : 'Security Warning: JWT decoded — but if stolen, attacker keeps access until token expires!';
     authLoading = false;
   }
 
@@ -74,18 +90,17 @@
     '\x3c!-- In src/lib/components/LessonLayout.svelte -->',
     '\x3csvelte:head>',
     '  \x3c!--',
-    '    lesson.emoji + lesson.title come from lessons.ts registry.',
+    '    lesson.title comes from the lessons.ts registry.',
     '    Every lesson page that uses \x3cLessonLayout> automatically gets',
     '    a unique, descriptive title — no per-page boilerplate needed.',
     '',
     '    SvelteKit injects a live region into the page that reads',
     '    this \x3ctitle> aloud after every client-side navigation.',
     '    That\'s why a unique title per page is mandatory.',
-    '  -->',
-    '  \x3ctitle>{lesson.emoji} {lesson.title} — SvelteKit Course\x3c/title>',
+    '  \x3c/!-->',
+    '  \x3ctitle>{lesson.title} — SvelteKit Course\x3c/title>',
     '  \x3cmeta name="description" content={lesson.description} />',
-    '  \x3cmeta property="og:title"',
-    '    content="{lesson.emoji} {lesson.title} — SvelteKit Course" />',
+    '  \x3cmeta property="og:title" content="{lesson.title} — SvelteKit Course" />',
     '  \x3cmeta property="og:description" content={lesson.description} />',
     '\x3c/svelte:head>'
   ].join('\n');
@@ -301,31 +316,31 @@
        1. ACCESSIBILITY — Unique Page Titles per Route
        ══════════════════════════════════════════════════════════ -->
   <section class="bp-section">
-    <h3 class="bp-heading">♿ 1. Accessibility — Unique Page Title Per Route</h3>
+    <h3 class="bp-heading"><AlertCircle size={18} /> 1. Accessibility — Navigation Context</h3>
 
     <div class="side-by-side">
       <div class="sp-panel sp-bad">
-        <span class="sp-label bad">❌ Without — Generic title on every page</span>
-        <div class="sr-box bad-box">
-          <span class="sr-icon">🔊</span>
-          <div>
-            <strong>Screen reader announces:</strong><br/>
-            "SvelteKit Course" — on <em>every</em> lesson navigation<br/>
-            <small>User has no idea which lesson they're on.</small>
-          </div>
+        <span class="sp-label bad"><XCircle size={14} /> Generic title on every page</span>
+        <div class="sr-box">
+          <span class="sr-label">Screen Reader:</span>
+          <p class="sr-text">
+            <Clock size={14} class="inline" />
+            "SvelteKit Course... SvelteKit Course... SvelteKit Course..."
+          </p>
+          <p class="sr-note">User is lost. No confirmation that navigation worked.</p>
         </div>
         <CodeBlock code={a11yBad} lang="html" filename="+layout.svelte" />
       </div>
 
       <div class="sp-panel sp-good">
-        <span class="sp-label good">✅ With — Unique title from lesson metadata</span>
-        <div class="sr-box good-box">
-          <span class="sr-icon">🔊</span>
-          <div>
-            <strong>Screen reader announces:</strong><br/>
-            "✅ Best Practices — SvelteKit Course"<br/>
-            <small>The actual lesson! Correct and informative.</small>
-          </div>
+        <span class="sp-label good"><CheckCircle size={14} /> Unique title from lesson metadata</span>
+        <div class="sr-box">
+          <span class="sr-label">Screen Reader:</span>
+          <p class="sr-text">
+            <CheckCircle size={14} class="inline text-green" />
+            "Introduction... Routing... Loading Data..."
+          </p>
+          <p class="sr-note">Perfect. Screen reader announces the new reality immediately.</p>
         </div>
         <CodeBlock code={a11yGood} lang="html" filename="LessonLayout.svelte" />
       </div>
@@ -336,7 +351,7 @@
        2. SEO — Open Graph, Sitemap, robots.txt
        ══════════════════════════════════════════════════════════ -->
   <section class="bp-section">
-    <h3 class="bp-heading">🔍 2. SEO — Open Graph, Sitemap &amp; robots.txt</h3>
+    <h3 class="bp-heading"><Globe size={18} /> 2. SEO — Social Meta Tags & Sitemap</h3>
 
     <div class="tab-row">
       <button class="tbtn" class:tbtn-on={seoTab==='without'} onclick={() => seoTab = 'without'}>❌ Without OG tags</button>
@@ -345,7 +360,7 @@
 
     {#if seoTab === 'without'}
       <div class="sp-panel sp-bad full">
-        <span class="sp-label bad">❌ Shared link with no og: tags — unrecognisable preview</span>
+        <span class="sp-label bad"><XCircle size={14} /> Broken Social Card</span>
         <div class="social-card bad-card">
           <div class="sc-site">sveltekit-course.dev</div>
           <div class="sc-title">sveltekit-course.dev/lessons/01-intro</div>
@@ -355,7 +370,7 @@
       </div>
     {:else}
       <div class="sp-panel sp-good full">
-        <span class="sp-label good">✅ Rich social preview + sitemap + robots</span>
+        <span class="sp-label good"><CheckCircle size={14} /> Rich Social Preview</span>
         <div class="social-card good-card">
           <div class="sc-site">sveltekit-course.dev</div>
           <div class="sc-title">SvelteKit Interactive Course</div>
@@ -370,7 +385,7 @@
        3. PERFORMANCE — Non-blocking font loading
        ══════════════════════════════════════════════════════════ -->
   <section class="bp-section">
-    <h3 class="bp-heading">⚡ 3. Performance — Non-Blocking Font Loading</h3>
+    <h3 class="bp-heading"><Zap size={18} /> 3. Performance — Non-blocking Assets</h3>
 
     <div class="tab-row">
       <button class="tbtn" class:tbtn-on={fontTab==='blocking'} onclick={() => fontTab = 'blocking'}>❌ Blocking</button>
@@ -380,7 +395,7 @@
 
     {#if fontTab === 'blocking'}
       <div class="sp-panel sp-bad full">
-        <span class="sp-label bad">❌ rel="stylesheet" — blocks rendering entirely</span>
+        <span class="sp-label bad"><XCircle size={14} /> Heavy icon set — importing entire library</span>
         <div class="perf-bar-wrap">
           <div class="perf-label">Page render progress</div>
           <div class="perf-track">
@@ -403,7 +418,7 @@
       </div>
     {:else}
       <div class="sp-panel sp-good full">
-        <span class="sp-label good">✅ + &lt;noscript&gt; — complete, handles all environments</span>
+        <span class="sp-label good"><CheckCircle size={14} /> + &lt;noscript&gt; — complete, handles all environments</span>
         <CodeBlock code={perfNoscript} lang="html" filename="app.html (Full)" />
       </div>
     {/if}
@@ -413,32 +428,32 @@
        4. ICONS — CSS-based vs per-file .svelte
        ══════════════════════════════════════════════════════════ -->
   <section class="bp-section">
-    <h3 class="bp-heading">🎨 4. Icons — CSS-based vs Per-file .svelte Components</h3>
+    <h3 class="bp-heading"><Palette size={18} /> 4. Icons — CSS-based vs Per-file .svelte Components</h3>
 
     <div class="tab-row">
-      <button class="tbtn" class:tbtn-on={iconTab==='bad'} onclick={() => iconTab = 'bad'}>❌ Per-file library</button>
-      <button class="tbtn" class:tbtn-on={iconTab==='good'} onclick={() => iconTab = 'good'}>✅ CSS-based (Iconify)</button>
+      <button class="tbtn" class:tbtn-on={iconTab==='bad'} onclick={() => iconTab = 'bad'}><XCircle size={14} /> Per-file library</button>
+      <button class="tbtn" class:tbtn-on={iconTab==='good'} onclick={() => iconTab = 'good'}><CheckCircle size={14} /> CSS-based (Iconify)</button>
     </div>
 
     {#if iconTab === 'bad'}
       <div class="sp-panel sp-bad full">
-        <span class="sp-label bad">❌ Per-icon .svelte files — grinds Vite to a halt</span>
+        <span class="sp-label bad"><XCircle size={14} /> Per-icon .svelte files — grinds Vite to a halt</span>
         <div class="vite-sim">
           <div class="vite-track">
             <div class="vite-fill bad-vite"></div>
           </div>
-          <p class="vite-note">Vite pre-bundling: scanning <strong>4,800 .svelte files</strong>… ⏳ cold start: ~12s</p>
+          <p class="vite-note">Vite pre-bundling: scanning <strong>4,800 .svelte files</strong>… <Clock size={14} class="inline" /> cold start: ~12s</p>
         </div>
         <CodeBlock code={iconBad} lang="svelte" filename="Individual Icons" />
       </div>
     {:else}
       <div class="sp-panel sp-good full">
-        <span class="sp-label good">✅ lucide-svelte — Premium DX + Tree-shaking</span>
+        <span class="sp-label good"><CheckCircle size={14} /> lucide-svelte — Premium DX + Tree-shaking</span>
         <div class="vite-sim">
           <div class="vite-track">
             <div class="vite-fill good-vite"></div>
           </div>
-          <p class="vite-note">Vite: <strong>3 components imported.</strong> ⚡ Minimal overhead via ESM tree-shaking.</p>
+          <p class="vite-note">Vite: <strong>3 components imported.</strong> <Zap size={14} class="inline" /> Minimal overhead via ESM tree-shaking.</p>
         </div>
         <div class="icon-row">
           <div class="icon-item"><Home size={24} /><span>home</span></div>
@@ -458,45 +473,45 @@
        5. IMAGES — CLS prevention
        ══════════════════════════════════════════════════════════ -->
   <section class="bp-section">
-    <h3 class="bp-heading">🖼️ 5. Images — Preventing Cumulative Layout Shift (CLS)</h3>
+    <h3 class="bp-heading"><Image size={18} /> 5. Images — Preventing Cumulative Layout Shift (CLS)</h3>
 
     <div class="tab-row">
-      <button class="tbtn" class:tbtn-on={imageTab==='bad'} onclick={() => { imageTab = 'bad'; replayImage(); }}>❌ No dimensions</button>
-      <button class="tbtn" class:tbtn-on={imageTab==='good'} onclick={() => { imageTab = 'good'; replayImage(); }}>✅ With dimensions</button>
+      <button class="tbtn" class:tbtn-on={imageTab==='bad'} onclick={() => { imageTab = 'bad'; replayImage(); }}><XCircle size={14} /> No dimensions</button>
+      <button class="tbtn" class:tbtn-on={imageTab==='good'} onclick={() => { imageTab = 'good'; replayImage(); }}><CheckCircle size={14} /> With dimensions</button>
     </div>
 
     {#if imageTab === 'bad'}
       <div class="sp-panel sp-bad full">
-        <span class="sp-label bad">❌ No width/height — text shifts when image loads</span>
+        <span class="sp-label bad"><XCircle size={14} /> No width/height — text shifts when image loads</span>
         <div class="cls-demo">
-          <p class="cls-text">Here is your article intro paragraph 📄</p>
+          <p class="cls-text">Here is your article intro paragraph <FileText size={14} class="inline" /></p>
           {#if !imageLoaded}
-            <p class="cls-loading">⏳ Image loading (0px height reserved)…</p>
+            <p class="cls-loading"><Clock size={14} class="inline" /> Image loading (0px height reserved)…</p>
           {:else}
-            <div class="cls-img bad-img">📸 Image loaded — content below just shifted! 😱</div>
+            <div class="cls-img bad-img"><Image size={16} /> Image loaded — content below just shifted! <AlertTriangle size={16} /></div>
           {/if}
           <p class="cls-text" class:shifted={imageLoaded && imageTab === 'bad'}>
             This text jumps down when the image loads — that's CLS!
           </p>
         </div>
-        <button class="btn btn-secondary" onclick={replayImage}>Replay layout shift ↺</button>
+        <button class="btn btn-secondary" onclick={replayImage}><RotateCcw size={14} /> Replay layout shift ↺</button>
         <CodeBlock code={clsBad} lang="html" filename="Missing dimensions" />
       </div>
     {:else}
       <div class="sp-panel sp-good full">
-        <span class="sp-label good">✅ With dimensions — space reserved, zero shift</span>
+        <span class="sp-label bad"><XCircle size={14} /> Missing dimensions — causes CLS</span>
         <div class="cls-demo">
-          <p class="cls-text">Here is your article intro paragraph 📄</p>
+          <p class="cls-text">Here is your article intro paragraph <FileText size={14} class="inline" /></p>
           <div class="cls-img good-img">
             {#if !imageLoaded}
-              ⏳ Loading… (120px space pre-reserved)
+              <Clock size={14} class="inline" /> Loading… (120px space pre-reserved)
             {:else}
-              ✅ Image loaded — nothing shifted!
+              <CheckCircle size={16} /> Image loaded — nothing shifted!
             {/if}
           </div>
-          <p class="cls-text">This text stays exactly in place. CLS = 0 ✅</p>
+          <p class="cls-text">This text stays exactly in place. CLS = 0 <CheckCircle size={14} class="inline" /></p>
         </div>
-        <button class="btn btn-secondary" onclick={replayImage}>Replay (no shift) ↺</button>
+        <button class="btn btn-secondary" onclick={replayImage}><RotateCcw size={14} /> Replay (no shift) ↺</button>
         <CodeBlock code={clsGood} lang="html" filename="Best Practice" />
       </div>
     {/if}
@@ -506,23 +521,29 @@
        6. AUTH — Sessions vs JWT + locals integration
        ══════════════════════════════════════════════════════════ -->
   <section class="bp-section">
-    <h3 class="bp-heading">🔐 6. Auth — Sessions vs JWT &amp; the locals Pattern</h3>
+    <h3 class="bp-heading"><Lock size={18} /> 6. Auth — Sessions vs JWT &amp; the locals Pattern</h3>
 
     <div class="tab-row">
-      <button class="tbtn" class:tbtn-on={authMode==='session'} onclick={() => { authMode = 'session'; authResult = null; }}>✅ Sessions (recommended)</button>
-      <button class="tbtn" class:tbtn-on={authMode==='jwt'} onclick={() => { authMode = 'jwt'; authResult = null; }}>⚠️ JWT (trade-offs)</button>
+      <button class="tbtn" class:tbtn-on={authMode==='session'} onclick={() => { authMode = 'session'; authResult = null; }}><CheckCircle size={14} /> Sessions (recommended)</button>
+      <button class="tbtn" class:tbtn-on={authMode==='jwt'} onclick={() => { authMode = 'jwt'; authResult = null; }}><AlertTriangle size={14} /> JWT (trade-offs)</button>
     </div>
 
     <div class="sp-panel {authMode === 'session' ? 'sp-good' : 'sp-warn'} full">
       {#if authMode === 'session'}
-        <span class="sp-label good">✅ Session-based auth wired into locals via handle()</span>
+        <span class="sp-label good"><CheckCircle size={14} /> Session-based auth wired into locals via handle()</span>
       {:else}
-        <span class="sp-label warn">⚠️ JWT — stateless, faster, but cannot be revoked</span>
+        <span class="sp-label warn"><AlertCircle size={14} /> JWT — stateless, faster, but cannot be revoked</span>
       {/if}
 
       <div class="auth-row">
-        <button class="btn btn-primary" onclick={simulateAuthCheck} disabled={authLoading}>
-          {authLoading ? '⏳ Checking auth…' : '▶ Simulate server auth check'}
+        <button class="sp-btn" onclick={simulateAuthCheck} disabled={authLoading}>
+          {#if authLoading}
+            <Clock size={14} class="animate-spin" />
+            Checking auth…
+          {:else}
+            <Play size={14} />
+            Simulate server auth check
+          {/if}
         </button>
         {#if authResult}
           <div class="auth-result {authMode === 'session' ? 'auth-ok' : 'auth-warn'}">
@@ -548,6 +569,7 @@
     margin: 0 0 1rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--color-border);
+    display: flex; align-items: center; gap: 0.5rem;
   }
 
   .side-by-side {
@@ -614,9 +636,9 @@
     margin-bottom: .75rem;
     font-size: .82rem;
   }
-  .sr-box.bad-box  { border-color: rgba(248,81,73,.3); }
-  .sr-box.good-box { border-color: rgba(63,185,80,.3); }
-  .sr-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .sr-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-muted); }
+  .sr-text { font-size: 0.9rem; font-family: monospace; display: flex; align-items: center; gap: 0.5rem; }
+  .sr-note { font-size: 0.8rem; color: var(--color-text-muted); font-style: italic; }
 
   /* ── Social preview card ─────────────────────────────── */
   .social-card {

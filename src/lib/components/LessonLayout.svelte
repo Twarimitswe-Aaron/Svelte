@@ -11,9 +11,13 @@
     - prev / next: adjacent lessons (from getAdjacentLessons)
 -->
 <script lang="ts">
-	import { ChevronLeft, ChevronRight, ExternalLink, BookOpen } from 'lucide-svelte';
+	import ChevronLeft from 'lucide-svelte/icons/chevron-left';
+	import ChevronRight from 'lucide-svelte/icons/chevron-right';
+	import ExternalLink from 'lucide-svelte/icons/external-link';
+	import BookOpen from 'lucide-svelte/icons/book-open';
 	import type { Lesson } from '$lib/lessons.js';
 	import ConceptCard from './ConceptCard.svelte';
+	import LessonIcon from './LessonIcon.svelte';
 
 	interface Props {
 		lesson: Lesson;
@@ -34,9 +38,9 @@
   - og:description makes shared links informative.
 -->
 <svelte:head>
-	<title>{lesson.emoji} {lesson.title} — SvelteKit Course</title>
+	<title>{lesson.title} — SvelteKit Course</title>
 	<meta name="description" content={lesson.description} />
-	<meta property="og:title" content="{lesson.emoji} {lesson.title} — SvelteKit Course" />
+	<meta property="og:title" content="{lesson.title} — SvelteKit Course" />
 	<meta property="og:description" content={lesson.description} />
 </svelte:head>
 
@@ -53,7 +57,7 @@
 			</a>
 		</div>
 		<h1 class="lesson-title">
-			<span class="lesson-emoji">{lesson.emoji}</span>
+			<LessonIcon name={lesson.icon} size={32} class="lesson-header-icon" />
 			{lesson.title}
 		</h1>
 		<p class="lesson-desc">{lesson.description}</p>
@@ -90,7 +94,10 @@
 				<ChevronLeft size={20} />
 				<div class="nav-text">
 					<span class="nav-label">Previous</span>
-					<span class="nav-title">{prev.emoji} {prev.title}</span>
+					<div class="nav-title-wrap">
+						<LessonIcon name={prev.icon} size={14} />
+						<span class="nav-title">{prev.title}</span>
+					</div>
 				</div>
 			</a>
 		{:else}
@@ -105,7 +112,10 @@
 			>
 				<div class="nav-text nav-text--right">
 					<span class="nav-label">Next</span>
-					<span class="nav-title">{next.emoji} {next.title}</span>
+					<div class="nav-title-wrap nav-title-wrap--right">
+						<span class="nav-title">{next.title}</span>
+						<LessonIcon name={next.icon} size={14} />
+					</div>
 				</div>
 				<ChevronRight size={20} />
 			</a>
@@ -163,8 +173,9 @@
 		color: var(--color-text);
 	}
 
-	.lesson-emoji {
-		font-size: 2rem;
+	.lesson-title :global(.lesson-header-icon) {
+		color: var(--color-accent);
+		flex-shrink: 0;
 	}
 
 	.lesson-desc {
@@ -258,6 +269,14 @@
 		text-transform: uppercase;
 		color: var(--color-text-muted);
 	}
+
+	.nav-title-wrap {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-top: 0.15rem;
+	}
+	.nav-title-wrap--right { justify-content: flex-end; }
 
 	.nav-title {
 		font-size: 0.875rem;

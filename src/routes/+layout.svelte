@@ -14,7 +14,11 @@
 	import '../app.css'; // Pull in global styles + Tailwind
 
 	import { page } from '$app/stores';
+	import Home from 'lucide-svelte/icons/home';
+	import BookOpen from 'lucide-svelte/icons/book-open';
+	import FileText from 'lucide-svelte/icons/file-text';
 	import { lessons } from '$lib/lessons.js';
+	import LessonIcon from '$lib/components/LessonIcon.svelte';
 
 	let { children } = $props();
 
@@ -88,7 +92,8 @@
 			class:active={$page.url.pathname === '/'}
 			onclick={() => (sidebarOpen = false)}
 		>
-			🏠 Home
+			<LessonIcon name="Home" class="sidebar-icon" />
+			<span>Home</span>
 		</a>
 
 		<div class="sidebar-divider"></div>
@@ -104,7 +109,7 @@
 					onclick={() => (sidebarOpen = false)}
 					title={lesson.description}
 				>
-					<span class="sidebar-emoji">{lesson.emoji}</span>
+					<LessonIcon name={lesson.icon} class="sidebar-icon" />
 					<span class="sidebar-link-text">
 						<span class="sidebar-link-num">{lesson.id}.</span>
 						{lesson.title}
@@ -116,7 +121,9 @@
 
 		<div class="sidebar-footer">
 			<a href="https://svelte.dev/docs/kit" target="_blank" rel="noreferrer" class="sidebar-docs-link">
-				📚 Official Docs ↗
+				<LessonIcon name="BookOpen" size={14} class="sidebar-icon-inline" />
+				<span>Official Docs</span>
+				<LessonIcon name="ExternalLink" size={11} class="opacity-50" />
 			</a>
 		</div>
 	</aside>
@@ -256,7 +263,22 @@
 		border-left-color: var(--color-accent);
 	}
 
-	.sidebar-emoji { font-size: 1rem; flex-shrink: 0; }
+	.sidebar-icon {
+		color: var(--color-text-muted);
+		transition: color 0.15s;
+		flex-shrink: 0;
+	}
+	.sidebar-link:hover .sidebar-icon,
+	.sidebar-link.active .sidebar-icon {
+		color: var(--color-accent);
+	}
+
+	.sidebar-icon-inline {
+		margin-right: 0.4rem;
+		opacity: 0.8;
+	}
+
+	.opacity-50 { opacity: 0.5; }
 	.sidebar-link-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 	.sidebar-link-num { color: var(--color-text-muted); font-size: 0.75rem; }
 	.sidebar-tag { font-size: 0.6rem; padding: 0.1rem 0.35rem; flex-shrink: 0; }

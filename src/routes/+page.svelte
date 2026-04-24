@@ -8,6 +8,15 @@
 -->
 <script lang="ts">
 	import { lessons } from '$lib/lessons.js';
+	import LessonIcon from '$lib/components/LessonIcon.svelte';
+	import Rocket from 'lucide-svelte/icons/rocket';
+	import BookOpen from 'lucide-svelte/icons/book-open';
+	import ExternalLink from 'lucide-svelte/icons/external-link';
+	import Zap from 'lucide-svelte/icons/zap';
+	import Gamepad2 from 'lucide-svelte/icons/gamepad-2';
+	import AlertTriangle from 'lucide-svelte/icons/alert-triangle';
+	import Monitor from 'lucide-svelte/icons/monitor';
+	import CheckCircle from 'lucide-svelte/icons/check-circle';
 
 	const tagColors: Record<string, string> = {
 		'getting-started': 'badge-green',
@@ -41,7 +50,7 @@
 		</p>
 		<div class="hero-actions">
 			<a href="/lessons/01-intro" class="btn btn-primary hero-cta">
-				🚀 Start with Lesson 1
+				<Rocket size={18} /> Start with Lesson 1
 			</a>
 			<a
 				href="https://svelte.dev/docs/kit"
@@ -49,7 +58,7 @@
 				rel="noreferrer"
 				class="btn btn-secondary"
 			>
-				📖 Official Docs ↗
+				<BookOpen size={18} /> Official Docs <ExternalLink size={14} class="opacity-50" />
 			</a>
 		</div>
 
@@ -79,7 +88,7 @@
 			{#each lessons as lesson}
 				<a href="/lessons/{lesson.slug}" class="lesson-card">
 					<div class="lesson-card-top">
-						<span class="lesson-card-emoji">{lesson.emoji}</span>
+						<LessonIcon name={lesson.icon} size={28} class="lesson-card-icon" />
 						<div class="lesson-card-num">#{lesson.id}</div>
 					</div>
 					<h3 class="lesson-card-title">{lesson.title}</h3>
@@ -98,14 +107,14 @@
 		<h2 class="section-title">How This Works</h2>
 		<div class="how-grid">
 			<div class="how-card">
-				<div class="how-icon">📖</div>
+				<div class="how-icon"><BookOpen size={28} color="var(--color-accent)" /></div>
 				<h3>Read the Concept</h3>
 				<p>
 					Each lesson explains the SvelteKit feature, what it does, and links to the official docs.
 				</p>
 			</div>
 			<div class="how-card">
-				<div class="how-icon">🎮</div>
+				<div class="how-icon"><Gamepad2 size={28} color="var(--color-accent)" /></div>
 				<h3>Use the Live Demo</h3>
 				<p>
 					Interact with running SvelteKit code right in the browser — no sandboxes, this is the real
@@ -113,7 +122,7 @@
 				</p>
 			</div>
 			<div class="how-card">
-				<div class="how-icon">⚠️</div>
+				<div class="how-icon"><AlertTriangle size={28} color="#d29922" /></div>
 				<h3>Understand the Failure Mode</h3>
 				<p>
 					Every lesson tells you exactly what breaks if you skip or misuse the feature — the most
@@ -121,7 +130,7 @@
 				</p>
 			</div>
 			<div class="how-card">
-				<div class="how-icon">💻</div>
+				<div class="how-icon"><Monitor size={28} color="var(--color-accent)" /></div>
 				<h3>Read the Code</h3>
 				<p>
 					All source files are annotated with comments. Open DevTools or the source to see exactly
@@ -259,8 +268,8 @@
 		margin-bottom: 0.75rem;
 	}
 
-	.lesson-card-emoji {
-		font-size: 1.75rem;
+	.lesson-card :global(.lesson-card-icon) {
+		color: var(--color-accent);
 	}
 
 	.lesson-card-num {
@@ -287,6 +296,15 @@
 		margin: 0 0 1rem;
 		display: -webkit-box;
 		-webkit-line-clamp: 3;
+		line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.line-clamp-3 {
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		line-clamp: 3;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 	}
