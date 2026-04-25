@@ -190,6 +190,15 @@ export const lessons: Lesson[] = [
     description: 'Icons, Images, SEO meta tags, non-blocking fonts, sitemap.xml, robots.txt, accessibility, and auth integration — all in one lesson.',
     docUrl: 'https://svelte.dev/docs/kit/performance',
     tags: ['advanced']
+  },
+  {
+    id: 20,
+    slug: '20-testing',
+    icon: 'TestTube',
+    title: 'Testing with Vitest',
+    description: 'Unit testing Svelte components and SvelteKit modules using Vitest and @testing-library/svelte.',
+    docUrl: 'https://svelte.dev/docs/kit/testing',
+    tags: ['advanced']
   }
 ];
 

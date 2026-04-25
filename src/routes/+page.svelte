@@ -44,9 +44,9 @@
 			by Building Real Things
 		</h1>
 		<p class="hero-desc">
-			10 interactive lessons covering every major feature of SvelteKit — routing, loading data,
-			form actions, hooks, error handling and more. Every lesson has a live demo and explains what
-			breaks if you remove the feature.
+			20 interactive lessons covering everything from core routing to advanced features like 
+			Remote Functions, Shallow Routing, and Unit Testing. Every lesson includes a live demo 
+			and explains exactly what breaks without it.
 		</p>
 		<div class="hero-actions">
 			<a href="/lessons/01-intro" class="btn btn-primary hero-cta">
@@ -65,7 +65,7 @@
 		<!-- Stats row -->
 		<div class="hero-stats">
 			<div class="stat">
-				<span class="stat-num">10</span>
+				<span class="stat-num">20</span>
 				<span class="stat-label">Lessons</span>
 			</div>
 			<div class="stat-divider"></div>
