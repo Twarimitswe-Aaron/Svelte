@@ -2,9 +2,9 @@
 <html lang="en">
 <!--
   WHY lang="en" here?
-  ✅ WITH    → Screen readers use the correct language engine.
+  WITH    → Screen readers use the correct language engine.
               Google indexes the page as English content.
-  ❌ WITHOUT → Screen reader might read English words with a foreign language
+  WITHOUT → Screen reader might read English words with a foreign language
               pronunciation engine, making the page unusable for blind users.
               WCAG 2.1 Success Criterion 3.1.1 (Level A) requires this.
 -->
@@ -26,15 +26,15 @@
 			  so plain HTML event handlers work perfectly here.
 
 			STEP 1 — preconnect to fonts.googleapis.com
-			  ✅ WITH    → Browser opens the TCP/TLS handshake immediately.
+			   WITH    → Browser opens the TCP/TLS handshake immediately.
 			              Saves ~150-300ms of connection setup later.
-			  ❌ WITHOUT → Browser waits until it encounters the font URL before
+			   WITHOUT → Browser waits until it encounters the font URL before
 			              opening the connection — wasted latency.
 
 			  crossorigin="anonymous" is MANDATORY here:
-			  ✅ WITH    → Browser knows it's a cross-origin request, reuses the
+			   WITH    → Browser knows it's a cross-origin request, reuses the
 			              same preconnected socket for the actual font fetch.
-			  ❌ WITHOUT → Browser opens a SECOND TCP connection because the modes
+			   WITHOUT → Browser opens a SECOND TCP connection because the modes
 			              don't match, wasting the entire preconnect benefit.
 		-->
 		<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="anonymous" />
@@ -44,18 +44,18 @@
 			  Why TWO preconnects?
 			  fonts.googleapis.com → serves the CSS stylesheet (font-face declarations)
 			  fonts.gstatic.com   → serves the actual .woff2 font FILES
-			  ✅ WITH    → Both TCP connections opened early; fonts appear faster.
-			  ❌ WITHOUT → The font file domain has no preconnected socket, adding
+			   WITH    → Both TCP connections opened early; fonts appear faster.
+			   WITHOUT → The font file domain has no preconnected socket, adding
 			              another round trip delay just for the font binaries.
 		-->
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 
 		<!--
 			STEP 3 — rel="preload" as="style" (non-blocking download)
-			  ✅ WITH    → Browser downloads the font CSS file in the background
+			   WITH    → Browser downloads the font CSS file in the background
 			              with high priority, WITHOUT blocking page rendering.
 			              Users see styled text fast even on slow connections.
-			  ❌ WITHOUT (using rel="stylesheet" directly):
+			   WITHOUT (using rel="stylesheet" directly):
 			              The font stylesheet is "render-blocking" — the browser
 			              STOPS painting the page until the font file is fully
 			              downloaded. On a 3G connection this can be 1-3 seconds
@@ -78,8 +78,8 @@
 			  The onload trick requires JavaScript. If a user has JS disabled
 			  (search engine bots, privacy browsers, screen reader modes), the
 			  font would never load.
-			  ✅ WITH    → Fonts always load regardless of JS status.
-			  ❌ WITHOUT → Users with JS disabled see the system fallback font
+			   WITH    → Fonts always load regardless of JS status.
+			   WITHOUT → Users with JS disabled see the system fallback font
 			              (system-ui / -apple-system) instead of Inter.
 		-->
 		<noscript>
@@ -96,8 +96,8 @@
 			data-sveltekit-preload-data="hover"
 			  PERFORMANCE: As soon as a user hovers over a link, SvelteKit starts
 			  fetching the data for that page — BEFORE the click is registered.
-			  ✅ WITH    → Navigations feel instantaneous; data is already loaded.
-			  ❌ WITHOUT → User must click, then wait for data fetch + render.
+			   WITH    → Navigations feel instantaneous; data is already loaded.
+			   WITHOUT → User must click, then wait for data fetch + render.
 		-->
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>

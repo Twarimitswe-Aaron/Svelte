@@ -68,77 +68,112 @@
 
 <!-- Mobile overlay -->
 {#if sidebarOpen}
-	<button class="overlay" aria-label="Close sidebar" onclick={toggle}></button>
+	<button
+		class="fixed inset-0 z-[19] cursor-pointer border-none bg-black/60"
+		aria-label="Close sidebar"
+		onclick={toggle}
+	></button>
 {/if}
 
-<div class="app-shell">
+<div class="flex h-screen overflow-hidden">
 	<!-- ===== SIDEBAR ===== -->
-	<aside class="sidebar" class:sidebar--open={sidebarOpen}>
+	<aside
+		class="scrollbar-hide z-20 flex h-full w-[var(--sidebar-width)] min-w-[var(--sidebar-width)] flex-col overflow-y-auto border-r border-[var(--color-border)] bg-[var(--color-surface)] transition-transform duration-250 ease-in-out fixed md:static inset-y-0 left-0 {sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}"
+	>
 		<!-- Logo / Brand -->
-		<a href="/" class="sidebar-logo" onclick={() => (sidebarOpen = false)}>
-			<div class="logo-icon">SK</div>
-			<div class="logo-text">
-				<span class="logo-title">SvelteKit</span>
-				<span class="logo-sub">Interactive Course</span>
+		<a
+			href="/"
+			class="flex items-center gap-3 px-4 py-5 font-bold text-[var(--color-text)] no-underline hover:bg-[var(--color-surface-2)]"
+			onclick={() => (sidebarOpen = false)}
+		>
+			<div
+				class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-2)] text-[0.8rem] font-black text-[#0d1117]"
+			>
+				SK
+			</div>
+			<div class="flex flex-col text-left">
+				<span class="text-[0.95rem] font-bold">SvelteKit</span>
+				<span class="text-[0.7rem] text-[var(--color-text-muted)]">Interactive Course</span>
 			</div>
 		</a>
 
-		<div class="sidebar-divider"></div>
+		<div class="h-px bg-[var(--color-border)]"></div>
 
 		<!-- Home link -->
 		<a
 			href="/"
-			class="sidebar-home"
-			class:active={$page.url.pathname === '/'}
+			class="flex items-center px-4 py-2.5 text-[0.875rem] font-medium no-underline transition-all hover:bg-[var(--color-surface-2)] hover:text-[var(--color-text)] {$page.url.pathname === '/' ? 'bg-[var(--color-surface-2)] text-[var(--color-text)]' : 'text-[var(--color-text-muted)]'}"
 			onclick={() => (sidebarOpen = false)}
 		>
-			<LessonIcon name="Home" class="sidebar-icon" />
-			<span>Home</span>
+			<LessonIcon
+				name="Home"
+				class="shrink-0 transition-colors {$page.url.pathname === '/' ? 'text-[var(--color-accent)]' : 'text-[var(--color-text-muted)]'}"
+			/>
+			<span class="ml-2">Home</span>
 		</a>
 
-		<div class="sidebar-divider"></div>
+		<div class="h-px bg-[var(--color-border)]"></div>
 
 		<!-- Lesson list -->
-		<nav class="sidebar-nav" aria-label="Course lessons">
-			<p class="nav-section-label">Lessons</p>
+		<nav class="scrollbar-hide flex-1 overflow-y-auto py-2" aria-label="Course lessons">
+			<p
+				class="m-0 px-4 pb-1 pt-4 text-[0.65rem] font-bold uppercase tracking-widest text-[var(--color-text-muted)]"
+			>
+				Lessons
+			</p>
 			{#each lessons as lesson}
 				<a
 					href="/lessons/{lesson.slug}"
-					class="sidebar-link"
-					class:active={activeSlug === lesson.slug}
+					class="group flex items-center gap-2 border-l-2 px-4 py-[0.55rem] text-[0.825rem] font-medium no-underline transition-all hover:bg-[var(--color-surface-2)] hover:text-[var(--color-text)] {activeSlug === lesson.slug ? 'border-[var(--color-accent)] bg-[rgba(88,166,255,0.08)] text-[var(--color-accent)]' : 'border-transparent text-[var(--color-text-muted)]'}"
 					onclick={() => (sidebarOpen = false)}
 					title={lesson.description}
 				>
-					<LessonIcon name={lesson.icon} class="sidebar-icon" />
-					<span class="sidebar-link-text">
-						<span class="sidebar-link-num">{lesson.id}.</span>
+					<LessonIcon
+						name={lesson.icon}
+						class="shrink-0 transition-colors group-hover:text-[var(--color-accent)] {activeSlug === lesson.slug ? 'text-[var(--color-accent)]' : 'text-[var(--color-text-muted)]'}"
+					/>
+					<span class="flex-1 min-w-0 overflow-hidden truncate whitespace-nowrap">
+						<span class="text-[0.75rem] text-[var(--color-text-muted)]">{lesson.id}.</span>
 						{lesson.title}
 					</span>
-					<span class="badge {tagColors[lesson.tags[0]]} sidebar-tag">{lesson.tags[0]}</span>
+					<span class="badge {tagColors[lesson.tags[0]]} shrink-0 px-[0.35rem] py-[0.1rem] text-[0.6rem]">{lesson.tags[0]}</span>
 				</a>
 			{/each}
 		</nav>
 
-		<div class="sidebar-footer">
-			<a href="https://svelte.dev/docs/kit" target="_blank" rel="noreferrer" class="sidebar-docs-link">
-				<LessonIcon name="BookOpen" size={14} class="sidebar-icon-inline" />
+		<div class="border-t border-[var(--color-border)] p-4">
+			<a
+				href="https://svelte.dev/docs/kit"
+				target="_blank"
+				rel="noreferrer"
+				class="flex items-center text-[0.8rem] text-[var(--color-text-muted)] no-underline hover:text-[var(--color-accent)]"
+			>
+				<LessonIcon name="BookOpen" size={14} class="mr-[0.4rem] shrink-0 opacity-80" />
 				<span>Official Docs</span>
-				<LessonIcon name="ExternalLink" size={11} class="opacity-50" />
+				<LessonIcon name="ExternalLink" size={11} class="ml-1 opacity-50" />
 			</a>
 		</div>
 	</aside>
 
 	<!-- ===== MAIN CONTENT ===== -->
-	<div class="main-wrap">
+	<div class="flex min-w-0 flex-1 flex-col h-full overflow-hidden">
 		<!-- Top bar (mobile only) -->
-		<header class="topbar">
-			<button class="menu-btn" aria-label="Toggle menu" onclick={toggle}>
-				<span></span><span></span><span></span>
+		<header
+			class="sticky top-0 z-10 flex items-center gap-3 border-b border-[var(--color-border)] bg-[var(--color-surface)] p-3 md:hidden shrink-0"
+		>
+			<button
+				class="flex cursor-pointer flex-col gap-1 border-none bg-transparent p-1"
+				aria-label="Toggle menu"
+				onclick={toggle}
+			>
+				<span class="block h-0.5 w-5 rounded-sm bg-[var(--color-text)]"></span>
+				<span class="block h-0.5 w-5 rounded-sm bg-[var(--color-text)]"></span>
+				<span class="block h-0.5 w-5 rounded-sm bg-[var(--color-text)]"></span>
 			</button>
-			<span class="topbar-title">SvelteKit Course</span>
+			<span class="text-[0.9rem] font-bold">SvelteKit Course</span>
 		</header>
 
-		<main class="main-content">
+		<main class="scrollbar-hide flex-1 overflow-y-auto">
 			<!-- 
         {@render children()} — This is Svelte 5's snippet system.
         WHAT FAILS WITHOUT IT: The child page (+page.svelte) content will NEVER appear.
@@ -149,220 +184,4 @@
 	</div>
 </div>
 
-<style>
-	.app-shell {
-		display: flex;
-		min-height: 100vh;
-	}
 
-	/* ---- Sidebar ---- */
-	.sidebar {
-		width: var(--sidebar-width);
-		min-width: var(--sidebar-width);
-		background: var(--color-surface);
-		border-right: 1px solid var(--color-border);
-		display: flex;
-		flex-direction: column;
-		height: 100vh;
-		position: sticky;
-		top: 0;
-		overflow-y: auto;
-		z-index: 20;
-		transition: transform 0.25s ease;
-	}
-
-	.sidebar-logo {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-		padding: 1.25rem 1rem;
-		text-decoration: none;
-		color: var(--color-text);
-	}
-	.sidebar-logo:hover { text-decoration: none; background: var(--color-surface-2); }
-
-	.logo-icon {
-		width: 36px;
-		height: 36px;
-		background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
-		border-radius: 8px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-weight: 900;
-		font-size: 0.8rem;
-		color: #0d1117;
-		flex-shrink: 0;
-	}
-
-	.logo-text {
-		display: flex;
-		flex-direction: column;
-	}
-	.logo-title { font-weight: 700; font-size: 0.95rem; }
-	.logo-sub { font-size: 0.7rem; color: var(--color-text-muted); }
-
-	.sidebar-divider {
-		height: 1px;
-		background: var(--color-border);
-		margin: 0;
-	}
-
-	.sidebar-home {
-		display: flex;
-		align-items: center;
-		padding: 0.6rem 1rem;
-		font-size: 0.875rem;
-		font-weight: 500;
-		color: var(--color-text-muted);
-		text-decoration: none;
-		transition: all 0.15s;
-	}
-	.sidebar-home:hover, .sidebar-home.active {
-		color: var(--color-text);
-		background: var(--color-surface-2);
-		text-decoration: none;
-	}
-
-	.sidebar-nav {
-		flex: 1;
-		padding: 0.5rem 0;
-		overflow-y: auto;
-	}
-
-	.nav-section-label {
-		font-size: 0.65rem;
-		font-weight: 700;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: var(--color-text-muted);
-		padding: 0.5rem 1rem 0.25rem;
-		margin: 0;
-	}
-
-	.sidebar-link {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		padding: 0.55rem 1rem;
-		font-size: 0.825rem;
-		font-weight: 500;
-		color: var(--color-text-muted);
-		text-decoration: none;
-		transition: all 0.15s;
-		border-left: 2px solid transparent;
-	}
-	.sidebar-link:hover {
-		color: var(--color-text);
-		background: var(--color-surface-2);
-		text-decoration: none;
-	}
-	.sidebar-link.active {
-		color: var(--color-accent);
-		background: rgba(88, 166, 255, 0.08);
-		border-left-color: var(--color-accent);
-	}
-
-	.sidebar-icon {
-		color: var(--color-text-muted);
-		transition: color 0.15s;
-		flex-shrink: 0;
-	}
-	.sidebar-link:hover .sidebar-icon,
-	.sidebar-link.active .sidebar-icon {
-		color: var(--color-accent);
-	}
-
-	.sidebar-icon-inline {
-		margin-right: 0.4rem;
-		opacity: 0.8;
-	}
-
-	.opacity-50 { opacity: 0.5; }
-	.sidebar-link-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-	.sidebar-link-num { color: var(--color-text-muted); font-size: 0.75rem; }
-	.sidebar-tag { font-size: 0.6rem; padding: 0.1rem 0.35rem; flex-shrink: 0; }
-
-	.sidebar-footer {
-		padding: 1rem;
-		border-top: 1px solid var(--color-border);
-	}
-	.sidebar-docs-link {
-		font-size: 0.8rem;
-		color: var(--color-text-muted);
-	}
-	.sidebar-docs-link:hover { color: var(--color-accent); }
-
-	/* ---- Main area ---- */
-	.main-wrap {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		min-width: 0; /* prevents overflow */
-	}
-
-	.main-content {
-		flex: 1;
-	}
-
-	/* ---- Top bar (mobile) ---- */
-	.topbar {
-		display: none;
-		align-items: center;
-		gap: 0.75rem;
-		padding: 0.75rem 1rem;
-		background: var(--color-surface);
-		border-bottom: 1px solid var(--color-border);
-		position: sticky;
-		top: 0;
-		z-index: 10;
-	}
-
-	.topbar-title {
-		font-weight: 700;
-		font-size: 0.9rem;
-	}
-
-	.menu-btn {
-		display: flex;
-		flex-direction: column;
-		gap: 4px;
-		background: none;
-		border: none;
-		cursor: pointer;
-		padding: 4px;
-	}
-	.menu-btn span {
-		display: block;
-		width: 20px;
-		height: 2px;
-		background: var(--color-text);
-		border-radius: 2px;
-	}
-
-	/* Mobile overlay */
-	.overlay {
-		position: fixed;
-		inset: 0;
-		background: rgba(0, 0, 0, 0.6);
-		z-index: 19;
-		border: none;
-		cursor: pointer;
-	}
-
-	/* ---- Responsive ---- */
-	@media (max-width: 768px) {
-		.topbar { display: flex; }
-		.sidebar {
-			position: fixed;
-			top: 0;
-			left: 0;
-			height: 100vh;
-			transform: translateX(-100%);
-			z-index: 20;
-		}
-		.sidebar--open {
-			transform: translateX(0);
-		}
-	}
-</style>
