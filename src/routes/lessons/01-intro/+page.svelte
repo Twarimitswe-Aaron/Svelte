@@ -125,6 +125,21 @@
         └── [slug]/
             ├── +page.svelte        ← renders at "/blog/hello-world"
             └── +page.server.ts     ← server-only load`;
+
+	const cssCode = `\x3Cscript lang="ts">
+	// 1. Component logic & state
+	let greeting = "Hello World";
+\x3C/script>
+
+<!-- 2. Markup -->
+<div class="my-class">{greeting}</div>
+
+\x3Cstyle>
+	/* 3. Native Svelte styles are scoped by default */
+	.my-class {
+		color: red;
+	}
+\x3C/style>`;
 </script>
 
 <svelte:head>
@@ -188,6 +203,24 @@
 		<LayoutTemplate size={18} /> Standard Project Structure
 	</h3>
 	<CodeBlock code={structureCode} lang="bash" filename="project tree" />
+
+	<!-- Styling note -->
+	<div class="my-6 h-px bg-[var(--color-border)]"></div>
+
+	<h3 class="mb-4 flex items-center gap-2 text-[0.95rem] font-bold text-[var(--color-text)]">
+		<Box size={18} /> A Note on Styling
+	</h3>
+
+	<CodeBlock code={cssCode} lang="svelte" filename="+page.svelte" />
+
+	<div class="mb-8 mt-4 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-2)] p-5 text-[0.875rem] leading-relaxed text-[var(--color-text-muted)]">
+		<p class="m-0 mb-4 font-bold text-[var(--color-accent)]">
+			⚠️ In this codebase, we exclusively leverage Tailwind CSS.
+		</p>
+		<p class="m-0">
+			Svelte has a powerful native styling approach (shown above) which automatically scopes styles to components. However, for large-scale apps, you can easily integrate Tailwind (as we have globally) for rapid, utility-first UI development.
+		</p>
+	</div>
 
 	<!-- SvelteKit vs Svelte comparison -->
 	<div class="mt-8 grid gap-4 sm:grid-cols-2">
