@@ -40,11 +40,3 @@
 		<a href="#" data-sveltekit-noscroll class="badge">Click me (no scroll)</a>
 	</div>
 </LessonLayout>
-<style>
-	.sub-heading { font-size: 0.95rem; font-weight: 700; margin: 0 0 0.75rem; }
-	.separator { height: 1px; background: var(--color-border); margin: 1.5rem 0; }
-	ul { margin-left: 1.5rem; color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.5; }
-	code { background: var(--color-surface-2); padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; font-size: 0.85em; }
-	.badge { display: inline-block; padding: 0.5rem 1rem; border: 1px solid var(--color-border); border-radius: 4px; color: var(--color-accent); text-decoration: none; }
-	.badge:hover { background: var(--color-surface-2); }
-</style>

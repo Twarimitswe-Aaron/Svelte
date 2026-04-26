@@ -33,69 +33,82 @@
 	/>
 </svelte:head>
 
-<div class="home">
+<div class="pb-16">
 	<!-- Hero section -->
-	<section class="hero">
-		<div class="hero-badge">
+	<section
+		class="relative px-8 py-16 text-center before:pointer-events-none before:absolute before:left-1/2 before:top-0 before:h-[300px] before:w-[600px] before:-translate-x-1/2 before:bg-[radial-gradient(ellipse_at_center_top,rgba(88,166,255,0.12)_0%,transparent_70%)] before:content-[''] md:py-12"
+	>
+		<div class="mb-6">
 			<span class="badge badge-purple">v2 · Svelte 5 Runes</span>
 		</div>
-		<h1 class="hero-title">
+		<h1 class="mb-5 text-[clamp(2.2rem,5vw,3.5rem)] font-black leading-[1.15]">
 			Learn <span class="gradient-text">SvelteKit</span><br />
 			by Building Real Things
 		</h1>
-		<p class="hero-desc">
-			20 interactive lessons covering everything from core routing to advanced features like 
-			Remote Functions, Shallow Routing, and Unit Testing. Every lesson includes a live demo 
-			and explains exactly what breaks without it.
+		<p class="mx-auto mb-8 max-w-[580px] text-[1.05rem] leading-[1.75] text-[var(--color-text-muted)]">
+			20 interactive lessons covering everything from core routing to advanced features like
+			Remote Functions, Shallow Routing, and Unit Testing. Every lesson includes a live demo and
+			explains exactly what breaks without it.
 		</p>
-		<div class="hero-actions">
-			<a href="/lessons/01-intro" class="btn btn-primary hero-cta">
+		<div class="mb-10 flex flex-wrap justify-center gap-3">
+			<a href="/lessons/01-intro" class="btn btn-primary animate-pulse-glow px-6 py-3 text-base">
 				<Rocket size={18} /> Start with Lesson 1
 			</a>
 			<a
 				href="https://svelte.dev/docs/kit"
 				target="_blank"
 				rel="noreferrer"
-				class="btn btn-secondary"
+				class="btn btn-secondary px-6 py-3 text-base"
 			>
 				<BookOpen size={18} /> Official Docs <ExternalLink size={14} class="opacity-50" />
 			</a>
 		</div>
 
 		<!-- Stats row -->
-		<div class="hero-stats">
-			<div class="stat">
-				<span class="stat-num">20</span>
-				<span class="stat-label">Lessons</span>
+		<div class="flex flex-wrap items-center justify-center gap-6">
+			<div class="text-center">
+				<span class="block text-2xl font-extrabold text-[var(--color-text)]">20</span>
+				<span class="text-[0.75rem] text-[var(--color-text-muted)]">Lessons</span>
 			</div>
-			<div class="stat-divider"></div>
-			<div class="stat">
-				<span class="stat-num">Live</span>
-				<span class="stat-label">Demos in every lesson</span>
+			<div class="h-8 w-px bg-[var(--color-border)]"></div>
+			<div class="text-center">
+				<span class="block text-2xl font-extrabold text-[var(--color-text)]">Live</span>
+				<span class="text-[0.75rem] text-[var(--color-text-muted)]">Demos in every lesson</span>
 			</div>
-			<div class="stat-divider"></div>
-			<div class="stat">
-				<span class="stat-num">100%</span>
-				<span class="stat-label">SvelteKit docs coverage</span>
+			<div class="h-8 w-px bg-[var(--color-border)]"></div>
+			<div class="text-center">
+				<span class="block text-2xl font-extrabold text-[var(--color-text)]">100%</span>
+				<span class="text-[0.75rem] text-[var(--color-text-muted)]">SvelteKit docs coverage</span>
 			</div>
 		</div>
 	</section>
 
 	<!-- Lesson grid -->
-	<section class="lessons-section">
-		<h2 class="section-title">Course Curriculum</h2>
-		<div class="lessons-grid">
+	<section class="p-8">
+		<h2 class="mb-6 text-[1.3rem] font-extrabold text-[var(--color-text)]">Course Curriculum</h2>
+		<div class="grid gap-4 grid-cols-[repeat(auto-fill,minmax(240px,1fr))]">
 			{#each lessons as lesson}
-				<a href="/lessons/{lesson.slug}" class="lesson-card">
-					<div class="lesson-card-top">
-						<LessonIcon name={lesson.icon} size={28} class="lesson-card-icon" />
-						<div class="lesson-card-num">#{lesson.id}</div>
+				<a
+					href="/lessons/{lesson.slug}"
+					class="group flex flex-col rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 text-[var(--color-text)] no-underline transition-all hover:-translate-y-0.5 hover:border-[var(--color-accent)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)]"
+				>
+					<div class="mb-3 flex items-start justify-between">
+						<LessonIcon name={lesson.icon} size={28} class="text-[var(--color-accent)]" />
+						<div
+							class="rounded-md border border-[var(--color-border)] bg-[var(--color-surface-2)] px-1.5 py-0.5 text-[0.7rem] font-bold text-[var(--color-text-muted)]"
+						>
+							#{lesson.id}
+						</div>
 					</div>
-					<h3 class="lesson-card-title">{lesson.title}</h3>
-					<p class="lesson-card-desc">{lesson.description}</p>
-					<div class="lesson-card-footer">
+					<h3 class="mb-2 text-[0.95rem] font-bold">{lesson.title}</h3>
+					<p
+						class="mb-4 flex-1 line-clamp-3 text-[0.8rem] leading-relaxed text-[var(--color-text-muted)]"
+					>
+						{lesson.description}
+					</p>
+					<div class="flex items-center justify-between">
 						<span class="badge {tagColors[lesson.tags[0]]}">{lesson.tags[0]}</span>
-						<span class="lesson-card-arrow">→</span>
+						<span class="text-base text-[var(--color-text-muted)] transition-transform group-hover:translate-x-1 group-hover:text-[var(--color-accent)]">→</span>
 					</div>
 				</a>
 			{/each}
@@ -103,263 +116,94 @@
 	</section>
 
 	<!-- How it works -->
-	<section class="how-section">
-		<h2 class="section-title">How This Works</h2>
-		<div class="how-grid">
-			<div class="how-card">
-				<div class="how-icon"><BookOpen size={28} color="var(--color-accent)" /></div>
-				<h3>Read the Concept</h3>
-				<p>
+	<section class="mt-4 border-t border-[var(--color-border)] p-8">
+		<h2 class="mb-6 text-[1.3rem] font-extrabold text-[var(--color-text)]">How This Works</h2>
+		<div class="grid gap-4 grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
+			<div class="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-5">
+				<div class="mb-3 text-[1.75rem]"><BookOpen size={28} color="var(--color-accent)" /></div>
+				<h3 class="mb-1.5 text-[0.9rem] font-bold">Read the Concept</h3>
+				<p class="m-0 text-[0.8rem] leading-relaxed text-[var(--color-text-muted)]">
 					Each lesson explains the SvelteKit feature, what it does, and links to the official docs.
 				</p>
 			</div>
-			<div class="how-card">
-				<div class="how-icon"><Gamepad2 size={28} color="var(--color-accent)" /></div>
-				<h3>Use the Live Demo</h3>
-				<p>
+			<div class="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-5">
+				<div class="mb-3 text-[1.75rem]"><Gamepad2 size={28} color="var(--color-accent)" /></div>
+				<h3 class="mb-1.5 text-[0.9rem] font-bold">Use the Live Demo</h3>
+				<p class="m-0 text-[0.8rem] leading-relaxed text-[var(--color-text-muted)]">
 					Interact with running SvelteKit code right in the browser — no sandboxes, this is the real
 					app.
 				</p>
 			</div>
-			<div class="how-card">
-				<div class="how-icon"><AlertTriangle size={28} color="#d29922" /></div>
-				<h3>Understand the Failure Mode</h3>
-				<p>
+			<div class="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-5">
+				<div class="mb-3 text-[1.75rem]"><AlertTriangle size={28} color="#d29922" /></div>
+				<h3 class="mb-1.5 text-[0.9rem] font-bold">Understand the Failure Mode</h3>
+				<p class="m-0 text-[0.8rem] leading-relaxed text-[var(--color-text-muted)]">
 					Every lesson tells you exactly what breaks if you skip or misuse the feature — the most
 					important part of learning.
 				</p>
 			</div>
-			<div class="how-card">
-				<div class="how-icon"><Monitor size={28} color="var(--color-accent)" /></div>
-				<h3>Read the Code</h3>
-				<p>
+			<div class="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-5">
+				<div class="mb-3 text-[1.75rem]"><Monitor size={28} color="var(--color-accent)" /></div>
+				<h3 class="mb-1.5 text-[0.9rem] font-bold">Read the Code</h3>
+				<p class="m-0 text-[0.8rem] leading-relaxed text-[var(--color-text-muted)]">
 					All source files are annotated with comments. Open DevTools or the source to see exactly
 					how each demo works.
 				</p>
 			</div>
 		</div>
 	</section>
+
+	<!-- Comparison with React/Next.js -->
+	<section class="mt-4 border-t border-[var(--color-border)] p-8">
+		<h2 class="mb-8 text-center text-[1.4rem] font-extrabold text-[var(--color-text)]">SvelteKit vs React & Next.js</h2>
+		
+		<div class="grid gap-6 md:grid-cols-2">
+			<!-- Advantages -->
+			<div class="rounded-xl border border-[rgba(63,185,80,0.4)] bg-[rgba(63,185,80,0.05)] p-6 transition-transform hover:-translate-y-1">
+				<h3 class="mb-5 flex items-center gap-2 text-[1.1rem] font-bold text-[var(--color-success)]">
+					<CheckCircle size={20} /> Advantages
+				</h3>
+				<ul class="m-0 flex flex-col gap-4 pl-0 text-[0.85rem] leading-relaxed text-[var(--color-text-muted)]">
+					<li class="flex items-start gap-3">
+						<div class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-success)]"></div>
+						<span><strong>No Virtual DOM:</strong> Svelte compiles to highly efficient vanilla JavaScript, resulting in less overhead and faster runtime performance than React.</span>
+					</li>
+					<li class="flex items-start gap-3">
+						<div class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-success)]"></div>
+						<span><strong>Smaller Bundle Sizes:</strong> You ship only the code you need, making initial load times incredibly fast.</span>
+					</li>
+					<li class="flex items-start gap-3">
+						<div class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-success)]"></div>
+						<span><strong>Simpler State Management:</strong> With Svelte 5 Runes (<code>$state</code>, <code>$derived</code>), reactivity is native, intuitive, and doesn't require hooks or complex dependency arrays.</span>
+					</li>
+					<li class="flex items-start gap-3">
+						<div class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-success)]"></div>
+						<span><strong>Built-in Features:</strong> Form actions, routing, and data loading come seamlessly integrated out of the box, unlike React where you piece together routers and form libraries.</span>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Drawbacks -->
+			<div class="rounded-xl border border-[rgba(248,81,73,0.4)] bg-[rgba(248,81,73,0.05)] p-6 transition-transform hover:-translate-y-1">
+				<h3 class="mb-5 flex items-center gap-2 text-[1.1rem] font-bold text-[var(--color-danger)]">
+					<AlertTriangle size={20} /> Drawbacks
+				</h3>
+				<ul class="m-0 flex flex-col gap-4 pl-0 text-[0.85rem] leading-relaxed text-[var(--color-text-muted)]">
+					<li class="flex items-start gap-3">
+						<div class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-danger)]"></div>
+						<span><strong>Smaller Ecosystem:</strong> React has a massive library of third-party components. With Svelte, you might occasionally need to build custom wrappers for JS libraries, though it's usually very easy.</span>
+					</li>
+					<li class="flex items-start gap-3">
+						<div class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-danger)]"></div>
+						<span><strong>Job Market:</strong> While growing rapidly, Svelte enterprise adoption is smaller compared to React and Next.js, meaning fewer immediate job openings.</span>
+					</li>
+					<li class="flex items-start gap-3">
+						<div class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-danger)]"></div>
+						<span><strong>SvelteKit Conventions:</strong> While Svelte itself is incredibly easy, understanding SvelteKit's specific file-system routing conventions (<code>+page</code> vs <code>+page.server</code> vs <code>+layout</code>) takes a small paradigm shift compared to Next.js.</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
 </div>
 
-<style>
-	.home {
-		padding: 0 0 4rem;
-	}
-
-	/* ---- Hero ---- */
-	.hero {
-		padding: 4rem 2rem 3rem;
-		text-align: center;
-		position: relative;
-	}
-
-	.hero::before {
-		content: '';
-		position: absolute;
-		top: 0; left: 50%;
-		transform: translateX(-50%);
-		width: 600px;
-		height: 300px;
-		background: radial-gradient(ellipse at center top, rgba(88, 166, 255, 0.12) 0%, transparent 70%);
-		pointer-events: none;
-	}
-
-	.hero-badge {
-		margin-bottom: 1.5rem;
-	}
-
-	.hero-title {
-		font-size: clamp(2.2rem, 5vw, 3.5rem);
-		font-weight: 900;
-		line-height: 1.15;
-		margin: 0 0 1.25rem;
-	}
-
-	.hero-desc {
-		color: var(--color-text-muted);
-		font-size: 1.05rem;
-		line-height: 1.75;
-		max-width: 580px;
-		margin: 0 auto 2rem;
-	}
-
-	.hero-actions {
-		display: flex;
-		justify-content: center;
-		gap: 0.75rem;
-		flex-wrap: wrap;
-		margin-bottom: 2.5rem;
-	}
-
-	.hero-cta {
-		font-size: 1rem;
-		padding: 0.75rem 1.5rem;
-		animation: pulse-glow 3s ease-in-out infinite;
-	}
-
-	.hero-stats {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 1.5rem;
-		flex-wrap: wrap;
-	}
-
-	.stat {
-		text-align: center;
-	}
-	.stat-num {
-		display: block;
-		font-size: 1.5rem;
-		font-weight: 800;
-		color: var(--color-text);
-	}
-	.stat-label {
-		font-size: 0.75rem;
-		color: var(--color-text-muted);
-	}
-	.stat-divider {
-		width: 1px;
-		height: 32px;
-		background: var(--color-border);
-	}
-
-	/* ---- Lessons grid ---- */
-	.lessons-section {
-		padding: 2rem;
-	}
-
-	.section-title {
-		font-size: 1.3rem;
-		font-weight: 800;
-		margin: 0 0 1.5rem;
-		color: var(--color-text);
-	}
-
-	.lessons-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-		gap: 1rem;
-	}
-
-	.lesson-card {
-		display: flex;
-		flex-direction: column;
-		background: var(--color-surface);
-		border: 1px solid var(--color-border);
-		border-radius: 12px;
-		padding: 1.25rem;
-		text-decoration: none;
-		color: var(--color-text);
-		transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
-	}
-
-	.lesson-card:hover {
-		border-color: var(--color-accent);
-		transform: translateY(-2px);
-		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-		text-decoration: none;
-	}
-
-	.lesson-card-top {
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-between;
-		margin-bottom: 0.75rem;
-	}
-
-	.lesson-card :global(.lesson-card-icon) {
-		color: var(--color-accent);
-	}
-
-	.lesson-card-num {
-		font-size: 0.7rem;
-		font-weight: 700;
-		color: var(--color-text-muted);
-		background: var(--color-surface-2);
-		border: 1px solid var(--color-border);
-		border-radius: 6px;
-		padding: 0.1rem 0.4rem;
-	}
-
-	.lesson-card-title {
-		font-size: 0.95rem;
-		font-weight: 700;
-		margin: 0 0 0.5rem;
-	}
-
-	.lesson-card-desc {
-		font-size: 0.8rem;
-		color: var(--color-text-muted);
-		line-height: 1.6;
-		flex: 1;
-		margin: 0 0 1rem;
-		display: -webkit-box;
-		-webkit-line-clamp: 3;
-		line-clamp: 3;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
-
-	.line-clamp-3 {
-		display: -webkit-box;
-		-webkit-line-clamp: 3;
-		line-clamp: 3;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
-
-	.lesson-card-footer {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	.lesson-card-arrow {
-		font-size: 1rem;
-		color: var(--color-text-muted);
-		transition: transform 0.15s;
-	}
-	.lesson-card:hover .lesson-card-arrow {
-		transform: translateX(4px);
-		color: var(--color-accent);
-	}
-
-	/* ---- How it works ---- */
-	.how-section {
-		padding: 2rem;
-		border-top: 1px solid var(--color-border);
-		margin-top: 1rem;
-	}
-
-	.how-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-		gap: 1rem;
-	}
-
-	.how-card {
-		background: var(--color-surface);
-		border: 1px solid var(--color-border);
-		border-radius: 10px;
-		padding: 1.25rem;
-	}
-
-	.how-icon {
-		font-size: 1.75rem;
-		margin-bottom: 0.75rem;
-	}
-
-	.how-card h3 {
-		font-size: 0.9rem;
-		font-weight: 700;
-		margin: 0 0 0.4rem;
-	}
-
-	.how-card p {
-		font-size: 0.8rem;
-		color: var(--color-text-muted);
-		line-height: 1.6;
-		margin: 0;
-	}
-</style>

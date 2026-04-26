@@ -7,6 +7,60 @@
 /* Tailwind v4 — single @import replaces the old @tailwind directives */
 @import "tailwindcss";
 
+@layer components {
+  /* =============================================
+     Shared Lesson Page Components
+     ============================================= */
+  .url-display {
+    @apply mb-6 flex items-center gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-2)] px-4 py-3 text-[0.875rem];
+  }
+  .url-label {
+    @apply shrink-0 text-[0.7rem] font-bold uppercase tracking-[0.08em] text-[var(--color-text-muted)];
+  }
+  .url-value {
+    @apply text-[0.9rem] text-[var(--color-success)];
+  }
+  .sub-heading {
+    @apply mb-3 text-[0.95rem] font-bold;
+  }
+  .demo-text {
+    @apply mb-3 text-[0.875rem] leading-[1.65] text-[var(--color-text-muted)];
+  }
+  .slug-links {
+    @apply mb-4 flex flex-col gap-1.5;
+  }
+  .slug-link {
+    @apply inline-flex rounded-md border border-[var(--color-border)] bg-[var(--color-surface-2)] px-3 py-1.5 font-mono text-[0.825rem] text-[var(--color-accent)] no-underline transition-colors hover:border-[var(--color-accent)] hover:no-underline;
+  }
+  .separator {
+    @apply my-6 h-px bg-[var(--color-border)];
+  }
+  .table-wrap {
+    @apply mt-4 overflow-x-auto;
+  }
+  .route-table {
+    @apply w-full border-collapse text-[0.825rem];
+  }
+  .route-table th {
+    @apply border-b border-[var(--color-border)] bg-[var(--color-surface-2)] px-3 py-2.5 text-left text-[0.72rem] font-bold uppercase tracking-[0.06em] text-[var(--color-text-muted)];
+  }
+  .route-table td {
+    @apply border-b border-[var(--color-border)] px-3 py-2.5 text-[var(--color-text-muted)];
+  }
+  .route-table td:first-child {
+    @apply text-[var(--color-accent)];
+  }
+  .route-table td:nth-child(2) {
+    @apply text-[var(--color-success)];
+  }
+  .route-table tr:last-child td {
+    @apply border-b-0;
+  }
+  .route-table tr:hover td {
+    @apply bg-[var(--color-surface-2)];
+  }
+}
+
 /* =============================================
    CSS Custom Properties (Design Tokens)
    Changing these here changes the whole app.

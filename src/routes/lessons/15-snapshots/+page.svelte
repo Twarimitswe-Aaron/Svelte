@@ -39,8 +39,3 @@
 	<h3 class="sub-heading">Example</h3>
 	<CodeBlock code={snapshotCode} lang="svelte" filename="+page.svelte" />
 </LessonLayout>
-<style>
-	.sub-heading { font-size: 0.95rem; font-weight: 700; margin: 0 0 0.75rem; }
-	.separator { height: 1px; background: var(--color-border); margin: 1.5rem 0; }
-	code { background: var(--color-surface-2); padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; font-size: 0.85em; }
-</style>
