@@ -17,6 +17,7 @@
 	import AlertTriangle from 'lucide-svelte/icons/alert-triangle';
 	import Monitor from 'lucide-svelte/icons/monitor';
 	import CheckCircle from 'lucide-svelte/icons/check-circle';
+	import GitBranch from 'lucide-svelte/icons/git-branch';
 
 	const tagColors: Record<string, string> = {
 		'getting-started': 'badge-green',
@@ -61,6 +62,14 @@
 				class="btn btn-secondary px-6 py-3 text-base"
 			>
 				<BookOpen size={18} /> Official Docs <ExternalLink size={14} class="opacity-50" />
+			</a>
+			<a
+				href="https://github.com/Twarimitswe-Aaron/Svelte"
+				target="_blank"
+				rel="noreferrer"
+				class="btn btn-secondary px-6 py-3 text-base"
+			>
+				<GitBranch size={18} /> Source Code <ExternalLink size={14} class="opacity-50" />
 			</a>
 		</div>
 
