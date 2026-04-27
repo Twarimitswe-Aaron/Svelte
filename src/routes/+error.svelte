@@ -10,6 +10,7 @@
 -->
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { resolve } from '$app/paths';
 
 	// $page.status is the HTTP status code (404, 500, etc.)
 	// $page.error is the error object returned from handleError() or error()
@@ -49,8 +50,8 @@
 		</div>
 
 		<div class="error-actions">
-			<a href="/" class="btn btn-primary">🏠 Go Home</a>
-			<a href="/lessons/09-errors" class="btn btn-secondary">← Back to Error lesson</a>
+			<a href={resolve('/')} class="btn btn-primary">🏠 Go Home</a>
+			<a href={resolve('/lessons/09-errors')} class="btn btn-secondary">← Back to Error lesson</a>
 		</div>
 
 		<div class="error-tip">

@@ -2,6 +2,7 @@
 	import LessonLayout from '$lib/components/LessonLayout.svelte';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
+	import { resolve } from '$app/paths';
 
 	const lesson = lessons[11];
 	const { prev, next } = getAdjacentLessons(lesson.slug);
@@ -36,7 +37,7 @@
 	<CodeBlock code={linkOptionsCode} lang="html" filename="+page.svelte" />
 
 	<div class="example-area" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem">
-		<a href="/lessons/11-remote-functions" data-sveltekit-preload-data="hover" class="badge">Hover me to observe network preload</a>
-		<a href="#" data-sveltekit-noscroll class="badge">Click me (no scroll)</a>
+		<a href={resolve('/lessons/11-remote-functions')} data-sveltekit-preload-data="hover" class="badge">Hover me to observe network preload</a>
+		<a href={resolve('/lessons/12-link-options')} data-sveltekit-noscroll class="badge">Click me (no scroll)</a>
 	</div>
 </LessonLayout>

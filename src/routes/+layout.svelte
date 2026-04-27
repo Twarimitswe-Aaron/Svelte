@@ -14,11 +14,8 @@
 	import '../app.css'; // Pull in global styles + Tailwind
 
 	import { page } from '$app/stores';
-	import Home from 'lucide-svelte/icons/home';
-	import BookOpen from 'lucide-svelte/icons/book-open';
-	import FileText from 'lucide-svelte/icons/file-text';
-	import { lessons } from '$lib/lessons.js';
-	import LessonIcon from '$lib/components/LessonIcon.svelte';
+	import { lessons } from '$lib/lessons.js';	import LessonIcon from '$lib/components/LessonIcon.svelte';
+	import { resolve } from '$app/paths';
 
 	let { children } = $props();
 
@@ -82,7 +79,7 @@
 	>
 		<!-- Logo / Brand -->
 		<a
-			href="/"
+			href={resolve('/')}
 			class="flex items-center gap-3 px-4 py-5 font-bold text-[var(--color-text)] no-underline hover:bg-[var(--color-surface-2)]"
 			onclick={() => (sidebarOpen = false)}
 		>
@@ -101,7 +98,7 @@
 
 		<!-- Home link -->
 		<a
-			href="/"
+			href={resolve('/')}
 			class="flex items-center px-4 py-2.5 text-[0.875rem] font-medium no-underline transition-all hover:bg-[var(--color-surface-2)] hover:text-[var(--color-text)] {$page.url.pathname === '/' ? 'bg-[var(--color-surface-2)] text-[var(--color-text)]' : 'text-[var(--color-text-muted)]'}"
 			onclick={() => (sidebarOpen = false)}
 		>
@@ -121,9 +118,9 @@
 			>
 				Lessons
 			</p>
-			{#each lessons as lesson}
+			{#each lessons as lesson (lesson.id)}
 				<a
-					href="/lessons/{lesson.slug}"
+					href={resolve(("/lessons/" + lesson.slug) as unknown as "/")}
 					class="group flex items-center gap-2 border-l-2 px-4 py-[0.55rem] text-[0.825rem] font-medium no-underline transition-all hover:bg-[var(--color-surface-2)] hover:text-[var(--color-text)] {activeSlug === lesson.slug ? 'border-[var(--color-accent)] bg-[rgba(88,166,255,0.08)] text-[var(--color-accent)]' : 'border-transparent text-[var(--color-text-muted)]'}"
 					onclick={() => (sidebarOpen = false)}
 					title={lesson.description}

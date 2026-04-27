@@ -12,7 +12,8 @@
 	import Rocket from 'lucide-svelte/icons/rocket';
 	import BookOpen from 'lucide-svelte/icons/book-open';
 	import ExternalLink from 'lucide-svelte/icons/external-link';
-	import Zap from 'lucide-svelte/icons/zap';
+	import { resolve } from '$app/paths';
+
 	import Gamepad2 from 'lucide-svelte/icons/gamepad-2';
 	import AlertTriangle from 'lucide-svelte/icons/alert-triangle';
 	import Monitor from 'lucide-svelte/icons/monitor';
@@ -52,7 +53,7 @@
 			explains exactly what breaks without it.
 		</p>
 		<div class="mb-10 flex flex-wrap justify-center gap-3">
-			<a href="/lessons/01-intro" class="btn btn-primary animate-pulse-glow px-6 py-3 text-base">
+			<a href={resolve('/lessons/01-intro')} class="btn btn-primary animate-pulse-glow px-6 py-3 text-base">
 				<Rocket size={18} /> Start with Lesson 1
 			</a>
 			<a
@@ -96,9 +97,9 @@
 	<section class="p-8">
 		<h2 class="mb-6 text-[1.3rem] font-extrabold text-[var(--color-text)]">Course Curriculum</h2>
 		<div class="grid gap-4 grid-cols-[repeat(auto-fill,minmax(240px,1fr))]">
-			{#each lessons as lesson}
+			{#each lessons as lesson (lesson.id)}
 				<a
-					href="/lessons/{lesson.slug}"
+					href={resolve(("/lessons/" + lesson.slug) as unknown as "/")}
 					class="group flex flex-col rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 text-[var(--color-text)] no-underline transition-all hover:-translate-y-0.5 hover:border-[var(--color-accent)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)]"
 				>
 					<div class="mb-3 flex items-start justify-between">
