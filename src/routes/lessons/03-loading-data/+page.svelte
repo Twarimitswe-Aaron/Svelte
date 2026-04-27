@@ -11,6 +11,7 @@
 	import LessonLayout from '$lib/components/LessonLayout.svelte';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
+	import { Lock, User, Calendar, Timer, Play, Loader2, CircleCheck } from 'lucide-svelte';
 
 	const lesson = lessons[2];
 	const { prev, next } = getAdjacentLessons(lesson.slug);
@@ -68,12 +69,12 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 <script lang="ts">
   let { data } = $props();
   // data = merged result of +page.server.ts + +page.ts load()
-<\/script>
+  ${'<'}/script>
 
 <h1>{data.posts.length} posts loaded</h1>
 <p>Server timestamp: {data.serverTimestamp}</p>`;
 </script>
-
+i
 <svelte:head>
 	<title>Lesson 03 — Loading Data · SvelteKit Course</title>
 </svelte:head>
@@ -89,7 +90,7 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 	<div class="data-sections">
 		<div class="data-section">
 			<div class="section-header">
-				<span class="section-badge badge-red">🔒 Server Load</span>
+				<span class="section-badge badge-red"><Lock size={14} class="inline mr-1" /> Server Load</span>
 				<code class="section-file">+page.server.ts</code>
 			</div>
 			<div class="data-box">
@@ -112,20 +113,20 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 	<!-- Posts rendered from server load -->
 	{#if data.serverPosts?.length}
 		<div class="posts-list">
-			{#each data.serverPosts as post}
+			{#each data.serverPosts as post (post.id)}
 				<div class="post-card">
 					<div class="post-header">
 						<h4 class="post-title">{post.title}</h4>
 						<div class="post-tags">
-							{#each post.tags as tag}
+							{#each post.tags as tag (tag)}
 								<span class="badge badge-blue">{tag}</span>
 							{/each}
 						</div>
 					</div>
 					<p class="post-excerpt">{post.excerpt}</p>
 					<div class="post-meta">
-						<span>👤 {post.author}</span>
-						<span>📅 {post.date}</span>
+						<span class="flex items-center gap-1"><User size={14} /> {post.author}</span>
+						<span class="flex items-center gap-1"><Calendar size={14} /> {post.date}</span>
 					</div>
 				</div>
 			{/each}
@@ -135,25 +136,32 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 	<div class="separator"></div>
 
 	<!-- SECTION 2: await streaming demo -->
-	<h3 class="sub-heading">⏱️ Streaming with &#123;#await&#125;</h3>
+	<h3 class="sub-heading flex items-center gap-2"><Timer size={20} /> Streaming with &#123;#await&#125;</h3>
 	<p class="demo-text">
 		Streaming lets you show a placeholder immediately while slow data loads. Click the button to
 		trigger a 2-second delayed promise and watch the &#123;#await&#125; block transition.
 	</p>
 
-	<button class="btn btn-primary" onclick={startStream} disabled={streamPromise !== null}>
-		{streamPromise ? '⏳ Waiting...' : '▶ Start Stream (2s delay)'}
+	<button class="btn btn-primary flex items-center gap-2" onclick={startStream} disabled={streamPromise !== null}>
+		{#if streamPromise}
+			<Loader2 size={16} class="animate-spin" /> Waiting...
+		{:else}
+			<Play size={16} /> Start Stream (2s delay)
+		{/if}
 	</button>
 
 	{#if streamPromise}
 		<div class="await-demo">
 			{#await streamPromise}
 				<div class="await-loading">
-					<div class="spinner"></div>
+					<Loader2 size={24} class="animate-spin text-(--color-accent)" />
 					<span>Loading streamed data…</span>
 				</div>
 			{:then result}
-				<div class="await-result animate-fade-in">{result}</div>
+				<div class="await-result animate-fade-in flex items-center gap-2">
+					<CircleCheck size={20} class="text-green-500" />
+					{result}
+				</div>
 			{/await}
 		</div>
 	{/if}
