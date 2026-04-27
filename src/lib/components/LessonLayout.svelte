@@ -11,6 +11,7 @@
     - prev / next: adjacent lessons (from getAdjacentLessons)
 -->
 <script lang="ts">
+import { resolve } from "$app/paths"
 	import ChevronLeft from 'lucide-svelte/icons/chevron-left';
 	import ChevronRight from 'lucide-svelte/icons/chevron-right';
 	import ExternalLink from 'lucide-svelte/icons/external-link';
@@ -50,7 +51,7 @@
 		<div class="lesson-meta">
 			<span class="lesson-number">Lesson {lesson.id}</span>
 			<span class="badge badge-blue">{lesson.tags[0]}</span>
-			<a href={lesson.docUrl} target="_blank" rel="noreferrer" class="badge badge-purple">
+			<a href={resolve(lesson.docUrl as unknown as "/")} target="_blank" rel="noreferrer" class="badge badge-purple">
 				<BookOpen size={13} class="icon-inline" />
 				<span>Official Docs</span>
 				<ExternalLink size={11} class="icon-inline opacity-70" />
@@ -87,7 +88,7 @@
 		-->
 		{#if prev}
 			<a
-				href="/lessons/{prev.slug}"
+				href={resolve(("/lessons/" + prev.slug) as unknown as "/")}
 				class="nav-btn nav-prev"
 				aria-label="Previous lesson: {prev.title}"
 			>
@@ -106,7 +107,7 @@
 
 		{#if next}
 			<a
-				href="/lessons/{next.slug}"
+				href={resolve((`/lessons/${next.slug}`) as unknown as "/")}
 				class="nav-btn nav-next"
 				aria-label="Next lesson: {next.title}"
 			>

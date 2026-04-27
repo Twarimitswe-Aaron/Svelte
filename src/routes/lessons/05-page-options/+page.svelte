@@ -101,7 +101,7 @@ export const prerender = false; // this one is NOT prerendered`;
 	<!-- Interactive option explorer -->
 	<div class="option-explorer">
 		<div class="option-tabs">
-			{#each options as opt}
+			{#each options as opt (opt.name)}
 				<button
 					class="option-tab"
 					class:active={selected === opt}

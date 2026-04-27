@@ -59,11 +59,13 @@ export const actions: Actions = {
   }
 };`;
 
+	const scriptStart = '<' + 'script lang="ts">';
+	const scriptEnd = '<' + '/script>';
 	const formCode = `<!-- +page.svelte — use:enhance for no-reload submission -->
-<script lang="ts">
+${scriptStart}
   import { enhance } from '$app/forms';
   let { form } = $props(); // action result lives here
-<\/script>
+${scriptEnd}
 
 <!-- use:enhance: intercepts submit, uses fetch instead of full POST reload -->
 <!-- Without use:enhance: the page does a full browser reload on submit     -->
@@ -225,7 +227,7 @@ export const actions: Actions = {
 		{#if data.messages.length > 0}
 			<div class="messages-list">
 				<h4>📮 Received Messages ({data.messages.length})</h4>
-				{#each data.messages as msg}
+				{#each data.messages as msg (msg.time)}
 					<div class="message-item">
 						<div class="message-author">{msg.name} <span>{msg.time}</span></div>
 						<p class="message-text">{msg.message}</p>

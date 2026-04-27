@@ -25,6 +25,9 @@
   import ExternalLink from 'lucide-svelte/icons/external-link';
   import HelpCircle from 'lucide-svelte/icons/help-circle';
 
+  import type { ComponentType, SvelteComponent } from 'svelte';
+  import type { IconProps } from 'lucide-svelte';
+
   interface Props {
     name: string;
     size?: number;
@@ -35,7 +38,7 @@
   let { name, size = 18, class: className = '', color = 'currentColor' }: Props = $props();
 
   // Map of string names to components
-  const iconMap: Record<string, any> = {
+  const iconMap: Record<string, ComponentType<SvelteComponent<IconProps>>> = {
     Construction,
     Map,
     Satellite,

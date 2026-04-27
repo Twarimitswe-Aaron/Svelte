@@ -5,14 +5,12 @@
   Try visiting /lessons/02-routing/your-text-here
 -->
 <script lang="ts">
-	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
+	import { resolve } from '$app/paths';
 
 	// data.slug comes from the load() function in +page.ts
 	// Without +page.ts, this would be undefined.
 	let { data } = $props();
 
-	const lesson = lessons[1];
-	const { prev, next } = getAdjacentLessons(lesson.slug);
 </script>
 
 <svelte:head>
@@ -20,7 +18,7 @@
 </svelte:head>
 
 <div class="dynamic-page">
-	<a href="/lessons/02-routing" class="back-link">← Back to Routing lesson</a>
+	<a href={resolve("/lessons/02-routing" as unknown as "/")} class="back-link">← Back to Routing lesson</a>
 
 	<div class="slug-hero">
 		<div class="slug-label">You navigated to</div>
@@ -62,6 +60,8 @@
 		</p>
 	</div>
 
-	<a href="/lessons/02-routing" class="btn btn-secondary back-btn">← Return to Routing lesson</a>
+	<a href={resolve("/lessons/02-routing" as unknown as "/")} class="btn btn-secondary back-btn"
+		>← Return to Routing lesson</a
+	>
 </div>
 

@@ -12,7 +12,7 @@
 	import LessonLayout from '$lib/components/LessonLayout.svelte';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
-	import { page } from '$app/stores';
+	import { resolve } from '$app/paths';
 
 	const lesson = lessons[6];
 	const { prev, next } = getAdjacentLessons(lesson.slug);
@@ -112,8 +112,6 @@ export const load = ({ params }) => ({
 	];
 
 	let selected = $state(topics[0]);
-
-	const demoPath = $derived($page.url.pathname);
 </script>
 
 <svelte:head>
@@ -129,7 +127,7 @@ export const load = ({ params }) => ({
 >
 	<!-- Topic tabs -->
 	<div class="tab-selector">
-		{#each topics as topic}
+		{#each topics as topic (topic.id)}
 			<button
 				class="topic-tab"
 				class:active={selected.id === topic.id}
@@ -167,8 +165,8 @@ export const load = ({ params }) => ({
 		The route <code>07-advanced-routing/[...path]</code> catches any sub-URL. Try these:
 	</p>
 	<div class="slug-links">
-		{#each ['/lessons/07-advanced-routing/foo', '/lessons/07-advanced-routing/foo/bar/baz', '/lessons/07-advanced-routing/any/deep/path'] as link}
-			<a href={link} class="slug-link">{link}</a>
+		{#each ['/lessons/07-advanced-routing/foo', '/lessons/07-advanced-routing/foo/bar/baz', '/lessons/07-advanced-routing/any/deep/path'] as link (link)}
+			<a href={resolve(link as unknown as "/")} class="slug-link">{link}</a>
 		{/each}
 	</div>
 </LessonLayout>

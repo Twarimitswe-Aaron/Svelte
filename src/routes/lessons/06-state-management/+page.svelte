@@ -13,6 +13,7 @@
 	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 	import { setContext } from 'svelte';
 
 	const lesson = lessons[5];
@@ -38,7 +39,7 @@
 		const url = new URL($page.url);
 		url.searchParams.set('n', String(n));
 		// goto() changes the URL without a full page reload
-		await goto(url.toString(), { keepFocus: true, replaceState: true });
+		await goto(resolve(url.toString() as unknown as '/'), { keepFocus: true, replaceState: true });
 	}
 
 	// ─── DEMO 3: Component-local state ─────────────────────────────────────────
@@ -65,6 +66,7 @@ count.value++;`;
 	const urlStateCode = `// URL as state — bookmarkable & shareable
 import { page } from '$app/stores';
 import { goto } from '$app/navigation';
+import { resolve } from '$app/paths';
 
 // Read state from URL
 const count = $derived(
@@ -75,7 +77,7 @@ const count = $derived(
 async function setCount(n: number) {
   const url = new URL($page.url);
   url.searchParams.set('n', String(n));
-  await goto(url, { replaceState: true });
+  await goto(resolve(url.toString() as any), { replaceState: true });
   // ⚠️ Without replaceState: every increment adds to browser history
 }`;
 </script>

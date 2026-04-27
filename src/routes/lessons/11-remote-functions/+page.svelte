@@ -24,7 +24,7 @@
 	// getPosts() is a remote query — on first render it returns a Promise.
 	// In a real app you'd use {#await} or $derived with async.
 	let postsPromise = $state(getPosts());
-	let loading = $state(false);
+	
 	let addTitle = $state('');
 	let adding = $state(false);
 	let likingId = $state<number | null>(null);
@@ -97,7 +97,7 @@ export const addPost = form(async ({ title }) => {
     await likePost(id);   // command() — sends POST to generated endpoint
     posts = getPosts();    // refresh the query
   }
-<\/script>
+<${'/'}script>
 
 {#await posts}
   <p>Loading...</p>
@@ -171,13 +171,13 @@ export const addPost = command(async (title: string) => {
 		</div>
 	{:then posts}
 		<div class="posts-grid">
-			{#each posts as post}
+			{#each posts as post (post.id)}
 				<div class="post-item">
 					<div class="post-info">
 						<span class="post-id"># {post.id}</span>
 						<span class="post-title-text">{post.title}</span>
 						<div class="post-tags-row">
-							{#each post.tags as tag}
+							{#each post.tags as tag (tag)}
 								<span class="tag-pill">{tag}</span>
 							{/each}
 						</div>

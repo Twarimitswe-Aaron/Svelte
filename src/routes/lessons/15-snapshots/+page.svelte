@@ -15,9 +15,9 @@
 		capture: () => text,
 		restore: (value) => text = value
 	};
-<\/script>
+<${'/'}script>
 
-<textarea bind:value={text}><\/textarea>`;
+<textarea bind:value={text}></textarea>`;
 </script>
 
 <svelte:head>

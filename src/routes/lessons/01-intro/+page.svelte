@@ -158,7 +158,7 @@
 		<h3 class="mb-4 text-[0.95rem] font-bold text-[var(--color-text)]">📁 Click each file to learn its role</h3>
 		<div class="grid grid-cols-1 items-start gap-4 sm:grid-cols-[240px_1fr]">
 			<div class="flex flex-col gap-1">
-				{#each files as file}
+				{#each files as file (file.name)}
 					{@const Icon = file.icon}
 					<button
 						class="flex cursor-pointer items-center gap-2 rounded-lg border bg-[var(--color-surface-2)] px-3 py-2 text-left text-[var(--color-text)] transition-all duration-150 hover:bg-white/5 hover:[border-color:var(--type-color)] {selected === file ? 'bg-white/5 shadow-[0_0_0_2px_color-mix(in_srgb,var(--type-color)_25%,transparent)] [border-color:var(--type-color)]' : 'border-[var(--color-border)]'}"

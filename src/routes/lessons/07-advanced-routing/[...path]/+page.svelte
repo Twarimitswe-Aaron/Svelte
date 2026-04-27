@@ -3,6 +3,7 @@
   Matches any sub-URL under /lessons/07-advanced-routing/
 -->
 <script lang="ts">
+import { resolve } from "$app/paths";
 	interface PageData {
 		path: string;
 		segments: string[];
@@ -15,7 +16,7 @@
 </svelte:head>
 
 <div class="rest-page">
-	<a href="/lessons/07-advanced-routing" class="back-link">← Back to Advanced Routing</a>
+	<a href={resolve("/lessons/07-advanced-routing")} class="back-link">← Back to Advanced Routing</a>
 
 	<div class="rest-hero">
 		<div class="rest-label">You triggered the [...path] catch-all route</div>
@@ -25,7 +26,7 @@
 	<div class="segments-box">
 		<h3>Path segments (array)</h3>
 		<div class="segments">
-			{#each data.segments as seg, i}
+			{#each data.segments as seg, i (i)}
 				<div class="segment">
 					<span class="seg-index">[{i}]</span>
 					<code class="seg-val">{seg}</code>
@@ -43,6 +44,6 @@
 		</p>
 	</div>
 
-	<a href="/lessons/07-advanced-routing" class="btn btn-secondary">← Return to lesson</a>
+	<a href={resolve("/lessons/07-advanced-routing")} class="btn btn-secondary">← Return to lesson</a>
 </div>
 

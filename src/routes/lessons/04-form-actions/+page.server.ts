@@ -9,12 +9,12 @@
 //   - use:enhance has nothing to submit to.
 //   - You lose progressive enhancement (no-JS fallback).
 
-import { fail, redirect } from '@sveltejs/kit';
+import { fail } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
 // In-memory store for the demo (would be a DB in production)
-let likes = 0;
-let dislikes = 0;
+const likes: number = 0;
+const dislikes: number = 0;
 const messages: { name: string; message: string; time: string }[] = [];
 
 export const actions: Actions = {

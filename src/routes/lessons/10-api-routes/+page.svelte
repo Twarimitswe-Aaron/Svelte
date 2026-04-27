@@ -82,7 +82,7 @@ export const DELETE: RequestHandler = () => {
     const res = await fetch('/api/echo');
     data = await res.json();
   }
-<\/script>
+<${'/'}script>
 
 <button onclick={loadData}>Load</button>
 {#if data}<pre>{JSON.stringify(data, null, 2)}</pre>{/if}`;
@@ -126,7 +126,7 @@ export const load = async ({ params }) => {
 		<div class="client-top">
 			<!-- Method selector -->
 			<div class="method-tabs">
-				{#each (['GET', 'POST', 'DELETE', 'PATCH'] as const) as m}
+				{#each (['GET', 'POST', 'DELETE', 'PATCH'] as const) as m (m)}
 					<button
 						class="method-btn method-{m.toLowerCase()}"
 						class:active={method === m}

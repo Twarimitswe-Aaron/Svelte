@@ -12,11 +12,11 @@
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 
 	const lesson = lessons[8];
 	const { prev, next } = getAdjacentLessons(lesson.slug);
 
-	let { data } = $props();
 
 	const expectedErrorCode = `// +page.server.ts
 import { error } from '@sveltejs/kit';
@@ -48,7 +48,7 @@ export const load = async () => {
   import { page } from '$app/stores';
   // $page.status = HTTP status (404, 500, etc.)
   // $page.error.message = message from error() or handleError() return
-<\/script>
+<${'/'}script>
 
 <h1>Error {$page.status}</h1>
 <p>{$page.error?.message}</p>
@@ -78,7 +78,7 @@ export const load = async () => {
 		<div class="demo-buttons">
 			<button
 				class="btn btn-secondary demo-btn"
-				onclick={() => goto('?trigger=expected')}
+				onclick={() => goto(resolve('?trigger=expected' as unknown as "/"))}
 			>
 				<span class="btn-icon">🔵</span>
 				<div>
@@ -89,7 +89,7 @@ export const load = async () => {
 
 			<button
 				class="btn btn-danger demo-btn"
-				onclick={() => goto('?trigger=unexpected')}
+				onclick={() => goto(resolve('?trigger=unexpected' as unknown as "/"))}
 			>
 				<span class="btn-icon">🔴</span>
 				<div>

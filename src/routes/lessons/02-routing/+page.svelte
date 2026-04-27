@@ -12,6 +12,7 @@
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
 	import { page } from '$app/stores';
+	import { resolve } from '$app/paths';
 
 	const lesson = lessons[1];
 	const { prev, next } = getAdjacentLessons(lesson.slug);
@@ -34,7 +35,7 @@
 <script lang="ts">
   // 'data' comes from the load() function in +page.ts
   let { data } = $props();
-<\/script>
+${'</'}script>
 
 <h1>Slug is: {data.slug}</h1>`;
 
@@ -51,7 +52,7 @@ export const load: PageLoad = ({ params }) => {
 	const layoutCode = `<!-- src/routes/+layout.svelte -->
 <script lang="ts">
   let { children } = $props(); // Svelte 5 snippet (replaces <slot>)
-<\/script>
+${'</'}script>
 
 <nav><!-- shared navigation --></nav>
 
@@ -88,8 +89,8 @@ export const load: PageLoad = ({ params }) => {
 		route:
 	</p>
 	<div class="slug-links">
-		{#each demoSlugs as slug}
-			<a href="/lessons/02-routing/{slug}" class="slug-link">
+		{#each demoSlugs as slug (slug)}
+			<a href={resolve(("/lessons/02-routing/" + slug) as unknown as "/")} class="slug-link">
 				/lessons/02-routing/<strong>{slug}</strong>
 			</a>
 		{/each}
