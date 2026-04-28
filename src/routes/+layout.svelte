@@ -14,7 +14,9 @@
 	import '../app.css'; // Pull in global styles + Tailwind
 
 	import { page } from '$app/stores';
-	import { lessons } from '$lib/lessons.js';	import LessonIcon from '$lib/components/LessonIcon.svelte';
+	import { lessons } from '$lib/lessons.js';
+	import LessonIcon from '$lib/components/LessonIcon.svelte';
+	import HeroBackground from '$lib/components/HeroBackground.svelte';
 	import { resolve } from '$app/paths';
 
 	let { children } = $props();
@@ -71,6 +73,8 @@
 		onclick={toggle}
 	></button>
 {/if}
+
+<HeroBackground height="100vh" />
 
 <div class="flex h-screen overflow-hidden">
 	<!-- ===== SIDEBAR ===== -->

@@ -38,7 +38,7 @@
 <div class="pb-16">
 	<!-- Hero section -->
 	<section
-		class="relative px-8 py-16 text-center before:pointer-events-none before:absolute before:left-1/2 before:top-0 before:h-[300px] before:w-[600px] before:-translate-x-1/2 before:bg-[radial-gradient(ellipse_at_center_top,rgba(88,166,255,0.12)_0%,transparent_70%)] before:content-[''] md:py-12"
+		class="relative px-8 py-16 text-center md:py-12"
 	>
 		<div class="mb-6">
 			<span class="badge badge-purple">v2 · Svelte 5 Runes</span>

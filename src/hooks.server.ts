@@ -45,7 +45,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 // Called when an UNEXPECTED error escapes a load() or action.
 // "Expected" errors (from error()) do NOT trigger this.
 // Use this to: log to Sentry/Datadog, notify a Slack channel, etc.
-export const handleError: HandleServerError = ({ error, event, status, message }) => {
+export const handleError: HandleServerError = ({ error, event, status }) => {
 	// Log to console (use your real error tracker here)
 	console.error(`[handleError] ${status} on ${event.url.pathname}:`, error);
 

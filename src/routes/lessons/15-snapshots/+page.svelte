@@ -1,12 +1,10 @@
 <script lang="ts">
 	import LessonLayout from '$lib/components/LessonLayout.svelte';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
-	import HeroBackground from '$lib/components/HeroBackground.svelte';
 	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
 
 	const lesson = lessons[14];
 	const { prev, next } = getAdjacentLessons(lesson.slug);
-
 	const snapshotCode = `<script lang="ts">
 	let text = $state('');
 
@@ -24,8 +22,6 @@
 <svelte:head>
 	<title>Lesson 15 — Snapshots</title>
 </svelte:head>
-
-<HeroBackground />
 
 <LessonLayout
 	{lesson} {prev} {next}
