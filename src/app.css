@@ -66,22 +66,8 @@
    Changing these here changes the whole app.
    ============================================= */
 @layer base {
-  :root {
-    /* Color palette */
-    --color-bg: #0d1117;
-    --color-surface: #161b22;
-    --color-surface-2: #21262d;
-    --color-border: #30363d;
-    --color-text: #e6edf3;
-    --color-text-muted: #8b949e;
-    --color-accent: #58a6ff;
-    --color-accent-2: #bc8cff;
-    --color-success: #3fb950;
-    --color-warning: #d29922;
-    --color-danger: #f85149;
-
     /* Spacing */
-    --sidebar-width: 280px;
+    --sidebar-width: 264px;
   }
 
   /* Base resets */
@@ -91,7 +77,7 @@
   }
 
   body {
-    background-color: var(--color-bg);
+    background-color: #09090b;
     color: var(--color-text);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-size: 15px;
