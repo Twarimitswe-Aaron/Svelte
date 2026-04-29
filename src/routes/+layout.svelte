@@ -74,7 +74,7 @@
 	></button>
 {/if}
 
-<HeroBackground height="100vh" />
+<HeroBackground height="120vh" />
 
 <div class="flex h-screen overflow-hidden">
 	<!-- ===== SIDEBAR ===== -->
