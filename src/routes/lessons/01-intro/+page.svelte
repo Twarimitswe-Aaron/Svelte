@@ -199,7 +199,7 @@
 		</div>
 	</div>
 
-	<h3 class="mb-4 mt-8 flex items-center gap-2 text-[0.95rem] font-bold text-[var(--color-text)]">
+	<h3 class="mb-4 mt-8 flex items-center gap-2 text-[0.95rem] font-bold text-(--color-text)">
 		<LayoutTemplate size={18} /> Standard Project Structure
 	</h3>
 	<CodeBlock code={structureCode} lang="bash" filename="project tree" />

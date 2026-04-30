@@ -57,7 +57,7 @@
 			</div>
 
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-				{#each lessons.slice(0, 6) as lesson}
+				{#each lessons.slice(0, 6) as lesson (lesson.slug)}
 					<a
 						href={resolve(("/lessons/" + lesson.slug) as unknown as "/")}
 						class="group flex flex-col no-underline"

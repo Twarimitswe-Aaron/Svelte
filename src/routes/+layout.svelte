@@ -13,7 +13,6 @@
 <script lang="ts">
 	import '../app.css'; // Pull in global styles + Tailwind
 
-	import { page } from '$app/stores';
 	import HeroBackground from '$lib/components/HeroBackground.svelte';
 	import Sidebar from '$lib/components/Sidebar.svelte';
 
@@ -32,7 +31,7 @@
 	<meta name="description" content="Build your own curation website with this template." />
 </svelte:head>
 
-<HeroBackground height="100vh" />
+<HeroBackground height="150vh" />
 
 <div class="flex h-screen overflow-hidden bg-transparent">
 	<!-- Mobile overlay -->
