@@ -11,7 +11,7 @@
     - prev / next: adjacent lessons (from getAdjacentLessons)
 -->
 <script lang="ts">
-import { resolve } from "$app/paths"
+	import { resolve } from '$app/paths';
 	import ChevronLeft from 'lucide-svelte/icons/chevron-left';
 	import ChevronRight from 'lucide-svelte/icons/chevron-right';
 	import ExternalLink from 'lucide-svelte/icons/external-link';
@@ -83,13 +83,13 @@ import { resolve } from "$app/paths"
 	<nav class="flex justify-between gap-4">
 		{#if prev}
 			<a
-				href={resolve(("/lessons/" + prev.slug) as unknown as "/")}
-				class="flex items-center gap-3 p-4 bg-(--color-surface) border border-(--color-border) rounded-[10px] text-(--color-text) no-underline flex-1 max-w-[280px] transition-all hover:border-(--color-accent) hover:bg-(--color-surface-2)"
+				href={resolve(`/lessons/${prev.slug}` as unknown as "/")}
+				class="flex items-center gap-3 p-4 bg-transparent backdrop-blur-md border border-(--color-border) rounded-[10px] text-(--color-text) no-underline flex-1 max-w-[280px] transition-all hover:border-(--color-accent)"
 				aria-label="Previous lesson: {prev.title}"
 			>
 				<ChevronLeft size={20} />
 				<div class="flex flex-col">
-					<span class="text-[0.7rem] font-bold tracking-widest uppercase text-(--color-text-muted)">Previous</span>
+					
 					<div class="flex items-center gap-2 mt-0.5">
 						<LessonIcon name={prev.icon} size={14} />
 						<span class="text-[0.875rem] font-semibold text-(--color-text)">{prev.title}</span>
@@ -102,7 +102,7 @@ import { resolve } from "$app/paths"
 
 		{#if next}
 			<a
-				href={resolve((`/lessons/${next.slug}`) as unknown as "/")}
+				href={resolve(`/lessons/${next.slug}` as unknown as "/")}
 				class="flex items-center justify-end gap-3 p-4 bg-transparent backdrop-blur-md border border-(--color-border) rounded-[10px] text-(--color-text) no-underline flex-1 max-w-[280px] transition-all hover:border-(--color-accent) ml-auto"
 				aria-label="Next lesson: {next.title}"
 			>

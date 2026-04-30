@@ -57,7 +57,7 @@
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 				{#each lessons as lesson (lesson.slug)}
 					<a
-						href={resolve(("/lessons/" + lesson.slug) as unknown as "/")}
+						href={resolve(`/lessons/${lesson.slug}` as any)}
 						class="group flex flex-col no-underline"
 					>
 						<div class="aspect-4/3 p-4 rounded-2xl border border-white/10 bg-white/5 overflow-hidden mb-4 relative transition-all group-hover:border-white/20 group-hover:bg-black/20">

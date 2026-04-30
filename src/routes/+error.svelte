@@ -10,7 +10,7 @@
 -->
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { resolve } from '$app/paths';
+	import {  resolve } from '$app/paths';
 	import type { ComponentType, SvelteComponent } from 'svelte';
 	import type { IconProps } from 'lucide-svelte';
 
@@ -75,7 +75,7 @@
 			<a href={resolve('/')} class="btn btn-primary">
 				<Home size={18} /> Go Home
 			</a>
-			<a href={resolve('/lessons/09-errors')} class="btn btn-secondary">
+			<a href={resolve('/lessons/10-errors')} class="btn btn-secondary">
 				<ArrowLeft size={18} /> Back to Error lesson
 			</a>
 		</div>

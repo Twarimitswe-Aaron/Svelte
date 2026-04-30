@@ -33,7 +33,17 @@ export const lessons: Lesson[] = [
   },
   {
     id: 2,
-    slug: '02-routing',
+    slug: '02-files',
+    icon: 'Files',
+    title: 'SvelteKit File Types',
+    description: 'Understanding the purpose of every file in a SvelteKit project: +page, +layout, +server, and more.',
+    docUrl: 'https://svelte.dev/docs/kit/project-structure',
+    tags: ['getting-started'],
+    image: '/images/5RoHhzBwXKlzmqGgZlmjqnERe5s.jpeg'
+  },
+  {
+    id: 3,
+    slug: '03-routing',
     icon: 'Map',
     title: 'Routing',
     description: 'File-based routing using +page.svelte, +layout.svelte, dynamic [param] segments, and the +error.svelte boundary.',
@@ -42,8 +52,8 @@ export const lessons: Lesson[] = [
     image: '/images/5RoHhzBwXKlzmqGgZlmjqnERe5s.jpeg'
   },
   {
-    id: 3,
-    slug: '03-loading-data',
+    id: 4,
+    slug: '04-loading-data',
     icon: 'Satellite',
     title: 'Loading Data',
     description: 'Server-only load(), universal load(), params, streaming with #await blocks, and parent data.',
@@ -52,8 +62,8 @@ export const lessons: Lesson[] = [
     image: '/images/F0CY9XsX6S1psZBI85VMAuoVgE.webp'
   },
   {
-    id: 4,
-    slug: '04-form-actions',
+    id: 5,
+    slug: '05-form-actions',
     icon: 'FileText',
     title: 'Form Actions',
     description: 'Default & named actions, anatomy of an action, validation errors, use:enhance for progressive enhancement.',
@@ -62,8 +72,8 @@ export const lessons: Lesson[] = [
     image: '/images/GNwmwPGKXI6FsWVjLTLnSzEVKI0.jpg'
   },
   {
-    id: 5,
-    slug: '05-page-options',
+    id: 6,
+    slug: '06-page-options',
     icon: 'Settings',
     title: 'Page Options',
     description: 'Control rendering modes: prerender, ssr, csr, and trailingSlash — and know when to use each.',
@@ -72,8 +82,8 @@ export const lessons: Lesson[] = [
     image: '/images/Gs177VTHhuZMszsLfkXbl7X30Cg.jpg'
   },
   {
-    id: 6,
-    slug: '06-state-management',
+    id: 7,
+    slug: '07-state-management',
     icon: 'RefreshCcw',
     title: 'State Management',
     description: 'Context API, URL state, component state preservation, and ephemeral snapshot storage.',
@@ -82,8 +92,8 @@ export const lessons: Lesson[] = [
     image: '/images/JHKo9Ag0unotBN7sVIks5pWsQg.webp'
   },
   {
-    id: 7,
-    slug: '07-advanced-routing',
+    id: 8,
+    slug: '08-advanced-routing',
     icon: 'Shuffle',
     title: 'Advanced Routing',
     description: 'Rest params, optional params, route matchers, layout groups with (group) notation, and breaking out of layouts.',
@@ -92,8 +102,8 @@ export const lessons: Lesson[] = [
     image: '/images/TsaM8dxH8uxTwTIP1nftjjTMe2k.jpg'
   },
   {
-    id: 8,
-    slug: '08-hooks',
+    id: 9,
+    slug: '09-hooks',
     icon: 'Anchor',
     title: 'Hooks',
     description: 'Server hooks: handle, handleError, handleFetch, locals. Universal hooks: reroute, transport.',
@@ -102,8 +112,8 @@ export const lessons: Lesson[] = [
     image: '/images/Vm4SgvHz1j75kg15Z0iB1AD0.jpg'
   },
   {
-    id: 9,
-    slug: '09-errors',
+    id: 10,
+    slug: '10-errors',
     icon: 'AlertCircle',
     title: 'Error Handling',
     description: 'Expected errors with error(), unexpected errors, +error.svelte pages, and the handleError hook.',
@@ -112,8 +122,8 @@ export const lessons: Lesson[] = [
     image: '/images/eq4ybzZVoE1aiThowQRQVCAF9Y.jpg'
   },
   {
-    id: 10,
-    slug: '10-api-routes',
+    id: 11,
+    slug: '11-api-routes',
     icon: 'Globe',
     title: 'API / Server Routes',
     description: 'Create REST endpoints with +server.ts. Handle GET, POST, DELETE and understand content negotiation.',
@@ -122,8 +132,8 @@ export const lessons: Lesson[] = [
     image: '/images/lZUzr9huuiDBhhYdUCSZDZC4PE.webp'
   },
   {
-    id: 11,
-    slug: '11-remote-functions',
+    id: 12,
+    slug: '12-remote-functions',
     icon: 'Zap',
     title: 'Remote Functions',
     description: 'query, form, command, and prerender from $app/server — server logic callable directly from components via auto-generated HTTP endpoints.',
@@ -132,8 +142,8 @@ export const lessons: Lesson[] = [
     image: '/images/ocTUXzjdGN7azeFQ4br4ScyHbYA.jpg'
   },
   {
-    id: 12,
-    slug: '12-link-options',
+    id: 13,
+    slug: '13-link-options',
     icon: 'Link',
     title: 'Link Options',
     description: 'Preloading data, code, or disabling scroll on links using data-sveltekit-* attributes.',
@@ -142,8 +152,8 @@ export const lessons: Lesson[] = [
     image: '/images/rZmCF3ZFm4x7GxAtuUtEBP5bE.jpg'
   },
   {
-    id: 13,
-    slug: '13-service-workers',
+    id: 14,
+    slug: '14-service-workers',
     icon: 'Wrench',
     title: 'Service Workers',
     description: 'Offline support and caching using SvelteKit service workers.',
@@ -152,8 +162,8 @@ export const lessons: Lesson[] = [
     image: '/images/t6X50QeBwn65OEtnD8sqDwcsIHU.jpg'
   },
   {
-    id: 14,
-    slug: '14-server-only-modules',
+    id: 15,
+    slug: '15-server-only-modules',
     icon: 'Lock',
     title: 'Server-Only Modules',
     description: 'Protecting server-side secrets using $env/static/private and server-only modules.',
@@ -162,8 +172,8 @@ export const lessons: Lesson[] = [
     image: '/images/tN1xjohsFOTWiZAxcyCo7oUpb00.webp'
   },
   {
-    id: 15,
-    slug: '15-snapshots',
+    id: 16,
+    slug: '16-snapshots',
     icon: 'Camera',
     title: 'Snapshots',
     description: 'Capturing and restoring ephemeral UI state using export const snapshot.',
@@ -172,8 +182,8 @@ export const lessons: Lesson[] = [
     image: '/images/wGwFVOop4rdNIZ4mYwM1Gqbc.webp'
   },
   {
-    id: 16,
-    slug: '16-shallow-routing',
+    id: 17,
+    slug: '17-shallow-routing',
     icon: 'Footprints',
     title: 'Shallow Routing',
     description: 'Updating the URL without full navigation using pushState and replaceState.',
@@ -182,8 +192,8 @@ export const lessons: Lesson[] = [
     image: '/images/IQJPRRzeko0KYVdMCIu6Y4bJ0.png'
   },
   {
-    id: 17,
-    slug: '17-observability',
+    id: 18,
+    slug: '18-observability',
     icon: 'Telescope',
     title: 'Observability',
     description: 'Logging, tracking errors, and monitoring app performance.',
@@ -192,8 +202,8 @@ export const lessons: Lesson[] = [
     image: '/images/fFsCjjFVEcYjYD6mFEJdrWU8neQ.png'
   },
   {
-    id: 18,
-    slug: '18-packaging',
+    id: 19,
+    slug: '19-packaging',
     icon: 'Package',
     title: 'Packaging',
     description: 'Creating reusable Svelte and SvelteKit component libraries using @sveltejs/package.',
@@ -202,8 +212,8 @@ export const lessons: Lesson[] = [
     image: '/images/6mcf62RlDfRfU61Yg5vb2pefpi4.png'
   },
   {
-    id: 19,
-    slug: '19-best-practices',
+    id: 20,
+    slug: '20-best-practices',
     icon: 'ShieldCheck',
     title: 'Best Practices',
     description: 'Icons, Images, SEO meta tags, non-blocking fonts, sitemap.xml, robots.txt, accessibility, and auth integration — all in one lesson.',
@@ -212,8 +222,8 @@ export const lessons: Lesson[] = [
     image: '/images/ocTUXzjdGN7azeFQ4br4ScyHbYA.jpg'
   },
   {
-    id: 20,
-    slug: '20-testing',
+    id: 21,
+    slug: '21-testing',
     icon: 'TestTube',
     title: 'Testing with Vitest',
     description: 'Unit testing Svelte components and SvelteKit modules using Vitest and @testing-library/svelte.',
