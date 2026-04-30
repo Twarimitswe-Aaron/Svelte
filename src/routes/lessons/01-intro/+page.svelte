@@ -161,7 +161,7 @@
 				{#each files as file (file.name)}
 					{@const Icon = file.icon}
 					<button
-						class="flex cursor-pointer items-center gap-2 rounded-lg border bg-(--color-surface-2) px-3 py-2 text-left text-(--color-text) transition-all duration-150 hover:bg-white/5 hover:border-(--type-color) {selected === file ? 'bg-white/5 shadow-[0_0_0_2px_color-mix(in_srgb,var(--type-color)_25%,transparent)] border-(--type-color)' : 'border-(--color-border)'}"
+						class="flex cursor-pointer items-center gap-2 rounded-lg border bg-black/40 px-3 py-2 text-left text-(--color-text) transition-all duration-150 hover:bg-white/5 hover:border-(--type-color) {selected === file ? 'bg-white/5 shadow-[0_0_0_2px_color-mix(in_srgb,var(--type-color)_25%,transparent)] border-(--type-color)' : 'border-(--color-border)'}"
 						onclick={() => (selected = selected === file ? null : file)}
 						style="--type-color: {typeColors[file.type]}"
 					>
@@ -224,23 +224,41 @@
 
 	<!-- SvelteKit vs Svelte comparison -->
 	<div class="mt-8 grid gap-4 sm:grid-cols-2">
-		<div class="compare-card compare-svelte">
-			<h4>🔴 Plain Svelte</h4>
-			<ul>
-				<li>UI components only</li>
-				<li>No router included</li>
-				<li>No SSR / data loading</li>
-				<li>You build the app shell yourself</li>
+		<div class="rounded-xl border border-(--color-danger)/20 bg-(--color-danger)/5 p-6 transition-all hover:bg-(--color-danger)/10">
+			<h4 class="m-0 mb-3 text-[1.1rem] font-bold text-(--color-danger)">🔴 Plain Svelte</h4>
+			<p class="mb-4 text-[0.875rem] leading-relaxed text-(--color-text-muted)">
+				Svelte is a component framework. It's a way of writing UI components that get compiled into highly efficient JavaScript.
+			</p>
+			<ul class="m-0 flex flex-col gap-2 p-0 text-[0.875rem] text-(--color-text-muted) [&>li]:flex [&>li]:items-center [&>li]:gap-2">
+				<li><span class="h-1.5 w-1.5 rounded-full bg-(--color-danger)"></span>UI components only</li>
+				<li><span class="h-1.5 w-1.5 rounded-full bg-(--color-danger)"></span>No router included</li>
+				<li><span class="h-1.5 w-1.5 rounded-full bg-(--color-danger)"></span>No SSR / data loading</li>
+				<li><span class="h-1.5 w-1.5 rounded-full bg-(--color-danger)"></span>You build the app shell yourself</li>
 			</ul>
 		</div>
-		<div class="compare-card compare-kit">
-			<h4>🟢 SvelteKit</h4>
-			<ul>
-				<li>Full-stack framework</li>
-				<li>File-based routing built in</li>
-				<li>SSR + streaming + prerendering</li>
-				<li>Adapters for any platform</li>
+
+		<div class="rounded-xl border border-(--color-success)/20 bg-(--color-success)/5 p-6 transition-all hover:bg-(--color-success)/10">
+			<h4 class="m-0 mb-3 text-[1.1rem] font-bold text-(--color-success)">🟢 SvelteKit</h4>
+			<p class="mb-4 text-[0.875rem] leading-relaxed text-(--color-text-muted)">
+				SvelteKit is the <strong>full-stack framework</strong> for Svelte (think Next.js for React or Nuxt for Vue).
+			</p>
+			<ul class="m-0 flex flex-col gap-2 p-0 text-[0.875rem] text-(--color-text-muted) [&>li]:flex [&>li]:items-center [&>li]:gap-2">
+				<li><span class="h-1.5 w-1.5 rounded-full bg-(--color-success)"></span>File-based routing & layouts</li>
+				<li><span class="h-1.5 w-1.5 rounded-full bg-(--color-success)"></span>SSR + streaming + prerendering</li>
+				<li><span class="h-1.5 w-1.5 rounded-full bg-(--color-success)"></span>Built-in HMR via Vite</li>
+				<li><span class="h-1.5 w-1.5 rounded-full bg-(--color-success)"></span>Image & Build optimizations</li>
 			</ul>
 		</div>
+	</div>
+
+	<!-- Extra context from official docs -->
+	<div class="mt-8 rounded-xl border border-(--color-border) bg-(--color-surface) p-6">
+		<h4 class="m-0 mb-4 flex items-center gap-2 text-[1rem] font-bold text-(--color-text)">
+			<Zap size={18} class="text-(--color-accent)" /> 
+			The "Boring Stuff" (Done for you)
+		</h4>
+		<p class="mb-0 text-[0.9rem] leading-relaxed text-(--color-text-muted)">
+			Building a modern app is fiendishly complicated. SvelteKit handles the "boring stuff" — routing, bundling, SSR, and preloading — so you can stay in the creative flow. Levering <strong>Vite</strong> and <strong>Hot Module Replacement (HMR)</strong>, it reflects your code changes in the browser instantly for a lightning-fast development experience.
+		</p>
 	</div>
 </LessonLayout>

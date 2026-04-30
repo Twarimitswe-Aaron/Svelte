@@ -11,20 +11,34 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { resolve } from '$app/paths';
+	import type { ComponentType, SvelteComponent } from 'svelte';
+	import type { IconProps } from 'lucide-svelte';
+
+	import {
+		Search,
+		Lock,
+		Bomb,
+		FileWarning,
+		AlertTriangle,
+		Home,
+		ArrowLeft,
+		CheckCircle,
+		Lightbulb
+	} from 'lucide-svelte';
 
 	// $page.status is the HTTP status code (404, 500, etc.)
 	// $page.error is the error object returned from handleError() or error()
 	const status = $derived($page.status);
 	const message = $derived($page.error?.message ?? 'An unknown error occurred');
 
-	const statusInfo: Record<number, { emoji: string; title: string }> = {
-		404: { emoji: '🔍', title: 'Page Not Found' },
-		403: { emoji: '🔒', title: 'Access Denied' },
-		500: { emoji: '💥', title: 'Internal Server Error' },
-		422: { emoji: '📋', title: 'Validation Error' }
+	const statusInfo: Record<number, { icon: ComponentType<SvelteComponent<IconProps>>; title: string }> = {
+		404: { icon: Search, title: 'Page Not Found' },
+		403: { icon: Lock, title: 'Access Denied' },
+		500: { icon: Bomb, title: 'Internal Server Error' },
+		422: { icon: FileWarning, title: 'Validation Error' }
 	};
 
-	const info = $derived(statusInfo[status] ?? { emoji: '⚠️', title: 'Something went wrong' });
+	const info = $derived(statusInfo[status] ?? { icon: AlertTriangle, title: 'Something went wrong' });
 </script>
 
 <svelte:head>
@@ -33,7 +47,9 @@
 
 <div class="error-page">
 	<div class="error-card animate-fade-in">
-		<div class="error-emoji">{info.emoji}</div>
+		<div class="error-icon">
+			<info.icon size={64} strokeWidth={1.5} />
+		</div>
 		<div class="error-status">{status}</div>
 		<h1 class="error-title">{info.title}</h1>
 		<p class="error-message">{message}</p>
@@ -45,18 +61,29 @@
 			</div>
 			<div class="meta-item">
 				<span class="meta-key">handleError called</span>
-				<span class="meta-val">{status >= 500 ? 'Yes ✅' : 'No (expected error)'}</span>
+				<span class="meta-val">
+					{#if status >= 500}
+						Yes <span class="inline-icon success-text"><CheckCircle size={14} /></span>
+					{:else}
+						No (expected error)
+					{/if}
+				</span>
 			</div>
 		</div>
 
 		<div class="error-actions">
-			<a href={resolve('/')} class="btn btn-primary">🏠 Go Home</a>
-			<a href={resolve('/lessons/09-errors')} class="btn btn-secondary">← Back to Error lesson</a>
+			<a href={resolve('/')} class="btn btn-primary">
+				<Home size={18} /> Go Home
+			</a>
+			<a href={resolve('/lessons/09-errors')} class="btn btn-secondary">
+				<ArrowLeft size={18} /> Back to Error lesson
+			</a>
 		</div>
 
 		<div class="error-tip">
-			💡 This page is rendered by <code>src/routes/+error.svelte</code> — you can customise it
-			completely. Place a <code>+error.svelte</code> in a subfolder to scope it to just that section.
+			<span class="inline-icon tip-icon"><Lightbulb size={16} /></span> This page is rendered by
+			<code>src/routes/+error.svelte</code> — you can customise it completely. Place a
+			<code>+error.svelte</code> in a subfolder to scope it to just that section.
 		</div>
 	</div>
 </div>
@@ -80,9 +107,11 @@
 		text-align: center;
 	}
 
-	.error-emoji {
-		font-size: 3rem;
-		margin-bottom: 0.5rem;
+	.error-icon {
+		display: flex;
+		justify-content: center;
+		color: var(--color-danger);
+		margin-bottom: 1.5rem;
 	}
 
 	.error-status {
@@ -144,11 +173,33 @@
 	.error-tip {
 		font-size: 0.78rem;
 		color: var(--color-text-muted);
-		background: rgba(88,166,255,0.06);
-		border: 1px solid rgba(88,166,255,0.2);
+		background: rgba(88, 166, 255, 0.06);
+		border: 1px solid rgba(88, 166, 255, 0.2);
 		border-radius: 8px;
 		padding: 0.7rem 0.9rem;
 		line-height: 1.6;
 		text-align: left;
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	.inline-icon {
+		display: inline-flex;
+		align-items: center;
+		flex-shrink: 0;
+	}
+
+	.tip-icon {
+		color: var(--color-warning);
+	}
+
+	.success-text {
+		color: #238636;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
 	}
 </style>

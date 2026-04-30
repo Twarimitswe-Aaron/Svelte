@@ -7,6 +7,9 @@
        inconsistent formatting.
 -->
 <script lang="ts">
+	import Lightbulb from 'lucide-svelte/icons/lightbulb';
+	import CircleAlert from 'lucide-svelte/icons/circle-alert';
+
 	interface Props {
 		type: 'what' | 'fails';
 		text: string;
@@ -15,62 +18,37 @@
 
 	const config = {
 		what: {
-			icon: '💡',
+			icon: Lightbulb,
 			label: 'What this does',
-			borderColor: 'rgba(88, 166, 255, 0.4)',
-			bgColor: 'rgba(88, 166, 255, 0.06)',
-			labelColor: 'var(--color-accent)'
+			borderColor: 'rgba(59, 130, 246, 0.2)',
+			bgColor: 'rgba(59, 130, 246, 0.05)',
+			labelColor: '#3b82f6'
 		},
 		fails: {
-			icon: '⚠️',
+			icon: CircleAlert,
 			label: 'What fails without it',
-			borderColor: 'rgba(248, 81, 73, 0.4)',
-			bgColor: 'rgba(248, 81, 73, 0.06)',
-			labelColor: 'var(--color-danger)'
+			borderColor: 'rgba(239, 68, 68, 0.2)',
+			bgColor: 'rgba(239, 68, 68, 0.05)',
+			labelColor: '#ef4444'
 		}
 	};
 
 	const c = $derived(config[type]);
 </script>
 
-<div class="concept-card" style="--border: {c.borderColor}; --bg: {c.bgColor};">
-	<div class="card-header">
-		<span class="card-icon">{c.icon}</span>
-		<span class="card-label" style="color: {c.labelColor};">{c.label}</span>
+<div 
+	class="rounded-xl p-4 px-5 border transition-all duration-300 backdrop-blur-md"
+	style="border-color: {c.borderColor}; background-color: {c.bgColor};"
+>
+	<div class="flex items-center gap-2 mb-2">
+		<span class="flex items-center justify-center" style="color: {c.labelColor};">
+			<c.icon size={16} strokeWidth={2.5} />
+		</span>
+		<span class="text-[0.75rem] font-bold tracking-widest uppercase" style="color: {c.labelColor};">
+			{c.label}
+		</span>
 	</div>
-	<p class="card-text">{text}</p>
+	<p class="text-[0.875rem] text-(--color-text-muted) leading-relaxed m-0">
+		{text}
+	</p>
 </div>
-
-<style>
-	.concept-card {
-		background: var(--bg);
-		border: 1px solid var(--border);
-		border-radius: 10px;
-		padding: 1rem 1.25rem;
-	}
-
-	.card-header {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		margin-bottom: 0.5rem;
-	}
-
-	.card-icon {
-		font-size: 1rem;
-	}
-
-	.card-label {
-		font-size: 0.75rem;
-		font-weight: 700;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-	}
-
-	.card-text {
-		font-size: 0.875rem;
-		color: var(--color-text-muted);
-		line-height: 1.65;
-		margin: 0;
-	}
-</style>
