@@ -2,17 +2,11 @@
 	import LessonLayout from '$lib/components/LessonLayout.svelte';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
+	import LessonIcon from '$lib/components/LessonIcon.svelte';
 	import {
-		FileCode,
-		Layout,
-		ShieldAlert,
-		Server,
-		Zap,
-		Globe,
-		FileJson,
-		Info,
 		CheckCircle2,
-		XCircle
+		XCircle,
+		FileJson
 	} from 'lucide-svelte';
 
 	const lesson = lessons[1]; // 02-files
@@ -22,8 +16,8 @@
 		{
 			id: '+page.svelte',
 			name: '+page.svelte',
-			icon: FileCode,
-			color: '#3fb950',
+			icon: 'FileCode',
+			color: 'text-green-400',
 			title: 'The Route UI',
 			role: 'Renders the actual HTML/UI for the route.',
 			where: 'Browser + Server (SSR)',
@@ -43,8 +37,8 @@ ${'</'}script>
 		{
 			id: '+layout.svelte',
 			name: '+layout.svelte',
-			icon: Layout,
-			color: '#bc8cff',
+			icon: 'Layout',
+			color: 'text-purple-400',
 			title: 'The Shared Shell',
 			role: 'Wraps sibling +page components and nested child routes.',
 			where: 'Browser + Server (SSR)',
@@ -65,8 +59,8 @@ ${'</'}script>
 		{
 			id: '+page.server.ts',
 			name: '+page.server.ts',
-			icon: Server,
-			color: '#f85149',
+			icon: 'Server',
+			color: 'text-red-400',
 			title: 'Server Data & Actions',
 			role: 'Loads data from databases/APIs and handles Form Actions.',
 			where: 'Server Only (Secure)',
@@ -90,8 +84,8 @@ export const actions: Actions = {
 		{
 			id: '+page.ts',
 			name: '+page.ts',
-			icon: Zap,
-			color: '#d29922',
+			icon: 'Zap',
+			color: 'text-yellow-400',
 			title: 'Universal Load',
 			role: 'Loads data for a page. Runs on server for first hit, then browser for SPA nav.',
 			where: 'Server + Browser',
@@ -109,8 +103,8 @@ export const load: PageLoad = async ({ fetch, params }) => {
 		{
 			id: '+server.ts',
 			name: '+server.ts',
-			icon: Globe,
-			color: '#58a6ff',
+			icon: 'Globe',
+			color: 'text-blue-400',
 			title: 'API Endpoints',
 			role: 'Creates a REST API (GET, POST, etc.) that returns JSON/Raw data.',
 			where: 'Server Only',
@@ -129,8 +123,8 @@ export const GET: RequestHandler = async () => {
 		{
 			id: '+error.svelte',
 			name: '+error.svelte',
-			icon: ShieldAlert,
-			color: '#f85149',
+			icon: 'ShieldAlert',
+			color: 'text-red-500',
 			title: 'Error Boundary',
 			role: 'Shown when a load function throws an error.',
 			where: 'Browser + Server',
@@ -160,130 +154,136 @@ ${'</'}script>
 	whatItDoes="SvelteKit uses a file-based routing system with strict naming conventions. By naming a file +page.svelte, +layout.svelte, or +server.ts, you tell the framework exactly how to handle that route's UI, data, and logic."
 	whatFails="If you name your files anything else (like index.svelte or page.ts), SvelteKit will simply ignore them. Understanding these + prefixed filenames is the key to mastering the framework."
 >
-	<div class="mb-10">
-		<h3 class="mb-6 flex items-center gap-2 text-[1rem] font-bold text-(--color-text)">
-			<Info size={18} class="text-(--color-accent)" />
+	<div class="mb-12">
+		<h3 class="text-xl font-bold text-white mb-8 flex items-center gap-3">
+			<LessonIcon name="Info" size={20} class="text-(--color-accent)" />
 			The "Holy Trinity" of Route Files
 		</h3>
 
-		<div class="grid grid-cols-1 gap-6 lg:grid-cols-[300px_1fr]">
+		<div class="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8">
 			<!-- Sidebar Selection -->
-			<div class="flex flex-col gap-2">
+			<div class="flex flex-col gap-3">
 				{#each fileTypes as file (file.id)}
-					{@const Icon = file.icon}
 					<button
-						class="group flex items-center gap-3 rounded-xl border p-4 text-left transition-all duration-200 {activeId ===
-						file.id
-							? 'bg-white/5 border-(--active-color)'
-							: 'bg-black/20 border-(--color-border) hover:border-white/20 hover:bg-white/5'}"
+						class="group flex items-center gap-4 rounded-2xl border p-4 text-left transition-all duration-300 {activeId === file.id
+							? 'bg-white/10 border-white/20 shadow-lg shadow-black/20'
+							: 'bg-white/5 border-white/5 hover:border-white/10 hover:bg-white/8'}"
 						onclick={() => (activeId = file.id)}
-						style="--active-color: {file.color}"
 					>
 						<div
-							class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-black/40 text-(--active-color) transition-transform group-hover:scale-110"
+							class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-black/40 {file.color} transition-transform group-hover:scale-105"
 						>
-							<Icon size={20} />
+							<LessonIcon name={file.icon} size={22} />
 						</div>
 						<div class="flex flex-col">
 							<span
-								class="text-[0.85rem] font-bold {activeId === file.id
+								class="text-[13px] font-bold tracking-tight transition-colors {activeId === file.id
 									? 'text-white'
-									: 'text-(--color-text-muted)'}">{file.name}</span
+									: 'text-white/40 group-hover:text-white/60'}">{file.name}</span
 							>
-							<span class="text-[0.7rem] text-(--color-text-muted)/70">{file.title}</span>
+							<span class="text-[10px] uppercase font-bold tracking-widest opacity-20">{file.title}</span>
 						</div>
 					</button>
 				{/each}
 			</div>
 
 			<!-- Content Area -->
-			<div class="flex flex-col gap-4">
+			<div class="relative min-h-[500px]">
 				{#key activeId}
-					<div class="animate-fade-in">
-						<div class="rounded-2xl border border-(--color-border) bg-(--color-surface-2) p-6">
-					<div class="mb-6 flex items-center justify-between">
-						<div>
-							<h4 class="m-0 text-[1.2rem] font-bold text-white">{activeFile.title}</h4>
-							<p class="mt-1 text-[0.9rem] text-(--color-text-muted)">{activeFile.role}</p>
-						</div>
-						<div
-							class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.7rem] font-bold uppercase tracking-widest text-(--color-text-muted)"
-						>
-							Runs on: <span class="text-white">{activeFile.where}</span>
-						</div>
-					</div>
-
-					<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-						<div class="rounded-xl border border-(--color-success)/10 bg-(--color-success)/5 p-4">
-							<div class="mb-2 flex items-center gap-2 text-[0.75rem] font-bold text-(--color-success)">
-								<CheckCircle2 size={14} /> PURPOSE
+					<div class="animate-fade-in absolute inset-0 space-y-6">
+						<div class="p-8 rounded-3xl border border-white/10 bg-white/5 space-y-8 backdrop-blur-md">
+							<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-white/5">
+								<div>
+									<h4 class="text-2xl font-black text-white tracking-tight mb-1">{activeFile.name}</h4>
+									<p class="text-sm text-white/50 leading-relaxed italic">{activeFile.role}</p>
+								</div>
+								<div
+									class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-white/40 h-fit"
+								>
+									Runs on: <span class="text-white">{activeFile.where}</span>
+								</div>
 							</div>
-							<p class="m-0 text-[0.85rem] leading-relaxed text-(--color-text-muted)">
-								{activeFile.role}
-							</p>
-						</div>
-						<div class="rounded-xl border border-(--color-danger)/20 bg-(--color-danger)/5 p-4">
-							<div class="mb-2 flex items-center gap-2 text-[0.75rem] font-bold text-(--color-danger)">
-								<XCircle size={14} /> WHAT FAILS
-							</div>
-							<p class="m-0 text-[0.85rem] leading-relaxed text-(--color-text-muted)">
-								{activeFile.fails}
-							</p>
-						</div>
-					</div>
 
-						<div
-							class="mb-2 flex items-center gap-2 text-[0.75rem] font-bold tracking-widest text-(--color-text-muted) opacity-50 uppercase"
-						>
-							<FileJson size={14} /> Code Preview
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+								<div class="p-6 rounded-2xl bg-green-500/5 border border-green-500/10 space-y-3">
+									<div class="flex items-center gap-2 text-[10px] font-bold text-green-400 uppercase tracking-widest">
+										<CheckCircle2 size={14} /> Purpose
+									</div>
+									<p class="text-xs text-white/60 leading-relaxed">
+										{activeFile.role}
+									</p>
+								</div>
+								<div class="p-6 rounded-2xl bg-red-500/5 border border-red-500/10 space-y-3">
+									<div class="flex items-center gap-2 text-[10px] font-bold text-red-400 uppercase tracking-widest">
+										<XCircle size={14} /> What Fails
+									</div>
+									<p class="text-xs text-white/60 leading-relaxed">
+										{activeFile.fails}
+									</p>
+								</div>
+							</div>
+
+							<div class="space-y-4 pt-4">
+								<div class="flex items-center gap-2 text-[10px] font-bold text-white/20 uppercase tracking-widest">
+									<FileJson size={14} /> Implementation Preview
+								</div>
+								<CodeBlock code={activeFile.code} lang={activeFile.lang} filename={activeFile.name} />
+							</div>
 						</div>
-						<CodeBlock code={activeFile.code} lang={activeFile.lang} filename={activeFile.name} />
 					</div>
-				</div>
-			{/key}
-		</div>
+				{/key}
+			</div>
 		</div>
 	</div>
 
 	<!-- Comparison Section -->
-	<div class="mt-12 rounded-2xl border border-(--color-border) bg-(--color-surface) p-8">
-		<h3 class="mb-6 text-[1.1rem] font-bold text-white">Universal vs. Server-Only Loading</h3>
-		<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-			<div>
-				<h4 class="mb-3 flex items-center gap-2 text-[0.9rem] font-bold text-(--color-warning)">
-					<Zap size={16} /> +page.ts (Universal)
-				</h4>
-				<ul class="flex flex-col gap-3 p-0 text-[0.85rem] text-(--color-text-muted) list-none">
-					<li class="flex items-start gap-2">
-						<span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-(--color-warning)"></span>
-						Best for public APIs or data that should be fetched on the client during SPA navigation.
+	<div class="mt-16 p-10 rounded-3xl border border-white/10 bg-white/5 relative overflow-hidden">
+		<div class="absolute -bottom-24 -left-24 w-64 h-64 bg-yellow-500/5 rounded-full blur-3xl"></div>
+		
+		<h3 class="text-xl font-bold text-white mb-10 relative z-10 flex items-center gap-3">
+			<LessonIcon name="Zap" size={20} class="text-yellow-400" />
+			Universal vs. Server-Only Loading
+		</h3>
+		
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
+			<div class="space-y-6">
+				<div class="flex items-center gap-3 text-yellow-400">
+					<LessonIcon name="Zap" size={18} />
+					<h4 class="text-sm font-bold uppercase tracking-widest">+page.ts (Universal)</h4>
+				</div>
+				<ul class="space-y-4">
+					<li class="flex items-start gap-3 group">
+						<div class="mt-1.5 h-1.5 w-1.5 rounded-full bg-yellow-500/40 group-hover:bg-yellow-500 transition-colors"></div>
+						<p class="text-sm text-white/50 group-hover:text-white/80 transition-colors">Best for public APIs or data that should be fetched on the client during SPA navigation.</p>
 					</li>
-					<li class="flex items-start gap-2">
-						<span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-(--color-warning)"></span>
-						Cannot use private environment variables (secrets).
+					<li class="flex items-start gap-3 group">
+						<div class="mt-1.5 h-1.5 w-1.5 rounded-full bg-yellow-500/40 group-hover:bg-yellow-500 transition-colors"></div>
+						<p class="text-sm text-white/50 group-hover:text-white/80 transition-colors">Cannot use private environment variables (secrets).</p>
 					</li>
-					<li class="flex items-start gap-2">
-						<span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-(--color-warning)"></span>
-						Runs on both server and client.
+					<li class="flex items-start gap-3 group">
+						<div class="mt-1.5 h-1.5 w-1.5 rounded-full bg-yellow-500/40 group-hover:bg-yellow-500 transition-colors"></div>
+						<p class="text-sm text-white/50 group-hover:text-white/80 transition-colors">Runs on both server and client.</p>
 					</li>
 				</ul>
 			</div>
-			<div>
-				<h4 class="mb-3 flex items-center gap-2 text-[0.9rem] font-bold text-(--color-danger)">
-					<Server size={16} /> +page.server.ts (Server-only)
-				</h4>
-				<ul class="flex flex-col gap-3 p-0 text-[0.85rem] text-(--color-text-muted) list-none">
-					<li class="flex items-start gap-2">
-						<span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-(--color-danger)"></span>
-						Access databases, private APIs, and filesystem directly.
+
+			<div class="space-y-6">
+				<div class="flex items-center gap-3 text-red-400">
+					<LessonIcon name="Server" size={18} />
+					<h4 class="text-sm font-bold uppercase tracking-widest">+page.server.ts (Server-only)</h4>
+				</div>
+				<ul class="space-y-4">
+					<li class="flex items-start gap-3 group">
+						<div class="mt-1.5 h-1.5 w-1.5 rounded-full bg-red-500/40 group-hover:bg-red-500 transition-colors"></div>
+						<p class="text-sm text-white/50 group-hover:text-white/80 transition-colors">Access databases, private APIs, and filesystem directly.</p>
 					</li>
-					<li class="flex items-start gap-2">
-						<span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-(--color-danger)"></span>
-						Handles Form Actions (POST requests).
+					<li class="flex items-start gap-3 group">
+						<div class="mt-1.5 h-1.5 w-1.5 rounded-full bg-red-500/40 group-hover:bg-red-500 transition-colors"></div>
+						<p class="text-sm text-white/50 group-hover:text-white/80 transition-colors">Handles Form Actions (POST requests).</p>
 					</li>
-					<li class="flex items-start gap-2">
-						<span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-(--color-danger)"></span>
-						Always secure — code is never shipped to the browser.
+					<li class="flex items-start gap-3 group">
+						<div class="mt-1.5 h-1.5 w-1.5 rounded-full bg-red-500/40 group-hover:bg-red-500 transition-colors"></div>
+						<p class="text-sm text-white/50 group-hover:text-white/80 transition-colors">Always secure — code is never shipped to the browser.</p>
 					</li>
 				</ul>
 			</div>
