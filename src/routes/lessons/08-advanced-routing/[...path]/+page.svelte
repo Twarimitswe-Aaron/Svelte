@@ -41,7 +41,7 @@
 			</h3>
 			<div class="grid grid-cols-1 gap-2">
 				{#each data.segments as seg, i (i)}
-					<div class="flex items-center gap-4 p-4 rounded-xl border border-white/5 bg-white/[0.02] group hover:bg-white/[0.04] transition-all">
+					<div class="flex items-center gap-4 p-4 rounded-xl border border-white/5 bg-white/2 group hover:bg-white/4 transition-all">
 						<span class="text-[10px] font-mono text-white/20">[{i}]</span>
 						<code class="text-sm text-white font-mono">{seg}</code>
 					</div>

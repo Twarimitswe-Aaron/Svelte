@@ -52,7 +52,7 @@
 
 	<div class="h-px bg-white/10 my-12"></div>
 
-	<h3 class="text-lg font-bold text-white mb-6 uppercase tracking-widest text-white/30">Examples</h3>
+	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">Examples</h3>
 	<CodeBlock code={linkOptionsCode} lang="html" filename="+page.svelte" />
 
 	<div class="mt-8 flex flex-col sm:flex-row gap-4">

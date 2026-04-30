@@ -127,29 +127,29 @@ ${'</'}script>
 	<div class="mt-12 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
 		<table class="w-full text-left border-collapse">
 			<thead>
-				<tr class="bg-white/[0.02] border-b border-white/10">
+				<tr class="bg-white/2 border-b border-white/10">
 					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">File</th>
 					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">URL</th>
 					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">What breaks if missing</th>
 				</tr>
 			</thead>
 			<tbody class="divide-y divide-white/5">
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4"><code class="text-xs text-white/80">routes/+page.svelte</code></td>
 					<td class="px-6 py-4"><code class="text-xs text-(--color-accent)">/</code></td>
 					<td class="px-6 py-4 text-sm text-white/60 italic">Homepage returns 404</td>
 				</tr>
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4"><code class="text-xs text-white/80">routes/about/+page.svelte</code></td>
 					<td class="px-6 py-4"><code class="text-xs text-(--color-accent)">/about</code></td>
 					<td class="px-6 py-4 text-sm text-white/60 italic">/about returns 404</td>
 				</tr>
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4"><code class="text-xs text-white/80">routes/blog/[slug]/+page.svelte</code></td>
 					<td class="px-6 py-4"><code class="text-xs text-(--color-accent)">/blog/:slug</code></td>
 					<td class="px-6 py-4 text-sm text-white/60 italic">All blog post URLs 404</td>
 				</tr>
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4"><code class="text-xs text-white/80">routes/+layout.svelte</code></td>
 					<td class="px-6 py-4 text-sm text-white/40 italic">All routes</td>
 					<td class="px-6 py-4 text-sm text-white/60 italic">Shared nav/footer disappears</td>

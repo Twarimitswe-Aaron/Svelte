@@ -191,7 +191,7 @@ export const load = async () => {
 					<LessonIcon name="Check" size={14} class="text-red-500 mt-1 shrink-0" />
 					Programmer error, DB crash, etc.
 				</li>
-				<li class="text-sm text-white/60 flex items-start gap-2 italic font-bold text-green-400">
+				<li class="text-sm flex items-start gap-2 italic font-bold text-green-400">
 					<LessonIcon name="Check" size={14} class="text-green-500 mt-1 shrink-0" />
 					IS sent to handleError() for logging
 				</li>
@@ -200,7 +200,7 @@ export const load = async () => {
 	</div>
 
 	<div class="h-px bg-white/10 my-12"></div>
-	<h3 class="text-lg font-bold text-white mb-6 uppercase tracking-widest text-white/30">Implementation</h3>
+	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">Implementation</h3>
 	<CodeBlock code={expectedErrorCode} lang="typescript" filename="+page.server.ts — expected" />
 	<CodeBlock code={unexpectedErrorCode} lang="typescript" filename="+page.server.ts — unexpected" />
 	<CodeBlock code={errorPageCode} lang="svelte" filename="+error.svelte" />

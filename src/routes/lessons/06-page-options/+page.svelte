@@ -129,21 +129,21 @@ export const prerender = false; // this one is NOT prerendered`;
 			</div>
 
 			<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
-				<div class="p-6 rounded-xl border border-white/5 bg-white/[0.02] space-y-3">
+				<div class="p-6 rounded-xl border border-white/5 bg-white/2 space-y-3">
 					<span class="text-[10px] font-bold uppercase tracking-widest text-white/30 flex items-center gap-2">
 						<LessonIcon name="Lightbulb" size={14} class="text-(--color-accent)" />
 						What it does
 					</span>
 					<p class="text-sm text-white/70 leading-relaxed">{selected.what}</p>
 				</div>
-				<div class="p-6 rounded-xl border border-white/5 bg-white/[0.02] space-y-3">
+				<div class="p-6 rounded-xl border border-white/5 bg-white/2 space-y-3">
 					<span class="text-[10px] font-bold uppercase tracking-widest text-white/30 flex items-center gap-2">
 						<LessonIcon name="ShieldAlert" size={14} class="text-red-400" />
 						Failure mode
 					</span>
 					<p class="text-sm text-white/70 leading-relaxed">{selected.fails}</p>
 				</div>
-				<div class="p-6 rounded-xl border border-white/5 bg-white/[0.02] space-y-3">
+				<div class="p-6 rounded-xl border border-white/5 bg-white/2 space-y-3">
 					<span class="text-[10px] font-bold uppercase tracking-widest text-white/30 flex items-center gap-2">
 						<LessonIcon name="CheckCircle" size={14} class="text-green-400" />
 						When to use
@@ -166,7 +166,7 @@ export const prerender = false; // this one is NOT prerendered`;
 	<div class="mt-12 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
 		<table class="w-full text-left border-collapse">
 			<thead>
-				<tr class="bg-white/[0.02] border-b border-white/10">
+				<tr class="bg-white/2 border-b border-white/10">
 					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">Use case</th>
 					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">prerender</th>
 					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">ssr</th>
@@ -174,25 +174,25 @@ export const prerender = false; // this one is NOT prerendered`;
 				</tr>
 			</thead>
 			<tbody class="divide-y divide-white/5">
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium">Blog post</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-mono">true</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-mono">true</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-mono">true</td>
 				</tr>
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium">Admin dashboard</td>
 					<td class="px-6 py-4 text-sm text-red-400 font-mono">false</td>
 					<td class="px-6 py-4 text-sm text-red-400 font-mono">false</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-mono">true</td>
 				</tr>
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium">Zero-JS static page</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-mono">true</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-mono">true</td>
 					<td class="px-6 py-4 text-sm text-red-400 font-mono">false</td>
 				</tr>
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium">Marketing page</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-mono">true</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-mono">true</td>

@@ -163,7 +163,7 @@ export const load = ({ locals }) => {
 	</div>
 
 	<div class="h-px bg-white/10 my-12"></div>
-	<h3 class="text-lg font-bold text-white mb-6 uppercase tracking-widest text-white/30">Implementation</h3>
+	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">Implementation</h3>
 	<CodeBlock code={handleCode} lang="typescript" filename="hooks.server.ts — handle()" />
 	<CodeBlock code={handleErrorCode} lang="typescript" filename="hooks.server.ts — handleError()" />
 	<CodeBlock code={localsCode} lang="typescript" filename="Using locals in load()" />

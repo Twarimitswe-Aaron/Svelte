@@ -67,7 +67,7 @@ export function load() {
 
 	<div class="h-px bg-white/10 my-12"></div>
 
-	<h3 class="text-lg font-bold text-white mb-6 uppercase tracking-widest text-white/30">Examples</h3>
+	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">Examples</h3>
 	<CodeBlock code={serverModuleCode} lang="typescript" filename="src/lib/server/database.ts" />
 	<div class="h-4"></div>
 	<CodeBlock code={privateEnvCode} lang="typescript" filename="src/routes/+page.server.ts" />

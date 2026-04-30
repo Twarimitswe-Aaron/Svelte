@@ -150,14 +150,14 @@ export const load = ({ params }) => ({
 		</div>
 
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-			<div class="p-6 rounded-xl border border-white/5 bg-white/[0.02] space-y-3">
+			<div class="p-6 rounded-xl border border-white/5 bg-white/2 space-y-3">
 				<span class="text-[10px] font-bold uppercase tracking-widest text-white/30 flex items-center gap-2">
 					<LessonIcon name="Lightbulb" size={14} class="text-(--color-accent)" />
 					What it does
 				</span>
 				<p class="text-sm text-white/70 leading-relaxed">{selected.what}</p>
 			</div>
-			<div class="p-6 rounded-xl border border-white/5 bg-white/[0.02] space-y-3">
+			<div class="p-6 rounded-xl border border-white/5 bg-white/2 space-y-3">
 				<span class="text-[10px] font-bold uppercase tracking-widest text-white/30 flex items-center gap-2">
 					<LessonIcon name="ShieldAlert" size={14} class="text-red-400" />
 					Failure mode

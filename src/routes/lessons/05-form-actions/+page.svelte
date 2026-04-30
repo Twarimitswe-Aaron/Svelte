@@ -250,7 +250,7 @@ ${scriptEnd}
 				</h4>
 				<div class="grid grid-cols-1 gap-4">
 					{#each data.messages as msg (msg.time)}
-						<div class="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all">
+						<div class="p-6 rounded-2xl border border-white/5 bg-white/2 hover:bg-white/4 transition-all">
 							<div class="flex items-center justify-between mb-4">
 								<div class="flex items-center gap-2">
 									<div class="w-8 h-8 rounded-full bg-(--color-accent)/10 flex items-center justify-center text-(--color-accent) font-bold text-xs uppercase">

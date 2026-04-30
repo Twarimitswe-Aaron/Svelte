@@ -108,7 +108,7 @@ async function setCount(n: number) {
 			
 			<div class="flex items-center justify-center gap-4 py-4 bg-black/40 rounded-xl border border-white/5">
 				<button class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white flex items-center justify-center transition-all active:scale-95" onclick={() => contextCount--}>−</button>
-				<span class="text-3xl font-bold text-(--color-accent) min-w-[3rem] text-center font-mono">{contextCount}</span>
+				<span class="text-3xl font-bold text-(--color-accent) min-w-12 text-center font-mono">{contextCount}</span>
 				<button class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white flex items-center justify-center transition-all active:scale-95" onclick={() => contextCount++}>+</button>
 			</div>
 			
@@ -133,7 +133,7 @@ async function setCount(n: number) {
 
 			<div class="flex items-center justify-center gap-4 py-4 bg-black/40 rounded-xl border border-white/5">
 				<button class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white flex items-center justify-center transition-all active:scale-95" onclick={() => setUrlCount(urlCount - 1)}>−</button>
-				<span class="text-3xl font-bold text-(--color-accent) min-w-[3rem] text-center font-mono">{urlCount}</span>
+				<span class="text-3xl font-bold text-(--color-accent) min-w-12 text-center font-mono">{urlCount}</span>
 				<button class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white flex items-center justify-center transition-all active:scale-95" onclick={() => setUrlCount(urlCount + 1)}>+</button>
 			</div>
 
@@ -158,7 +158,7 @@ async function setCount(n: number) {
 
 			<div class="flex items-center justify-center gap-4 py-4 bg-black/40 rounded-xl border border-white/5">
 				<button class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white flex items-center justify-center transition-all active:scale-95" onclick={() => localCount--}>−</button>
-				<span class="text-3xl font-bold text-(--color-accent) min-w-[3rem] text-center font-mono">{localCount}</span>
+				<span class="text-3xl font-bold text-(--color-accent) min-w-12 text-center font-mono">{localCount}</span>
 				<button class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white flex items-center justify-center transition-all active:scale-95" onclick={() => localCount++}>+</button>
 			</div>
 
@@ -168,7 +168,7 @@ async function setCount(n: number) {
 
 	<div class="h-px bg-white/10 my-12"></div>
 
-	<h3 class="text-lg font-bold text-white mb-6 uppercase tracking-widest text-white/30">Code Patterns</h3>
+	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">Code Patterns</h3>
 	<CodeBlock code={badCode} lang="typescript" filename="❌ WRONG — module state on server" />
 	<CodeBlock code={goodCode} lang="typescript" filename="✅ CORRECT — context API" />
 	<CodeBlock code={urlStateCode} lang="typescript" filename="URL as persistent state" />
@@ -177,7 +177,7 @@ async function setCount(n: number) {
 	<div class="mt-12 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
 		<table class="w-full text-left border-collapse">
 			<thead>
-				<tr class="bg-white/[0.02] border-b border-white/10">
+				<tr class="bg-white/2 border-b border-white/10">
 					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">State Type</th>
 					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">Survives navigation</th>
 					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">Shareable URL</th>
@@ -185,25 +185,25 @@ async function setCount(n: number) {
 				</tr>
 			</thead>
 			<tbody class="divide-y divide-white/5">
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium"><code>$state()</code> in component</td>
 					<td class="px-6 py-4 text-sm text-red-400 font-bold font-mono">❌ No</td>
 					<td class="px-6 py-4 text-sm text-red-400 font-bold font-mono">❌ No</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-bold font-mono">✅ Yes</td>
 				</tr>
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium"><code>setContext()</code></td>
 					<td class="px-6 py-4 text-sm text-red-400 font-bold font-mono">❌ No</td>
 					<td class="px-6 py-4 text-sm text-red-400 font-bold font-mono">❌ No</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-bold font-mono">✅ Yes</td>
 				</tr>
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium">URL search params</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-bold font-mono">✅ Yes</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-bold font-mono">✅ Yes</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-bold font-mono">✅ Yes</td>
 				</tr>
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium">Module-level <code>let</code> (server)</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-bold font-mono">✅ Yes</td>
 					<td class="px-6 py-4 text-sm text-red-400 font-bold font-mono">❌ No</td>

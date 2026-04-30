@@ -236,7 +236,7 @@ export const addPost = command(async (title: string) => {
 	<div class="h-px bg-white/10 my-12"></div>
 
 	<!-- 4 flavours grid -->
-	<h3 class="text-lg font-bold text-white mb-6 uppercase tracking-widest text-white/30">4 Remote Function Flavours</h3>
+	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">4 Remote Function Flavours</h3>
 	<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
 		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4 hover:border-purple-500/30 transition-all">
 			<div class="flex items-center justify-between">

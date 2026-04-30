@@ -74,7 +74,6 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 <h1>{data.posts.length} posts loaded</h1>
 <p>Server timestamp: {data.serverTimestamp}</p>`;
 </script>
-i
 <svelte:head>
 	<title>Lesson 04 — Loading Data · SvelteKit Course</title>
 </svelte:head>
@@ -89,7 +88,7 @@ i
 	<!-- SECTION 1: Server load output -->
 	<div class="grid grid-cols-1 gap-6 mb-10">
 		<div class="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
-			<div class="px-6 py-4 border-b border-white/10 bg-white/[0.02] flex items-center justify-between">
+			<div class="px-6 py-4 border-b border-white/10 bg-white/2 flex items-center justify-between">
 				<div class="flex items-center gap-2">
 					<span class="px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
 						<Lock size={12} />
@@ -121,7 +120,7 @@ i
 	{#if data.serverPosts?.length}
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
 			{#each data.serverPosts as post (post.id)}
-				<div class="p-5 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-all group">
+				<div class="p-5 rounded-xl border border-white/10 bg-white/2 hover:bg-white/4 transition-all group">
 					<div class="flex items-start justify-between mb-3">
 						<h4 class="text-lg font-bold text-white group-hover:text-(--color-accent) transition-colors">{post.title}</h4>
 						<div class="flex gap-1">
@@ -190,7 +189,7 @@ i
 	<div class="h-px bg-white/10 my-10"></div>
 
 	<!-- Code blocks -->
-	<h3 class="text-lg font-bold text-white mb-6 uppercase tracking-widest text-white/30">Implementation</h3>
+	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">Implementation</h3>
 	<CodeBlock code={serverLoadCode} lang="typescript" filename="+page.server.ts" />
 	<CodeBlock code={universalLoadCode} lang="typescript" filename="+page.ts (universal)" />
 	<CodeBlock code={awaitCode} lang="svelte" filename="streaming with #await" />
@@ -200,34 +199,34 @@ i
 	<div class="mt-12 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
 		<table class="w-full text-left border-collapse">
 			<thead>
-				<tr class="bg-white/[0.02] border-b border-white/10">
+				<tr class="bg-white/2 border-b border-white/10">
 					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">Feature</th>
 					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">+page.server.ts</th>
 					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">+page.ts</th>
 				</tr>
 			</thead>
 			<tbody class="divide-y divide-white/5">
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium">Runs on server</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-bold">✅ Always</td>
 					<td class="px-6 py-4 text-sm text-green-400/70 font-bold">✅ First load</td>
 				</tr>
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium">Runs in browser</td>
 					<td class="px-6 py-4 text-sm text-red-400 font-bold">❌ Never</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-bold">✅ Navigation</td>
 				</tr>
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium">Access cookies</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-bold">✅ Yes</td>
 					<td class="px-6 py-4 text-sm text-red-400 font-bold">❌ No</td>
 				</tr>
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium">Database access</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-bold">✅ Safe</td>
 					<td class="px-6 py-4 text-sm text-red-400/70 font-bold italic">⚠️ Unsafe</td>
 				</tr>
-				<tr class="hover:bg-white/[0.01] transition-colors">
+				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium">URL & Params</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-bold">✅ Yes</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-bold">✅ Yes</td>

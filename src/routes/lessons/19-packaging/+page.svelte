@@ -47,7 +47,7 @@
 
 	<div class="h-px bg-white/10 my-12"></div>
 
-	<h3 class="text-lg font-bold text-white mb-6 uppercase tracking-widest text-white/30">Example</h3>
+	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">Example</h3>
 	<CodeBlock code={packageCode} lang="json" filename="package.json library setup" />
 </LessonLayout>
 
