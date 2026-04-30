@@ -37,7 +37,7 @@
 	<!-- Mobile overlay -->
 	{#if sidebarOpen}
 		<button
-			class="fixed inset-0 z-[29] cursor-pointer border-none bg-black/60 md:hidden"
+			class="fixed inset-0 z-29 cursor-pointer border-none bg-black/60 md:hidden"
 			aria-label="Close sidebar"
 			onclick={toggle}
 		></button>

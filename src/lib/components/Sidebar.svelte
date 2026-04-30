@@ -22,22 +22,22 @@
 </script>
 
 <aside
-	class="framer-fQt7j border-r border-white/10 backdrop-blur-[5px] bg-[rgba(0,0,0,0.08)] flex flex-col h-full w-[var(--sidebar-width)] transition-transform duration-300 fixed md:static z-30 {sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}"
+	class="border-r border-white/10 backdrop-blur-[5px] bg-[rgba(0,0,0,0.08)] flex flex-col h-full w-(--sidebar-width) transition-transform duration-300 fixed md:static z-30 {sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}"
 >
 	<!-- Top / Logo -->
 	<div class="px-6 py-8">
 		<a href={resolve('/')} class="flex items-center gap-3 no-underline group">
-			<div class="flex flex-col gap-1 w-8 h-8 shrink-0">
-				<div class="flex gap-1 h-1/2">
+			<div class="flex flex-col ml-1 gap-[2px] w-5 h-5 shrink-0">
+				<div class="flex gap-[2px] h-1/2">
 					<div class="w-1/2 h-full bg-[#3b82f6] rounded-tl-[8px] rounded-bl-[8px] rounded-tr-[8px]"></div>
 					<div class="w-1/2 h-full bg-[#3b82f6] opacity-60 rounded-tr-[8px] rounded-tl-[8px] rounded-br-[8px]"></div>
 				</div>
-				<div class="flex gap-1 h-1/2">
+				<div class="flex gap-[2px] h-1/2">
 					<div class="w-1/2 h-full bg-[#3b82f6] opacity-40 rounded-bl-[8px] rounded-br-[8px] rounded-tl-[8px]"></div>
 					<div class="w-1/2 h-full bg-[#3b82f6] rounded-bl-[8px] rounded-br-[8px] rounded-tr-[8px]"></div>
 				</div>
 			</div>
-			<span class="text-[1.2rem] font-bold text-white tracking-tight">Gallereee</span>
+			<span class="text-[1.2rem] font-bold text-white tracking-tight">svelte</span>
 		</a>
 	</div>
 
@@ -46,11 +46,11 @@
 		{#each navItems as item (item.name)}
 			<a
 				href={resolve(item.href as unknown as "/")}
-				class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all no-underline {$page.url.pathname === item.href ? 'bg-[rgba(255,255,255,0.08)] text-white' : 'text-white/70 hover:bg-[rgba(255,255,255,0.04)] hover:text-white'}"
+				class="flex items-center gap-3 px-3 py-3 rounded-xl transition-all no-underline {$page.url.pathname === item.href ? 'bg-[rgba(255,255,255,0.08)] text-white' : 'text-white/70 hover:bg-[rgba(255,255,255,0.04)] hover:text-white'}"
 				onclick={() => (sidebarOpen = false)}
 			>
-				<LessonIcon name={item.icon} size={18} class="opacity-80" />
-				<span class="text-[14px] font-medium">{item.name}</span>
+				<LessonIcon name={item.icon} size={18} class="font-bold opacity-100" />
+				<span class="text-[14px] font-bold">{item.name}</span>
 			</a>
 		{/each}
 
@@ -74,21 +74,11 @@
 
 	<!-- Bottom -->
 	<div class="p-6 border-t border-white/10 flex gap-4">
-		<a href="https://x.com" target="_blank" class="text-white/50 hover:text-white transition-colors">
-			<LessonIcon name="ExternalLink" size={18} />
-		</a>
-		<a href="https://instagram.com" target="_blank" class="text-white/50 hover:text-white transition-colors">
+	
+		<a href="https://www.instagram.com/twarimitswe/" target="_blank" class="text-white/50 hover:text-white transition-colors">
 			<LessonIcon name="Camera" size={18} />
 		</a>
 	</div>
 </aside>
 
-<style>
-	.scrollbar-hide {
-		-ms-overflow-style: none;
-		scrollbar-width: none;
-	}
-	.scrollbar-hide::-webkit-scrollbar {
-		display: none;
-	}
-</style>
+

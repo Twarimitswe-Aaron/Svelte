@@ -12,28 +12,28 @@
      Shared Lesson Page Components
      ============================================= */
   .url-display {
-    @apply mb-6 flex items-center gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-2)] px-4 py-3 text-[0.875rem];
+    @apply mb-6 flex items-center gap-3 rounded-lg border border-(--color-border) bg-(--color-surface-2) px-4 py-3 text-[0.875rem];
   }
   .url-label {
-    @apply shrink-0 text-[0.7rem] font-bold uppercase tracking-[0.08em] text-[var(--color-text-muted)];
+    @apply shrink-0 text-[0.7rem] font-bold uppercase tracking-[0.08em] text-(--color-text-muted);
   }
   .url-value {
-    @apply text-[0.9rem] text-[var(--color-success)];
+    @apply text-[0.9rem] text-(--color-success);
   }
   .sub-heading {
     @apply mb-3 text-[0.95rem] font-bold;
   }
   .demo-text {
-    @apply mb-3 text-[0.875rem] leading-[1.65] text-[var(--color-text-muted)];
+    @apply mb-3 text-[0.875rem] leading-[1.65] text-(--color-text-muted);
   }
   .slug-links {
     @apply mb-4 flex flex-col gap-1.5;
   }
   .slug-link {
-    @apply inline-flex rounded-md border border-[var(--color-border)] bg-[var(--color-surface-2)] px-3 py-1.5 font-mono text-[0.825rem] text-[var(--color-accent)] no-underline transition-colors hover:border-[var(--color-accent)] hover:no-underline;
+    @apply inline-flex rounded-md border border-(--color-border) bg-(--color-surface-2) px-3 py-1.5 font-mono text-[0.825rem] text-(--color-accent) no-underline transition-colors hover:border-(--color-accent) hover:no-underline;
   }
   .separator {
-    @apply my-6 h-px bg-[var(--color-border)];
+    @apply my-6 h-px bg-(--color-border);
   }
   .table-wrap {
     @apply mt-4 overflow-x-auto;
@@ -42,22 +42,22 @@
     @apply w-full border-collapse text-[0.825rem];
   }
   .route-table th {
-    @apply border-b border-[var(--color-border)] bg-[var(--color-surface-2)] px-3 py-2.5 text-left text-[0.72rem] font-bold uppercase tracking-[0.06em] text-[var(--color-text-muted)];
+    @apply border-b border-(--color-border) bg-(--color-surface-2) px-3 py-2.5 text-left text-[0.72rem] font-bold uppercase tracking-[0.06em] text-(--color-text-muted);
   }
   .route-table td {
-    @apply border-b border-[var(--color-border)] px-3 py-2.5 text-[var(--color-text-muted)];
+    @apply border-b border-(--color-border) px-3 py-2.5 text-(--color-text-muted);
   }
   .route-table td:first-child {
-    @apply text-[var(--color-accent)];
+    @apply text-(--color-accent);
   }
   .route-table td:nth-child(2) {
-    @apply text-[var(--color-success)];
+    @apply text-(--color-success);
   }
   .route-table tr:last-child td {
     @apply border-b-0;
   }
   .route-table tr:hover td {
-    @apply bg-[var(--color-surface-2)];
+    @apply bg-(--color-surface-2);
   }
 }
 
@@ -69,6 +69,35 @@
     /* Spacing */
   :root {
     --sidebar-width: 264px;
+    
+    /* Typography */
+    --font-main: "Geist", "Geist Placeholder", sans-serif;
+    --font-mono: "Geist Mono", "Cascadia Code", monospace;
+    --font-weight-normal: 500;
+    --letter-spacing-tight: -0.02em;
+    --line-height-tight: 1.1em;
+
+    /* Colors - Brand & Accents */
+    --color-accent: #3b82f6;
+    --color-accent-hover: #60a5fa;
+    --color-accent-subtle: #93c5fd;
+    
+    /* Colors - UI Surface */
+    --color-bg: #000;
+    --color-surface: #121212;
+    --color-surface-2: #1a1a1a;
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-border-subtle: rgba(255, 255, 255, 0.04);
+
+    /* Colors - Text */
+    --color-text: #ffffff;
+    --color-text-muted: rgba(255, 255, 255, 0.6);
+    --color-text-dim: rgba(255, 255, 255, 0.4);
+
+    /* Colors - Functional */
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
   }
 
   /* Base resets */
@@ -78,11 +107,13 @@
   }
 
   body {
-    background-color: #000;
+    background-color: var(--color-bg);
     color: var(--color-text);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-main);
+    font-weight: var(--font-weight-normal);
+    letter-spacing: var(--letter-spacing-tight);
+    line-height: var(--line-height-tight);
     font-size: 15px;
-    line-height: 1.6;
     min-height: 100vh;
     margin: 0;
   }

@@ -155,18 +155,18 @@
 >
 	<!-- Project tree explorer -->
 	<div class="mb-6">
-		<h3 class="mb-4 text-[0.95rem] font-bold text-[var(--color-text)]">📁 Click each file to learn its role</h3>
+		<h3 class="mb-4 text-[0.95rem] font-bold text-(--color-text)">📁 Click each file to learn its role</h3>
 		<div class="grid grid-cols-1 items-start gap-4 sm:grid-cols-[240px_1fr]">
 			<div class="flex flex-col gap-1">
 				{#each files as file (file.name)}
 					{@const Icon = file.icon}
 					<button
-						class="flex cursor-pointer items-center gap-2 rounded-lg border bg-[var(--color-surface-2)] px-3 py-2 text-left text-[var(--color-text)] transition-all duration-150 hover:bg-white/5 hover:[border-color:var(--type-color)] {selected === file ? 'bg-white/5 shadow-[0_0_0_2px_color-mix(in_srgb,var(--type-color)_25%,transparent)] [border-color:var(--type-color)]' : 'border-[var(--color-border)]'}"
+						class="flex cursor-pointer items-center gap-2 rounded-lg border bg-(--color-surface-2) px-3 py-2 text-left text-(--color-text) transition-all duration-150 hover:bg-white/5 hover:border-(--type-color) {selected === file ? 'bg-white/5 shadow-[0_0_0_2px_color-mix(in_srgb,var(--type-color)_25%,transparent)] border-(--type-color)' : 'border-(--color-border)'}"
 						onclick={() => (selected = selected === file ? null : file)}
 						style="--type-color: {typeColors[file.type]}"
 					>
 						<span class="text-base"><Icon size={16} /></span>
-						<code class="text-[0.775rem] text-[var(--type-color)]">{file.name}</code>
+						<code class="text-[0.775rem] text-(--type-color)">{file.name}</code>
 					</button>
 				{/each}
 			</div>
@@ -174,24 +174,24 @@
 			<div class="min-h-[160px]" class:visible={!!selected}>
 				{#if selected}
 					{@const SelectedIcon = selected.icon}
-					<div class="animate-fade-in overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-2)]">
-						<div class="flex items-center gap-2 border-b border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3">
+					<div class="animate-fade-in overflow-hidden rounded-xl border border-(--color-border) bg-(--color-surface-2)">
+						<div class="flex items-center gap-2 border-b border-(--color-border) bg-(--color-surface) px-4 py-3">
 							<span class="text-[1.1rem]"><SelectedIcon size={20} /></span>
-							<code class="text-[0.85rem] text-[var(--color-accent)]">{selected.name}</code>
+							<code class="text-[0.85rem] text-(--color-accent)">{selected.name}</code>
 						</div>
 						<div class="p-4">
 							<div class="mb-3 last:mb-0">
-								<span class="text-[0.7rem] font-bold uppercase tracking-widest text-[var(--color-accent)]">💡 What it does</span>
-								<p class="mb-0 mt-1 text-[0.85rem] leading-relaxed text-[var(--color-text-muted)]">{selected.desc}</p>
+								<span class="text-[0.7rem] font-bold uppercase tracking-widest text-(--color-accent)">💡 What it does</span>
+								<p class="mb-0 mt-1 text-[0.85rem] leading-relaxed text-(--color-text-muted)">{selected.desc}</p>
 							</div>
 							<div class="mb-3 last:mb-0">
-								<span class="text-[0.7rem] font-bold uppercase tracking-widest text-[var(--color-danger)]">⚠️ What fails without it</span>
-								<p class="mb-0 mt-1 text-[0.85rem] leading-relaxed text-[var(--color-text-muted)]">{selected.failing}</p>
+								<span class="text-[0.7rem] font-bold uppercase tracking-widest text-(--color-danger)">⚠️ What fails without it</span>
+								<p class="mb-0 mt-1 text-[0.85rem] leading-relaxed text-(--color-text-muted)">{selected.failing}</p>
 							</div>
 						</div>
 					</div>
 				{:else}
-					<div class="flex h-[160px] items-center justify-center rounded-xl border border-dashed border-[var(--color-border)] p-4 text-center text-[0.85rem] text-[var(--color-text-muted)]">
+					<div class="flex h-[160px] items-center justify-center rounded-xl border border-dashed border-(--color-border) p-4 text-center text-[0.85rem] text-(--color-text-muted)">
 						← Click a file on the left to see what it does and what breaks without it
 					</div>
 				{/if}
@@ -205,16 +205,16 @@
 	<CodeBlock code={structureCode} lang="bash" filename="project tree" />
 
 	<!-- Styling note -->
-	<div class="my-6 h-px bg-[var(--color-border)]"></div>
+	<div class="my-6 h-px bg-(--color-border)"></div>
 
-	<h3 class="mb-4 flex items-center gap-2 text-[0.95rem] font-bold text-[var(--color-text)]">
+	<h3 class="mb-4 flex items-center gap-2 text-[0.95rem] font-bold text-(--color-text)">
 		<Box size={18} /> A Note on Styling
 	</h3>
 
 	<CodeBlock code={cssCode} lang="svelte" filename="+page.svelte" />
 
-	<div class="mb-8 mt-4 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-2)] p-5 text-[0.875rem] leading-relaxed text-[var(--color-text-muted)]">
-		<p class="m-0 mb-4 font-bold text-[var(--color-accent)]">
+	<div class="mb-8 mt-4 rounded-xl border border-(--color-border) bg-(--color-surface-2) p-5 text-[0.875rem] leading-relaxed text-(--color-text-muted)">
+		<p class="m-0 mb-4 font-bold text-(--color-accent)">
 			⚠️ In this codebase, we exclusively leverage Tailwind CSS.
 		</p>
 		<p class="m-0">
