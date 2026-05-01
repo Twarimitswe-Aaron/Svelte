@@ -191,7 +191,7 @@ ${'</'}script>
 			<div class="relative min-h-[500px]">
 				{#key activeId}
 					<div class="animate-fade-in absolute inset-0 space-y-6">
-						<div class="p-8 rounded-3xl border border-white/10 bg-white/5 space-y-8 backdrop-blur-md">
+						<div class="p-8 rounded-xl border border-white/10 bg-white/5 space-y-8 backdrop-blur-md">
 							<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-white/5">
 								<div>
 									<h4 class="text-2xl font-black text-white tracking-tight mb-1">{activeFile.name}</h4>
@@ -237,7 +237,7 @@ ${'</'}script>
 	</div>
 
 	<!-- Comparison Section -->
-	<div class="mt-16 p-10 rounded-3xl border border-white/10 bg-white/5 relative overflow-hidden">
+	<div class="mt-16 p-10 rounded-xl border border-white/10 bg-white/5 relative overflow-hidden">
 		<div class="absolute -bottom-24 -left-24 w-64 h-64 bg-yellow-500/5 rounded-full blur-3xl"></div>
 		
 		<h3 class="text-xl font-bold text-white mb-10 relative z-10 flex items-center gap-3">

@@ -112,7 +112,7 @@
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 				<a 
 					href={resolve('/articles/why-svelte-is-the-best-framework' as "/")}
-					class="group flex flex-col p-10 rounded-3xl glass-blur bg-[rgba(255,255,255,0.03)] border border-white/5 no-underline transition-all hover:border-(--color-accent)/30 hover:bg-[rgba(255,255,255,0.05)] relative overflow-hidden"
+					class="group flex flex-col p-10 rounded-xl glass-blur bg-[rgba(255,255,255,0.03)] border border-white/5 no-underline transition-all hover:border-(--color-accent)/30 hover:bg-[rgba(255,255,255,0.05)] relative overflow-hidden"
 				>
 					<div class="absolute -top-24 -right-24 w-64 h-64 bg-(--color-accent)/5 rounded-full blur-3xl group-hover:bg-(--color-accent)/10 transition-colors"></div>
 					
@@ -134,7 +134,7 @@
 
 				<a 
 					href={resolve('/articles/svelte-5-runes-explained' as "/")}
-					class="group flex flex-col p-10 rounded-3xl glass-blur bg-[rgba(255,255,255,0.03)] border border-white/5 no-underline transition-all hover:border-white/10 hover:bg-[rgba(255,255,255,0.05)] relative overflow-hidden"
+					class="group flex flex-col p-10 rounded-xl glass-blur bg-[rgba(255,255,255,0.03)] border border-white/5 no-underline transition-all hover:border-white/10 hover:bg-[rgba(255,255,255,0.05)] relative overflow-hidden"
 				>
 					<div class="flex items-center gap-3 mb-8">
 						<span class="text-[10px] font-bold uppercase tracking-widest text-white/20">March 22, 2025</span>

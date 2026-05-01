@@ -15,8 +15,17 @@
 
 	import HeroBackground from '$lib/components/HeroBackground.svelte';
 	import Sidebar from '$lib/components/Sidebar.svelte';
+	import { afterNavigate } from '$app/navigation';
 
 	let { children } = $props();
+
+	let mainElement: HTMLElement | undefined = $state();
+
+	afterNavigate(() => {
+		if (mainElement) {
+			mainElement.scrollTo(0, 0);
+		}
+	});
 
 	// Sidebar open/closed state (mobile)
 	let sidebarOpen = $state(false);
@@ -63,7 +72,7 @@
 			<span class="text-[0.9rem] font-bold text-white">Gallereee</span>
 		</header>
 
-		<main class="flex-1 overflow-y-auto scrollbar-hide">
+		<main bind:this={mainElement} class="flex-1 overflow-y-auto scrollbar-hide">
 			<div class="framer-vsngcy w-full min-h-full">
 				{@render children()}
 			</div>

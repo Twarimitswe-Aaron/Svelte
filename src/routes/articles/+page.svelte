@@ -54,7 +54,7 @@
 			{#each posts as post (post.id)}
 				<a 
 					href={resolve(`/articles/${post.slug}` as unknown as "/")}
-					class="group flex flex-col p-10 rounded-3xl glass-blur bg-[rgba(255,255,255,0.03)] border border-white/5 no-underline transition-all hover:border-(--color-accent)/30 hover:bg-[rgba(255,255,255,0.05)] relative overflow-hidden"
+					class="group flex flex-col p-10 rounded-xl glass-blur bg-[rgba(255,255,255,0.03)] border border-white/5 no-underline transition-all hover:border-(--color-accent)/30 hover:bg-[rgba(255,255,255,0.05)] relative overflow-hidden"
 				>
 					<div class="absolute -top-12 -right-12 w-24 h-24 bg-(--color-accent)/5 rounded-full blur-2xl group-hover:bg-(--color-accent)/10 transition-colors"></div>
 					
