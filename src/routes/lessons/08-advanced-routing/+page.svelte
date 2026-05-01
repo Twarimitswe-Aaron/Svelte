@@ -140,7 +140,7 @@ export const load = ({ params }) => ({
 	</div>
 
 	{#key selected.id}
-	<div class="p-8 rounded-2xl border border-white/10 bg-white/5 animate-fade-in">
+	<div class="p-8 rounded-xl border border-white/10 bg-white/5 animate-fade-in">
 		<div class="mb-8 pb-8 border-b border-white/10">
 			<h3 class="text-xl font-bold text-white flex items-center gap-3 mb-2">
 				<span class="text-2xl">{selected.emoji}</span>

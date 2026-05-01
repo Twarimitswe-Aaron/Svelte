@@ -56,11 +56,11 @@
 	<CodeBlock code={linkOptionsCode} lang="html" filename="+page.svelte" />
 
 	<div class="mt-8 flex flex-col sm:flex-row gap-4">
-		<a href={resolve('/lessons/12-remote-functions')} data-sveltekit-preload-data="hover" class="flex-1 p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-(--color-accent)/50 transition-all group no-underline text-center">
+		<a href={resolve('/lessons/12-remote-functions')} data-sveltekit-preload-data="hover" class="flex-1 p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-(--color-accent)/50 transition-all group no-underline text-center">
 			<div class="text-sm font-bold text-white mb-1">Hover to Preload</div>
 			<div class="text-[10px] text-white/30 uppercase tracking-widest">Watch Network Tab</div>
 		</a>
-		<a href={resolve('/lessons/13-link-options')} data-sveltekit-noscroll class="flex-1 p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-(--color-accent)/50 transition-all group no-underline text-center">
+		<a href={resolve('/lessons/13-link-options')} data-sveltekit-noscroll class="flex-1 p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-(--color-accent)/50 transition-all group no-underline text-center">
 			<div class="text-sm font-bold text-white mb-1">No Scroll Click</div>
 			<div class="text-[10px] text-white/30 uppercase tracking-widest">Stay at Scroll Pos</div>
 		</a>

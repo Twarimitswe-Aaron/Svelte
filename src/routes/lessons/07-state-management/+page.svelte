@@ -95,7 +95,7 @@ async function setCount(n: number) {
 >
 	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
 		<!-- DEMO 1: Context Counter -->
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4 flex flex-col justify-between">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4 flex flex-col justify-between">
 			<div class="space-y-2">
 				<div class="flex items-center gap-2">
 					<span class="px-2 py-0.5 rounded-md bg-purple-500/20 text-purple-400 text-[10px] font-bold uppercase tracking-widest">Context API</span>
@@ -120,7 +120,7 @@ async function setCount(n: number) {
 		</div>
 
 		<!-- DEMO 2: URL state -->
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4 flex flex-col justify-between">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4 flex flex-col justify-between">
 			<div class="space-y-2">
 				<div class="flex items-center gap-2">
 					<span class="px-2 py-0.5 rounded-md bg-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest">URL State</span>
@@ -145,7 +145,7 @@ async function setCount(n: number) {
 		</div>
 
 		<!-- DEMO 3: Local state -->
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4 flex flex-col justify-between">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4 flex flex-col justify-between">
 			<div class="space-y-2">
 				<div class="flex items-center gap-2">
 					<span class="px-2 py-0.5 rounded-md bg-green-500/20 text-green-400 text-[10px] font-bold uppercase tracking-widest">Local $state</span>
@@ -175,7 +175,7 @@ async function setCount(n: number) {
 	<CodeBlock code={urlStateCode} lang="typescript" filename="URL as persistent state" />
 
 	<!-- When to use which -->
-	<div class="mt-12 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+	<div class="mt-12 overflow-hidden rounded-xl border border-white/10 bg-white/5">
 		<table class="w-full text-left border-collapse">
 			<thead>
 				<tr class="bg-white/2 border-b border-white/10">

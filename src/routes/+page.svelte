@@ -60,7 +60,7 @@
 						href={resolve(`/lessons/${lesson.slug}` as "/")}
 						class="group flex flex-col no-underline"
 					>
-						<div class="aspect-4/3 p-4 rounded-2xl border border-white/10 bg-white/5 overflow-hidden mb-4 relative transition-all group-hover:border-white/20 group-hover:bg-black/20">
+						<div class="aspect-4/3 p-4 rounded-xl border border-white/10 bg-white/5 overflow-hidden mb-4 relative transition-all group-hover:border-white/20 group-hover:bg-black/20">
 							<!-- Tag Badge -->
 							<div class="absolute top-4 right-4 z-20">
 								<span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-black/40 backdrop-blur-md border border-white/10 text-white/90">

@@ -32,7 +32,7 @@ $: modalId = $page.state.showModal;`;
 		<LessonIcon name="Shuffle" size={20} class="text-(--color-accent)" />
 		State History
 	</h3>
-	<div class="p-8 rounded-2xl border border-white/10 bg-white/5 space-y-4 mb-12">
+	<div class="p-8 rounded-xl border border-white/10 bg-white/5 space-y-4 mb-12">
 		<p class="text-sm text-white/70 leading-relaxed">
 			You can push objects into the history state using <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">pushState</code>. To access it, SvelteKit exposes <code class="px-1.5 py-0.5 rounded bg-white/10 text-(--color-accent) font-mono">$page.state</code>.
 		</p>

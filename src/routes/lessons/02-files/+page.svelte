@@ -165,7 +165,7 @@ ${'</'}script>
 			<div class="flex flex-col gap-3">
 				{#each fileTypes as file (file.id)}
 					<button
-						class="group flex items-center gap-4 rounded-2xl border p-4 text-left transition-all duration-300 {activeId === file.id
+						class="group flex items-center gap-4 rounded-xl border p-4 text-left transition-all duration-300 {activeId === file.id
 							? 'bg-white/10 border-white/20 shadow-lg shadow-black/20'
 							: 'bg-white/5 border-white/5 hover:border-white/10 hover:bg-white/8'}"
 						onclick={() => (activeId = file.id)}
@@ -205,7 +205,7 @@ ${'</'}script>
 							</div>
 
 							<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-								<div class="p-6 rounded-2xl bg-green-500/5 border border-green-500/10 space-y-3">
+								<div class="p-6 rounded-xl bg-green-500/5 border border-green-500/10 space-y-3">
 									<div class="flex items-center gap-2 text-[10px] font-bold text-green-400 uppercase tracking-widest">
 										<CheckCircle2 size={14} /> Purpose
 									</div>
@@ -213,7 +213,7 @@ ${'</'}script>
 										{activeFile.role}
 									</p>
 								</div>
-								<div class="p-6 rounded-2xl bg-red-500/5 border border-red-500/10 space-y-3">
+								<div class="p-6 rounded-xl bg-red-500/5 border border-red-500/10 space-y-3">
 									<div class="flex items-center gap-2 text-[10px] font-bold text-red-400 uppercase tracking-widest">
 										<XCircle size={14} /> What Fails
 									</div>

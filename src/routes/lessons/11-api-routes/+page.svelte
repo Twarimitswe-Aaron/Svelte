@@ -13,7 +13,6 @@
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
 	import LessonIcon from '$lib/components/LessonIcon.svelte';
-	import { json } from '@sveltejs/kit';
 
 	const lesson = lessons[10];
 	const { prev, next } = getAdjacentLessons(lesson.slug);
@@ -128,7 +127,7 @@ export const load = async ({ params }) => {
 			Select a method and send the request.
 		</p>
 
-		<div class="p-8 rounded-2xl border border-white/10 bg-white/5 space-y-6">
+		<div class="p-8 rounded-xl border border-white/10 bg-white/5 space-y-6">
 			<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
 				<!-- Method selector -->
 				<div class="flex p-1 bg-black/40 rounded-xl border border-white/5">
@@ -200,7 +199,7 @@ export const load = async ({ params }) => {
 
 	<!-- Route anatomy -->
 	<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
 			<div class="flex items-center gap-2">
 				<LessonIcon name="FileText" size={18} class="text-(--color-accent)" />
 				<div class="text-sm font-bold text-white font-mono">+server.ts</div>
@@ -208,7 +207,7 @@ export const load = async ({ params }) => {
 			<p class="text-xs text-white/50 leading-relaxed">REST endpoint. No UI. GET/POST/etc exports. For programmatic access.</p>
 			<div class="text-[10px] font-medium text-white/30 italic">Used by: fetch(), curl, apps</div>
 		</div>
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
 			<div class="flex items-center gap-2">
 				<LessonIcon name="Settings" size={18} class="text-(--color-accent)" />
 				<div class="text-sm font-bold text-white font-mono">+page.server.ts</div>
@@ -216,7 +215,7 @@ export const load = async ({ params }) => {
 			<p class="text-xs text-white/50 leading-relaxed">Server load + form actions. Returns data for Svelte UI components.</p>
 			<div class="text-[10px] font-medium text-white/30 italic">Used by: SvelteKit routing</div>
 		</div>
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
 			<div class="flex items-center gap-2">
 				<LessonIcon name="ArrowRightLeft" size={18} class="text-(--color-accent)" />
 				<div class="text-sm font-bold text-white">Content Neg.</div>

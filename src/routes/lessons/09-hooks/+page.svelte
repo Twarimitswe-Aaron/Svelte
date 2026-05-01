@@ -89,7 +89,7 @@ export const load = ({ locals }) => {
 			fields would be <code class="text-red-400 font-mono italic">undefined</code>.
 		</p>
 
-		<div class="p-8 rounded-2xl border {data.hookActive ? 'border-green-500/20 bg-green-500/5 shadow-lg shadow-green-500/5' : 'border-red-500/20 bg-red-500/5 shadow-lg shadow-red-500/5'} transition-all relative overflow-hidden group">
+		<div class="p-8 rounded-xl border {data.hookActive ? 'border-green-500/20 bg-green-500/5 shadow-lg shadow-green-500/5' : 'border-red-500/20 bg-red-500/5 shadow-lg shadow-red-500/5'} transition-all relative overflow-hidden group">
 			<div class="absolute -top-12 -right-12 w-48 h-48 {data.hookActive ? 'bg-green-500/10' : 'bg-red-500/10'} rounded-full blur-3xl"></div>
 			
 			<div class="flex items-center gap-2 mb-8 relative z-10">
@@ -129,7 +129,7 @@ export const load = ({ locals }) => {
 
 	<!-- Hooks overview cards -->
 	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
 			<div class="space-y-1">
 				<div class="text-sm font-bold text-white font-mono">handle()</div>
 				<div class="text-[10px] font-bold uppercase tracking-widest text-white/30">hooks.server.ts</div>
@@ -137,7 +137,7 @@ export const load = ({ locals }) => {
 			<p class="text-xs text-white/50 leading-relaxed">Runs on EVERY request. Must call <code class="text-white/70">event</code>. Set locals, modify response.</p>
 			<div class="text-[10px] font-medium text-red-400 italic flex items-center gap-1"><TriangleAlert size={10} /> Missing await = blank app</div>
 		</div>
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
 			<div class="space-y-1">
 				<div class="text-sm font-bold text-white font-mono">handleError()</div>
 				<div class="text-[10px] font-bold uppercase tracking-widest text-white/30">hooks.server.ts</div>
@@ -145,7 +145,7 @@ export const load = ({ locals }) => {
 			<p class="text-xs text-white/50 leading-relaxed">Catches unexpected thrown errors. Log them to Sentry/Datadog here.</p>
 			<div class="text-[10px] font-medium text-red-400 italic flex items-center gap-1"><TriangleAlert size={10} /> Missing = stack traces leak</div>
 		</div>
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
 			<div class="space-y-1">
 				<div class="text-sm font-bold text-white font-mono">handleFetch()</div>
 				<div class="text-[10px] font-bold uppercase tracking-widest text-white/30">hooks.server.ts</div>
@@ -153,7 +153,7 @@ export const load = ({ locals }) => {
 			<p class="text-xs text-white/50 leading-relaxed">Intercepts fetch() inside server load functions. Add API keys.</p>
 			<div class="text-[10px] font-medium text-red-400 italic flex items-center gap-1"><TriangleAlert size={10} /> Missing = no shared auth headers</div>
 		</div>
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
 			<div class="space-y-1">
 				<div class="text-sm font-bold text-white font-mono">reroute()</div>
 				<div class="text-[10px] font-bold uppercase tracking-widest text-white/30">hooks.ts (universal)</div>

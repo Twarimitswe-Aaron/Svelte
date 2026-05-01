@@ -22,7 +22,7 @@
 		Back to Routing lesson
 	</a>
 
-	<div class="rounded-2xl border border-white/10 bg-white/5 p-8 mb-8 overflow-hidden relative">
+	<div class="rounded-xl border border-white/10 bg-white/5 p-8 mb-8 overflow-hidden relative">
 		<div class="absolute -top-12 -right-12 w-48 h-48 bg-(--color-accent)/10 rounded-full blur-3xl"></div>
 		
 		<div class="relative z-10">
@@ -63,7 +63,7 @@
 			</div>
 		</section>
 
-		<section class="rounded-2xl border border-white/10 bg-black/40 p-6">
+		<section class="rounded-xl border border-white/10 bg-black/40 p-6">
 			<h3 class="text-sm font-bold uppercase tracking-widest text-white/30 mb-6 flex items-center gap-2">
 				<LessonIcon name="Info" size={14} />
 				Route Metadata

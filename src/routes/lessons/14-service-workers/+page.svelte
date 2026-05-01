@@ -43,7 +43,7 @@ self.addEventListener('install', (event) => {
 		<LessonIcon name="Satellite" size={20} class="text-(--color-accent)" />
 		Service Worker Integration
 	</h3>
-	<div class="p-8 rounded-2xl border border-white/10 bg-white/5 space-y-4 mb-12">
+	<div class="p-8 rounded-xl border border-white/10 bg-white/5 space-y-4 mb-12">
 		<p class="text-sm text-white/70 leading-relaxed">
 			If you create a <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">src/service-worker.js</code> (or <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">.ts</code>) file, SvelteKit will automatically build it and register it.
 		</p>

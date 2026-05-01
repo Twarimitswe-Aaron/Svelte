@@ -22,7 +22,7 @@
 		Back to Advanced Routing
 	</a>
 
-	<div class="p-8 rounded-2xl border border-white/10 bg-white/5 relative overflow-hidden">
+	<div class="p-8 rounded-xl border border-white/10 bg-white/5 relative overflow-hidden">
 		<div class="absolute -top-24 -right-24 w-64 h-64 bg-(--color-accent)/10 rounded-full blur-3xl"></div>
 		
 		<div class="relative z-10 space-y-4">
@@ -54,7 +54,7 @@
 			</div>
 		</div>
 
-		<div class="p-8 rounded-2xl border border-white/10 bg-black/20 flex flex-col justify-center gap-4">
+		<div class="p-8 rounded-xl border border-white/10 bg-black/20 flex flex-col justify-center gap-4">
 			<div class="w-12 h-12 rounded-xl bg-(--color-accent)/10 flex items-center justify-center text-(--color-accent)">
 				<LessonIcon name="Waves" size={24} />
 			</div>

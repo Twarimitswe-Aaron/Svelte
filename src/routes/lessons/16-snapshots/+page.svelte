@@ -45,7 +45,7 @@
 		State Restoration
 	</h3>
 	
-	<div class="p-8 rounded-2xl border border-white/10 bg-white/5 space-y-6 mb-12 relative overflow-hidden">
+	<div class="p-8 rounded-xl border border-white/10 bg-white/5 space-y-6 mb-12 relative overflow-hidden">
 		<div class="absolute -top-24 -right-24 w-64 h-64 bg-(--color-accent)/5 rounded-full blur-3xl"></div>
 		
 		<p class="text-sm text-white/70 leading-relaxed relative z-10">

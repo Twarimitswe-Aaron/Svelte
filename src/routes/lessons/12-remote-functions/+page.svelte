@@ -174,14 +174,14 @@ export const addPost = command(async (title: string) => {
 		</div>
 
 		{#await postsPromise}
-			<div class="p-12 rounded-2xl border border-white/10 bg-white/5 flex flex-col items-center justify-center gap-4">
+			<div class="p-12 rounded-xl border border-white/10 bg-white/5 flex flex-col items-center justify-center gap-4">
 				<div class="w-8 h-8 border-2 border-white/20 border-t-(--color-accent) rounded-full animate-spin"></div>
 				<span class="text-sm text-white/40 font-medium">Fetching posts via query()…</span>
 			</div>
 		{:then posts}
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
 				{#each posts as post (post.id)}
-					<div class="group p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all flex items-center justify-between gap-6">
+					<div class="group p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all flex items-center justify-between gap-6">
 						<div class="space-y-3">
 							<div class="flex items-center gap-3">
 								<span class="px-2 py-0.5 rounded bg-white/10 text-[10px] font-mono text-white/40 uppercase tracking-widest">#{post.id}</span>
@@ -209,13 +209,13 @@ export const addPost = command(async (title: string) => {
 				{/each}
 			</div>
 		{:catch err}
-			<div class="p-8 rounded-2xl border border-red-500/20 bg-red-500/5 text-red-400 text-sm font-medium">
+			<div class="p-8 rounded-xl border border-red-500/20 bg-red-500/5 text-red-400 text-sm font-medium">
 				Failed to load: {err.message}
 			</div>
 		{/await}
 
 		<!-- Add post via command() -->
-		<div class="max-w-xl p-1 bg-white/5 border border-white/10 rounded-2xl flex items-center gap-2 pr-1 shadow-2xl">
+		<div class="max-w-xl p-1 bg-white/5 border border-white/10 rounded-xl flex items-center gap-2 pr-1 shadow-2xl">
 			<input
 				type="text"
 				bind:value={addTitle}
@@ -239,7 +239,7 @@ export const addPost = command(async (title: string) => {
 	<!-- 4 flavours grid -->
 	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">4 Remote Function Flavours</h3>
 	<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4 hover:border-purple-500/30 transition-all">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4 hover:border-purple-500/30 transition-all">
 			<div class="flex items-center justify-between">
 				<div class="text-sm font-bold text-white font-mono">query()</div>
 				<span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 text-[10px] font-bold uppercase tracking-widest">GET-like</span>
@@ -247,7 +247,7 @@ export const addPost = command(async (title: string) => {
 			<p class="text-xs text-white/50 leading-relaxed">Reads data from the server. Returns a Promise. Useful for replacing load() inside a component.</p>
 			<div class="text-[10px] font-medium text-red-400/50 italic flex items-center gap-1"><TriangleAlert size={10} /> Without it: write +server.ts GET + fetch()</div>
 		</div>
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4 hover:border-blue-500/30 transition-all">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4 hover:border-blue-500/30 transition-all">
 			<div class="flex items-center justify-between">
 				<div class="text-sm font-bold text-white font-mono">command()</div>
 				<span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest">POST-like</span>
@@ -255,7 +255,7 @@ export const addPost = command(async (title: string) => {
 			<p class="text-xs text-white/50 leading-relaxed">Sends data and mutates state. Pure JavaScript call. No progressive enhancement.</p>
 			<div class="text-[10px] font-medium text-red-400/50 italic flex items-center gap-1"><TriangleAlert size={10} /> Without it: write +server.ts POST + fetch()</div>
 		</div>
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4 hover:border-green-500/30 transition-all">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4 hover:border-green-500/30 transition-all">
 			<div class="flex items-center justify-between">
 				<div class="text-sm font-bold text-white font-mono">form()</div>
 				<span class="px-2 py-0.5 rounded bg-green-500/20 text-green-400 text-[10px] font-bold uppercase tracking-widest">HTML Form POST</span>
@@ -263,7 +263,7 @@ export const addPost = command(async (title: string) => {
 			<p class="text-xs text-white/50 leading-relaxed">Binds to HTML forms. Works without JS (progressive enhancement). Modern alternative to form actions.</p>
 			<div class="text-[10px] font-medium text-red-400/50 italic flex items-center gap-1"><TriangleAlert size={10} /> Without it: no JS-free submissions</div>
 		</div>
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4 hover:border-yellow-500/30 transition-all">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4 hover:border-yellow-500/30 transition-all">
 			<div class="flex items-center justify-between">
 				<div class="text-sm font-bold text-white font-mono">prerender()</div>
 				<span class="px-2 py-0.5 rounded bg-yellow-500/20 text-yellow-400 text-[10px] font-bold uppercase tracking-widest">Build time</span>
@@ -276,7 +276,7 @@ export const addPost = command(async (title: string) => {
 	<div class="h-px bg-white/10 my-12"></div>
 
 	<!-- Version note -->
-	<div class="p-6 rounded-2xl bg-yellow-500/5 border border-yellow-500/20 text-yellow-500/80 mb-12">
+	<div class="p-6 rounded-xl bg-yellow-500/5 border border-yellow-500/20 text-yellow-500/80 mb-12">
 		<div class="flex items-center gap-2 mb-2 font-bold text-sm">
 			<LessonIcon name="AlertCircle" size={18} />
 			Version Required

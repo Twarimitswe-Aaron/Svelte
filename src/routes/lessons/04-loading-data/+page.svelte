@@ -87,7 +87,7 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 >
 	<!-- SECTION 1: Server load output -->
 	<div class="grid grid-cols-1 gap-6 mb-10">
-		<div class="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+		<div class="rounded-xl border border-white/10 bg-white/5 overflow-hidden">
 			<div class="px-6 py-4 border-b border-white/10 bg-white/2 flex items-center justify-between">
 				<div class="flex items-center gap-2">
 					<span class="px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
@@ -168,7 +168,7 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 	</button>
 
 	{#if streamPromise}
-		<div class="p-8 rounded-2xl border border-white/10 bg-white/5 mb-10 overflow-hidden relative">
+		<div class="p-8 rounded-xl border border-white/10 bg-white/5 mb-10 overflow-hidden relative">
 			{#await streamPromise}
 				<div class="flex flex-col items-center justify-center gap-4 py-4">
 					<div class="relative">
@@ -196,7 +196,7 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 	<CodeBlock code={pageDataCode} lang="svelte" filename="+page.svelte" />
 
 	<!-- Comparison table -->
-	<div class="mt-12 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+	<div class="mt-12 overflow-hidden rounded-xl border border-white/10 bg-white/5">
 		<table class="w-full text-left border-collapse">
 			<thead>
 				<tr class="bg-white/2 border-b border-white/10">

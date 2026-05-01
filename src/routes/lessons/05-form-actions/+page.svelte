@@ -115,7 +115,7 @@ ${scriptEnd}
 						submitting = false;
 					};
 				}}
-				class="space-y-6 max-w-xl p-8 rounded-2xl border border-white/10 bg-white/5 relative overflow-hidden"
+				class="space-y-6 max-w-xl p-8 rounded-xl border border-white/10 bg-white/5 relative overflow-hidden"
 			>
 				<div class="absolute -top-12 -right-12 w-48 h-48 bg-(--color-accent)/10 rounded-full blur-3xl"></div>
 
@@ -197,7 +197,7 @@ ${scriptEnd}
 				</div>
 			{/if}
 
-			<div class="space-y-6 max-w-xl p-8 rounded-2xl border border-white/10 bg-black/40">
+			<div class="space-y-6 max-w-xl p-8 rounded-xl border border-white/10 bg-black/40">
 				<div class="space-y-2">
 					<label for="live-name" class="text-xs font-bold uppercase tracking-widest text-white/40">Name (min 3 chars)</label>
 					<input
@@ -250,7 +250,7 @@ ${scriptEnd}
 				</h4>
 				<div class="grid grid-cols-1 gap-4">
 					{#each data.messages as msg (msg.time)}
-						<div class="p-6 rounded-2xl border border-white/5 bg-white/2 hover:bg-white/4 transition-all">
+						<div class="p-6 rounded-xl border border-white/5 bg-white/2 hover:bg-white/4 transition-all">
 							<div class="flex items-center justify-between mb-4">
 								<div class="flex items-center gap-2">
 									<div class="w-8 h-8 rounded-full bg-(--color-accent)/10 flex items-center justify-center text-(--color-accent) font-bold text-xs uppercase">
@@ -276,22 +276,22 @@ ${scriptEnd}
 
 	<!-- Actions cheatsheet -->
 	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
 			<div class="text-[10px] font-bold uppercase tracking-widest text-(--color-accent)">Default</div>
 			<code class="block px-2 py-1 rounded bg-black/40 text-[10px] text-white/80 font-mono">&lt;form method="POST"&gt;</code>
 			<p class="text-xs text-white/50 leading-relaxed">One action per page. Simple forms.</p>
 		</div>
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
 			<div class="text-[10px] font-bold uppercase tracking-widest text-(--color-accent)">Named</div>
 			<code class="block px-2 py-1 rounded bg-black/40 text-[10px] text-white/80 font-mono">&lt;form action="?/login"&gt;</code>
 			<p class="text-xs text-white/50 leading-relaxed">Multiple actions on one page (login + register).</p>
 		</div>
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
 			<div class="text-[10px] font-bold uppercase tracking-widest text-(--color-accent)">fail()</div>
 			<code class="block px-2 py-1 rounded bg-black/40 text-[10px] text-white/80 font-mono">return fail(422, &#123; error &#125;)</code>
 			<p class="text-xs text-white/50 leading-relaxed">Returns validation errors to the form without redirect.</p>
 		</div>
-		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4">
+		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
 			<div class="text-[10px] font-bold uppercase tracking-widest text-(--color-accent)">redirect()</div>
 			<code class="block px-2 py-1 rounded bg-black/40 text-[10px] text-white/80 font-mono">throw redirect(303, '/...')</code>
 			<p class="text-xs text-white/50 leading-relaxed">After success, send user to another page.</p>

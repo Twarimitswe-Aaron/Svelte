@@ -3,7 +3,6 @@
   import CodeBlock from '$lib/components/CodeBlock.svelte';
   import { lessons, getAdjacentLessons } from '$lib/lessons.js';
   import LessonIcon from '$lib/components/LessonIcon.svelte';
-  import TestTube from 'lucide-svelte/icons/test-tube';
   import CheckCircle from 'lucide-svelte/icons/check-circle';
   import Play from 'lucide-svelte/icons/play';
   import AlertCircle from 'lucide-svelte/icons/alert-circle';
@@ -64,7 +63,7 @@ it('renders "Welcome to SvelteKit"', () => {
     </div>
 
     <!-- Test Simulation -->
-    <div class="p-8 rounded-2xl border border-white/10 bg-white/5 space-y-6 relative overflow-hidden">
+    <div class="p-8 rounded-xl border border-white/10 bg-white/5 space-y-6 relative overflow-hidden">
       <div class="absolute -top-24 -right-24 w-64 h-64 bg-green-500/5 rounded-full blur-3xl"></div>
       
       <div class="flex items-center justify-between relative z-10">

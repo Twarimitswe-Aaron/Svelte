@@ -19,7 +19,6 @@
   import Home from 'lucide-svelte/icons/home';
   import Search from 'lucide-svelte/icons/search';
   import Bell from 'lucide-svelte/icons/bell';
-  import ChevronRight from 'lucide-svelte/icons/chevron-right';
   import CheckCircle from 'lucide-svelte/icons/check-circle';
   import AlertCircle from 'lucide-svelte/icons/alert-circle';
   import XCircle from 'lucide-svelte/icons/x-circle';
@@ -31,7 +30,6 @@
   import RotateCcw from 'lucide-svelte/icons/rotate-ccw';
   import AlertTriangle from 'lucide-svelte/icons/alert-triangle';
   import TriangleAlert from 'lucide-svelte/icons/triangle-alert';
-  import FileText from 'lucide-svelte/icons/file-text';
   import Lock from 'lucide-svelte/icons/lock';
   import Globe from 'lucide-svelte/icons/globe';
 
@@ -41,7 +39,8 @@
   let seoTab = $state<'without' | 'with'>('without');
 
   // ── Font loading tab ─────────────────────────────────────────────────────
-  let fontTab = $state<'blocking' | 'preload' | 'noscript'>('blocking');
+  type FontTab = 'blocking' | 'preload' | 'noscript';
+  let fontTab = $state<FontTab>('blocking');
 
   // ── Icons tab ────────────────────────────────────────────────────────────
   let iconTab = $state<'bad' | 'good'>('bad');
@@ -156,7 +155,7 @@
     </h3>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div class="p-8 rounded-2xl border border-white/10 bg-white/5 space-y-6">
+      <div class="p-8 rounded-xl border border-white/10 bg-white/5 space-y-6">
         <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 w-fit">
           <XCircle size={14} class="text-red-400" />
           <span class="text-[10px] font-bold text-red-400 uppercase tracking-widest">Generic title on every page</span>
@@ -172,7 +171,7 @@
         <CodeBlock code={a11yBad} lang="html" filename="+layout.svelte" />
       </div>
 
-      <div class="p-8 rounded-2xl border border-white/10 bg-white/5 space-y-6">
+      <div class="p-8 rounded-xl border border-white/10 bg-white/5 space-y-6">
         <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 w-fit">
           <CheckCircle size={14} class="text-green-400" />
           <span class="text-[10px] font-bold text-green-400 uppercase tracking-widest">Unique title from lesson metadata</span>
@@ -215,7 +214,7 @@
     </div>
 
     {#if seoTab === 'without'}
-      <div class="p-8 rounded-2xl border border-red-500/20 bg-red-500/5 space-y-6 animate-fade-in">
+      <div class="p-8 rounded-xl border border-red-500/20 bg-red-500/5 space-y-6 animate-fade-in">
         <div class="p-6 rounded-xl bg-black/40 border border-white/5 space-y-2 max-w-md">
           <div class="text-[10px] font-bold text-white/20 uppercase tracking-wider">sveltekit-course.dev</div>
           <div class="text-sm font-bold text-white/40">sveltekit-course.dev/lessons/01-intro</div>
@@ -224,7 +223,7 @@
         <CodeBlock code={seoBad} lang="html" filename="+layout.svelte" />
       </div>
     {:else}
-      <div class="p-8 rounded-2xl border border-green-500/20 bg-green-500/5 space-y-6 animate-fade-in">
+      <div class="p-8 rounded-xl border border-green-500/20 bg-green-500/5 space-y-6 animate-fade-in">
         <div class="p-6 rounded-xl bg-white/10 border border-white/10 space-y-2 max-w-md shadow-2xl">
           <div class="text-[10px] font-bold text-(--color-accent) uppercase tracking-wider">sveltekit-course.dev</div>
           <div class="text-sm font-bold text-white">SvelteKit Interactive Course</div>
@@ -245,17 +244,17 @@
     </h3>
 
     <div class="flex p-1 bg-black/40 rounded-xl border border-white/5 mb-8 w-fit">
-      {#each ['blocking', 'preload', 'noscript'] as t}
+      {#each ['blocking', 'preload', 'noscript'] as t (t)}
         <button 
           class="px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all {fontTab === t ? 'bg-white/10 text-white shadow-lg' : 'text-white/40 hover:text-white/70'}" 
-          onclick={() => fontTab = t as any}
+          onclick={() => fontTab = t as FontTab}
         >
           {t}
         </button>
       {/each}
     </div>
 
-    <div class="p-8 rounded-2xl border border-white/10 bg-white/5 space-y-8 animate-fade-in">
+    <div class="p-8 rounded-xl border border-white/10 bg-white/5 space-y-8 animate-fade-in">
       {#if fontTab === 'blocking'}
         <div class="space-y-4">
           <div class="space-y-3">
@@ -315,7 +314,7 @@
       </button>
     </div>
 
-    <div class="p-8 rounded-2xl border border-white/10 bg-white/5 space-y-8 animate-fade-in">
+    <div class="p-8 rounded-xl border border-white/10 bg-white/5 space-y-8 animate-fade-in">
       {#if iconTab === 'bad'}
         <div class="space-y-6">
           <div class="p-6 rounded-xl bg-black/40 border border-white/5 space-y-4">
@@ -341,7 +340,8 @@
             </p>
           </div>
           <div class="flex items-center gap-8 p-4 rounded-xl bg-white/5 border border-white/5 w-fit">
-            {#each [Home, Search, Bell] as I}
+            // eslint-disable-next-line svelte/require-each-key
+            {#each [Home, Search, Bell] as I (I)}
               <div class="flex flex-col items-center gap-2">
                 <div class="p-3 rounded-lg bg-white/5 text-(--color-accent)">
                   <I size={24} />
@@ -380,7 +380,7 @@
       </button>
     </div>
 
-    <div class="p-8 rounded-2xl border border-white/10 bg-white/5 space-y-8 animate-fade-in min-h-[500px]">
+    <div class="p-8 rounded-xl border border-white/10 bg-white/5 space-y-8 animate-fade-in min-h-[500px]">
       <div class="space-y-4">
         <p class="text-sm text-white/70 leading-relaxed border-l-2 border-white/10 pl-4 italic">
           "Here is your article intro paragraph. In a few moments, an image will load below this text..."
@@ -463,7 +463,7 @@
       </button>
     </div>
 
-    <div class="p-8 rounded-2xl border {authMode === 'session' ? 'border-green-500/20 bg-green-500/5' : 'border-yellow-500/20 bg-yellow-500/5'} space-y-8 animate-fade-in">
+    <div class="p-8 rounded-xl border {authMode === 'session' ? 'border-green-500/20 bg-green-500/5' : 'border-yellow-500/20 bg-yellow-500/5'} space-y-8 animate-fade-in">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div class="space-y-2">
           <p class="text-xs text-white/50 leading-relaxed max-w-md">

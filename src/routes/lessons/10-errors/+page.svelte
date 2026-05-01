@@ -81,7 +81,7 @@ export const load = async () => {
 
 		<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
 			<button
-				class="group flex items-start gap-4 p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-blue-500/30 transition-all text-left"
+				class="group flex items-start gap-4 p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-blue-500/30 transition-all text-left"
 				onclick={() => goto(resolve('?trigger=expected' as "/"))}
 			>
 				<div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
@@ -94,7 +94,7 @@ export const load = async () => {
 			</button>
 
 			<button
-				class="group flex items-start gap-4 p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-red-500/30 transition-all text-left"
+				class="group flex items-start gap-4 p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-red-500/30 transition-all text-left"
 				onclick={() => goto(resolve('?trigger=unexpected' as "/"))}
 			>
 				<div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center text-red-400 group-hover:scale-110 transition-transform">
@@ -108,7 +108,7 @@ export const load = async () => {
 		</div>
 
 		<!-- Error Flow Visual -->
-		<div class="p-8 rounded-2xl bg-black/40 border border-white/5 overflow-x-auto">
+		<div class="p-8 rounded-xl bg-black/40 border border-white/5 overflow-x-auto">
 			<div class="flex items-center justify-between min-w-[600px] gap-4">
 				<div class="flex flex-col items-center gap-3 w-32">
 					<div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-xl">💥</div>
@@ -149,7 +149,7 @@ export const load = async () => {
 
 	<!-- Error page anatomy -->
 	<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-		<div class="p-8 rounded-2xl border border-blue-500/20 bg-blue-500/5 space-y-6">
+		<div class="p-8 rounded-xl border border-blue-500/20 bg-blue-500/5 space-y-6">
 			<div class="text-sm font-bold text-blue-400 flex items-center gap-2">
 				<div class="w-2 h-2 rounded-full bg-blue-500"></div>
 				Expected Error
@@ -173,7 +173,7 @@ export const load = async () => {
 				</li>
 			</ul>
 		</div>
-		<div class="p-8 rounded-2xl border border-red-500/20 bg-red-500/5 space-y-6">
+		<div class="p-8 rounded-xl border border-red-500/20 bg-red-500/5 space-y-6">
 			<div class="text-sm font-bold text-red-400 flex items-center gap-2">
 				<div class="w-2 h-2 rounded-full bg-red-500"></div>
 				Unexpected Error

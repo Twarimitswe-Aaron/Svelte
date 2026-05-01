@@ -114,7 +114,7 @@ export const prerender = false; // this one is NOT prerendered`;
 		</div>
 
 		{#key selected.name}
-		<div class="p-8 rounded-2xl border border-white/10 bg-white/5 animate-fade-in">
+		<div class="p-8 rounded-xl border border-white/10 bg-white/5 animate-fade-in">
 			<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 pb-8 border-b border-white/10">
 				<div>
 					<h3 class="text-xl font-bold text-white flex items-center gap-2 mb-2">
@@ -163,7 +163,7 @@ export const prerender = false; // this one is NOT prerendered`;
 	<CodeBlock code={exportCode} lang="typescript" filename="+layout.ts / +page.ts" />
 
 	<!-- Visual matrix -->
-	<div class="mt-12 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+	<div class="mt-12 overflow-hidden rounded-xl border border-white/10 bg-white/5">
 		<table class="w-full text-left border-collapse">
 			<thead>
 				<tr class="bg-white/2 border-b border-white/10">

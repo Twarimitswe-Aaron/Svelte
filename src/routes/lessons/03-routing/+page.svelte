@@ -124,7 +124,7 @@ ${'</'}script>
 
 	<!-- Comparison table -->
 	<!-- Comparison table -->
-	<div class="mt-12 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+	<div class="mt-12 overflow-hidden rounded-xl border border-white/10 bg-white/5">
 		<table class="w-full text-left border-collapse">
 			<thead>
 				<tr class="bg-white/2 border-b border-white/10">
