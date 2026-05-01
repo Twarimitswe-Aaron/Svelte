@@ -71,7 +71,7 @@
 	</div>
 
 	<!-- Demo content (each lesson fills this) -->
-	<section class="bg-transparent backdrop-blur-md border border-(--color-border) rounded-xl p-7 mb-10">
+	<section class="glass-blur bg-[rgba(255,255,255,0.03)] border border-(--color-border) rounded-xl p-7 mb-10">
 		<h2 class="flex items-center gap-2 text-[0.8rem] font-bold tracking-widest uppercase text-(--color-text-muted) mb-6">
 			<span class="w-2 h-2 bg-(--color-success) rounded-full animate-pulse-glow"></span>
 			Live Demo
@@ -84,7 +84,7 @@
 		{#if prev}
 			<a
 				href={resolve(`/lessons/${prev.slug}` as unknown as "/")}
-				class="flex items-center gap-3 p-4 bg-transparent backdrop-blur-md border border-(--color-border) rounded-[10px] text-(--color-text) no-underline flex-1 max-w-[280px] transition-all hover:border-(--color-accent)"
+				class="flex items-center gap-3 p-4 glass-blur bg-[rgba(255,255,255,0.03)] border border-(--color-border) rounded-[10px] text-(--color-text) no-underline flex-1 max-w-[280px] transition-all hover:border-(--color-accent)"
 				aria-label="Previous lesson: {prev.title}"
 			>
 				<ChevronLeft size={20} />
@@ -103,7 +103,7 @@
 		{#if next}
 			<a
 				href={resolve(`/lessons/${next.slug}` as unknown as "/")}
-				class="flex items-center justify-end gap-3 p-4 bg-transparent backdrop-blur-md border border-(--color-border) rounded-[10px] text-(--color-text) no-underline flex-1 max-w-[280px] transition-all hover:border-(--color-accent) ml-auto"
+				class="flex items-center justify-end gap-3 p-4 glass-blur bg-[rgba(255,255,255,0.03)] border border-(--color-border) rounded-[10px] text-(--color-text) no-underline flex-1 max-w-[280px] transition-all hover:border-(--color-accent) ml-auto"
 				aria-label="Next lesson: {next.title}"
 			>
 				<div class="flex flex-col text-right">
@@ -120,3 +120,12 @@
 		{/if}
 	</nav>
 </article>
+
+<style>
+	.glass-blur {
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		transform: translateZ(0);
+	}
+</style>
+

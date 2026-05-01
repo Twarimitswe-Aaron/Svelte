@@ -8,16 +8,15 @@
 	const navItems = [
 		{ name: 'Home', href: '/', icon: 'Home' },
 		{ name: 'Articles', href: '/articles', icon: 'FileText' },
-		{ name: 'Contact', href: '/contact', icon: 'Map' },
-		{ name: 'Submit', href: '/submit', icon: 'Zap' }
+	
 	] as const;
 
-	const categories = [
-		{ name: 'Websites', href: '/websites', icon: 'Globe' },
-		{ name: 'Templates', href: '/templates', icon: 'Package' },
-		{ name: 'Resources', href: '/resources', icon: 'BookOpen' },
-		{ name: 'Plugins', href: '/plugins', icon: 'Wrench' },
-		{ name: 'Courses', href: '/courses', icon: 'Satellite' }
+	const courses = [
+		{ name: 'SvelteKit 101', href: '/lessons/01-intro', icon: 'BookOpen' },
+		{ name: 'Data Loading', href: '/lessons/04-loading-data', icon: 'Download' },
+		{ name: 'Form Actions', href: '/lessons/05-form-actions', icon: 'MousePointerClick' },
+		{ name: 'Hooks & API', href: '/lessons/09-hooks', icon: 'Link' },
+		{ name: 'State Mastery', href: '/lessons/07-state-management', icon: 'Zap' }
 	] as const;
 </script>
 
@@ -56,17 +55,17 @@
 
 		<div class="py-6">
 			<div class="flex items-center gap-3 px-3 mb-4">
-				<span class="text-[10px] font-bold uppercase tracking-widest text-white/50">Categories</span>
+				<span class="text-[10px] font-bold uppercase tracking-widest text-white/50">Courses</span>
 				<div class="flex-1 h-px bg-white/10"></div>
 			</div>
-			{#each categories as category (category.name)}
+			{#each courses as course (course.name)}
 				<a	
-					href={resolve(category.href as unknown as "/")}
+					href={resolve(course.href as unknown as "/")}
 					class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all no-underline text-white/70 hover:bg-[rgba(255,255,255,0.04)] hover:text-white"
 					onclick={() => (sidebarOpen = false)}
 				>
-					<LessonIcon name={category.icon} size={18} class="opacity-80" />
-					<span class="text-[14px] font-medium">{category.name}</span>
+					<LessonIcon name={course.icon} size={18} class="opacity-80" />
+					<span class="text-[14px] font-medium">{course.name}</span>
 				</a>
 			{/each}
 		</div>

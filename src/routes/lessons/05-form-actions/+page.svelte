@@ -13,7 +13,7 @@
 	import LessonLayout from '$lib/components/LessonLayout.svelte';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
-	import { CircleCheck, Loader2, Play, ShieldAlert, Zap } from 'lucide-svelte';
+	import { CircleCheck, Loader2, Play, ShieldAlert, Zap, TriangleAlert } from 'lucide-svelte';
 
 	const lesson = lessons[4];
 	const { prev, next } = getAdjacentLessons(lesson.slug);
@@ -56,7 +56,7 @@ export const actions: Actions = {
     if (!name) return fail(422, { error: 'Name is required' });
 
     return { success: true };
-    // ⚠️ Without returning from action, form.success is undefined
+    // NOTE: Without returning from action, form.success is undefined
   }
 };`;
 
@@ -130,7 +130,7 @@ ${scriptEnd}
 						class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 focus:border-(--color-accent) focus:ring-1 focus:ring-(--color-accent) transition-all outline-none {form?.field === 'name' ? 'border-red-500/50 focus:border-red-500' : ''}"
 					/>
 					{#if form?.field === 'name'}
-						<span class="text-xs text-red-400 flex items-center gap-1 font-medium">⚠️ {form.error}</span>
+						<span class="text-xs text-red-400 flex items-center gap-1 font-medium"><TriangleAlert size={12} /> {form.error}</span>
 					{/if}
 				</div>
 
@@ -144,7 +144,7 @@ ${scriptEnd}
 						class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 focus:border-(--color-accent) focus:ring-1 focus:ring-(--color-accent) transition-all outline-none {form?.field === 'message' ? 'border-red-500/50 focus:border-red-500' : ''}"
 					>{form?.message ?? ''}</textarea>
 					{#if form?.field === 'message'}
-						<span class="text-xs text-red-400 flex items-center gap-1 font-medium">⚠️ {form.error}</span>
+						<span class="text-xs text-red-400 flex items-center gap-1 font-medium"><TriangleAlert size={12} /> {form.error}</span>
 					{/if}
 				</div>
 
@@ -209,7 +209,7 @@ ${scriptEnd}
 						class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 focus:border-(--color-accent) focus:ring-1 focus:ring-(--color-accent) transition-all outline-none {nameError ? 'border-red-500/50 focus:border-red-500' : ''}"
 					/>
 					{#if nameError}
-						<span class="text-xs text-red-400 flex items-center gap-1 font-medium animate-fade-in">⚠️ {nameError}</span>
+						<span class="text-xs text-red-400 flex items-center gap-1 font-medium animate-fade-in"><TriangleAlert size={12} /> {nameError}</span>
 					{/if}
 				</div>
 
@@ -224,7 +224,7 @@ ${scriptEnd}
 						class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 focus:border-(--color-accent) focus:ring-1 focus:ring-(--color-accent) transition-all outline-none {emailError ? 'border-red-500/50 focus:border-red-500' : ''}"
 					/>
 					{#if emailError}
-						<span class="text-xs text-red-400 flex items-center gap-1 font-medium animate-fade-in">⚠️ {emailError}</span>
+						<span class="text-xs text-red-400 flex items-center gap-1 font-medium animate-fade-in"><TriangleAlert size={12} /> {emailError}</span>
 					{/if}
 				</div>
 

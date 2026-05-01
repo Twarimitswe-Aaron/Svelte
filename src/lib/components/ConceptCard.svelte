@@ -37,7 +37,7 @@
 </script>
 
 <div 
-	class="rounded-xl p-4 px-5 border transition-all duration-300 backdrop-blur-md"
+	class="rounded-xl p-4 px-5 border transition-all duration-300 glass-blur"
 	style="border-color: {c.borderColor}; background-color: {c.bgColor};"
 >
 	<div class="flex items-center gap-2 mb-2">
@@ -52,3 +52,10 @@
 		{text}
 	</p>
 </div>
+<style>
+	.glass-blur {
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		transform: translateZ(0);
+	}
+</style>

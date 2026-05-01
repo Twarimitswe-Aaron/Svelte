@@ -19,7 +19,7 @@ const messages: { name: string; message: string; time: string }[] = [];
 
 export const actions: Actions = {
 	// DEFAULT ACTION — handles <form method="POST"> with no action attribute
-	// ⚠️ You can't have both a default and named actions — pick one style
+	// NOTE: You can't have both a default and named actions — pick one style
 	default: async ({ request }) => {
 		const data = await request.formData();
 		const name = data.get('name')?.toString().trim() ?? '';

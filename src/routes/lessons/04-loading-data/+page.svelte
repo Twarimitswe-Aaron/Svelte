@@ -11,7 +11,7 @@
 	import LessonLayout from '$lib/components/LessonLayout.svelte';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
-	import { Lock, User, Calendar, Timer, Play, Loader2, CircleCheck } from 'lucide-svelte';
+	import { Lock, User, Calendar, Timer, Play, Loader2, CircleCheck, TriangleAlert } from 'lucide-svelte';
 
 	const lesson = lessons[3];
 	const { prev, next } = getAdjacentLessons(lesson.slug);
@@ -25,7 +25,7 @@
 
 	function startStream() {
 		streamPromise = new Promise((resolve) => {
-			setTimeout(() =>  '✅ Streamed data arrived after 2 seconds!' , 2000);
+			setTimeout(() => resolve('✅ Streamed data arrived after 2 seconds!'), 2000);
 		});
 	}
 
@@ -41,7 +41,7 @@ export const load: PageServerLoad = async ({ fetch, cookies }) => {
     // This timestamp is created on the server — not accessible in +page.ts
     serverTimestamp: new Date().toISOString()
   };
-  // ⚠️ Without this file: data.posts is undefined, page crashes
+  // Without this file: data.posts is undefined, page crashes
 };`;
 
 	const universalLoadCode = `// +page.ts — UNIVERSAL (server on first load, client on navigation)
@@ -53,7 +53,7 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
   
   return { category };
   // Runs on server for SSR, then in browser for client navigation
-  // ⚠️ DO NOT put secrets here — this code runs in the browser!
+  // TriangleAlert DO NOT put secrets here — this code runs in the browser!
 };`;
 
 	const awaitCode = `<!-- Streaming with {#await} -->
@@ -224,7 +224,9 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium">Database access</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-bold">✅ Safe</td>
-					<td class="px-6 py-4 text-sm text-red-400/70 font-bold italic">⚠️ Unsafe</td>
+					<td class="px-6 py-4 text-sm text-red-400/70 font-bold italic flex items-center gap-1">
+						<TriangleAlert size={14} /> Unsafe
+					</td>
 				</tr>
 				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium">URL & Params</td>

@@ -57,7 +57,7 @@
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 				{#each lessons as lesson (lesson.slug)}
 					<a
-						href={resolve(`/lessons/${lesson.slug}` as any)}
+						href={resolve(`/lessons/${lesson.slug}` as "/")}
 						class="group flex flex-col no-underline"
 					>
 						<div class="aspect-4/3 p-4 rounded-2xl border border-white/10 bg-white/5 overflow-hidden mb-4 relative transition-all group-hover:border-white/20 group-hover:bg-black/20">
@@ -96,6 +96,60 @@
 						</div>
 					</a>
 				{/each}
+			</div>
+		</div>
+
+		<!-- Articles Section -->
+		<div class="w-full text-left mt-32">
+			<div class="flex items-center gap-4 mb-12">
+				<h3 class="text-[18px] font-bold text-white">Latest Articles</h3>
+				<div class="flex-1 h-px bg-white/10"></div>
+				<a href={resolve('/articles')} class="text-[12px] font-bold uppercase tracking-widest text-white/30 hover:text-(--color-accent) transition-colors no-underline flex items-center gap-2">
+					View All <LessonIcon name="ArrowRight" size={12} />
+				</a>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				<a 
+					href={resolve('/articles/why-svelte-is-the-best-framework' as "/")}
+					class="group flex flex-col p-10 rounded-3xl glass-blur bg-[rgba(255,255,255,0.03)] border border-white/5 no-underline transition-all hover:border-(--color-accent)/30 hover:bg-[rgba(255,255,255,0.05)] relative overflow-hidden"
+				>
+					<div class="absolute -top-24 -right-24 w-64 h-64 bg-(--color-accent)/5 rounded-full blur-3xl group-hover:bg-(--color-accent)/10 transition-colors"></div>
+					
+					<div class="flex items-center gap-3 mb-8">
+						<span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-(--color-accent)/10 border border-(--color-accent)/20 text-(--color-accent)">Featured</span>
+						<span class="text-[10px] font-bold uppercase tracking-widest text-white/20">April 30, 2026</span>
+					</div>
+
+					<h2 class="text-2xl font-bold text-white mb-4 group-hover:text-(--color-accent) transition-colors">Why Svelte is the Best Modern Framework</h2>
+					<p class="text-white/40 text-[1.1rem] leading-relaxed mb-10">Explore the revolutionary features that make Svelte a game-changer: true reactivity, zero boilerplate, and lightning-fast performance.</p>
+
+					<div class="flex items-center gap-3">
+						<div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+							<LessonIcon name="User" size={14} class="text-white/40" />
+						</div>
+						<span class="text-sm font-medium text-white/40">Antigravity</span>
+					</div>
+				</a>
+
+				<a 
+					href={resolve('/articles/svelte-5-runes-explained' as "/")}
+					class="group flex flex-col p-10 rounded-3xl glass-blur bg-[rgba(255,255,255,0.03)] border border-white/5 no-underline transition-all hover:border-white/10 hover:bg-[rgba(255,255,255,0.05)] relative overflow-hidden"
+				>
+					<div class="flex items-center gap-3 mb-8">
+						<span class="text-[10px] font-bold uppercase tracking-widest text-white/20">March 22, 2025</span>
+					</div>
+
+					<h2 class="text-2xl font-bold text-white mb-4 group-hover:text-white transition-colors">Svelte 5 Runes Explained</h2>
+					<p class="text-white/40 text-[1.1rem] leading-relaxed mb-10">Svelte 5 introduces runes — a new reactivity system that replaces the old store API for better performance and DX.</p>
+
+					<div class="flex items-center gap-3">
+						<div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+							<LessonIcon name="User" size={14} class="text-white/40" />
+						</div>
+						<span class="text-sm font-medium text-white/40">Rich Harris</span>
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>

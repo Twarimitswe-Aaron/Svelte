@@ -12,6 +12,7 @@
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
 	import LessonIcon from '$lib/components/LessonIcon.svelte';
+	import { TriangleAlert } from 'lucide-svelte';
 
 	const lesson = lessons[8];
 	const { prev, next } = getAdjacentLessons(lesson.slug);
@@ -33,7 +34,7 @@ export const handle: Handle = async ({ event, resolve }) => {
   response.headers.set('X-Frame-Options', 'DENY');
 
   return response;
-  // ⚠️ Forgetting await  event  returns undefined — app breaks entirely
+  // NOTE: Forgetting await event returns undefined — app breaks entirely
 };`;
 
 	const handleErrorCode = `// src/hooks.server.ts
@@ -45,7 +46,7 @@ export const handleError: HandleServerError = ({ error, status }) => {
 
   // This becomes $page.error — keep it vague so you don't leak internals
   return { message: status === 404 ? 'Not found' : 'Something went wrong' };
-  // ⚠️ Without this, SvelteKit shows a raw error message that may leak code paths
+  // NOTE: Without this, SvelteKit shows a raw error message that may leak code paths
 };`;
 
 	const localsCode = `// src/app.d.ts — TypeScript type for locals
@@ -61,7 +62,7 @@ declare global {
 export const load = ({ locals }) => {
   if (!locals.user) throw redirect(302, '/login');
   return { user: locals.user };
-  // ⚠️ Without the hook setting locals.user, this always throws a redirect
+  // NOTE: Without the hook setting locals.user, this always throws a redirect
 };`;
 </script>
 
@@ -134,7 +135,7 @@ export const load = ({ locals }) => {
 				<div class="text-[10px] font-bold uppercase tracking-widest text-white/30">hooks.server.ts</div>
 			</div>
 			<p class="text-xs text-white/50 leading-relaxed">Runs on EVERY request. Must call <code class="text-white/70">event</code>. Set locals, modify response.</p>
-			<div class="text-[10px] font-medium text-red-400 italic">⚠️ Missing await = blank app</div>
+			<div class="text-[10px] font-medium text-red-400 italic flex items-center gap-1"><TriangleAlert size={10} /> Missing await = blank app</div>
 		</div>
 		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4">
 			<div class="space-y-1">
@@ -142,7 +143,7 @@ export const load = ({ locals }) => {
 				<div class="text-[10px] font-bold uppercase tracking-widest text-white/30">hooks.server.ts</div>
 			</div>
 			<p class="text-xs text-white/50 leading-relaxed">Catches unexpected thrown errors. Log them to Sentry/Datadog here.</p>
-			<div class="text-[10px] font-medium text-red-400 italic">⚠️ Missing = stack traces leak</div>
+			<div class="text-[10px] font-medium text-red-400 italic flex items-center gap-1"><TriangleAlert size={10} /> Missing = stack traces leak</div>
 		</div>
 		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4">
 			<div class="space-y-1">
@@ -150,7 +151,7 @@ export const load = ({ locals }) => {
 				<div class="text-[10px] font-bold uppercase tracking-widest text-white/30">hooks.server.ts</div>
 			</div>
 			<p class="text-xs text-white/50 leading-relaxed">Intercepts fetch() inside server load functions. Add API keys.</p>
-			<div class="text-[10px] font-medium text-red-400 italic">⚠️ Missing = no shared auth headers</div>
+			<div class="text-[10px] font-medium text-red-400 italic flex items-center gap-1"><TriangleAlert size={10} /> Missing = no shared auth headers</div>
 		</div>
 		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4">
 			<div class="space-y-1">
@@ -158,7 +159,7 @@ export const load = ({ locals }) => {
 				<div class="text-[10px] font-bold uppercase tracking-widest text-white/30">hooks.ts (universal)</div>
 			</div>
 			<p class="text-xs text-white/50 leading-relaxed">Modify which routes are matched before routing. A/B testing.</p>
-			<div class="text-[10px] font-medium text-red-400 italic">⚠️ Missing = no routing logic</div>
+			<div class="text-[10px] font-medium text-red-400 italic flex items-center gap-1"><TriangleAlert size={10} /> Missing = no routing logic</div>
 		</div>
 	</div>
 

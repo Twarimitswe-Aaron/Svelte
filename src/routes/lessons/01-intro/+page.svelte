@@ -97,8 +97,8 @@
 	<CodeBlock code={cssCode} lang="svelte" filename="+page.svelte" />
 
 	<div class="mb-8 mt-4 rounded-xl border border-(--color-border) bg-(--color-surface-2) p-5 text-[0.875rem] leading-relaxed text-(--color-text-muted)">
-		<p class="m-0 mb-4 font-bold text-(--color-accent)">
-			⚠️ In this codebase, we exclusively leverage Tailwind CSS.
+		<p class="m-0 mb-4 font-bold text-(--color-accent) flex items-center gap-2">
+			<Zap size={16} /> In this codebase, we exclusively leverage Tailwind CSS.
 		</p>
 		<p class="m-0">
 			Svelte has a powerful native styling approach (shown above) which automatically scopes styles to components. However, for large-scale apps, you can easily integrate Tailwind (as we have globally) for rapid, utility-first UI development.

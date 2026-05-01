@@ -28,7 +28,7 @@
 			example: `// +page.ts or +page.server.ts
 export const prerender = true;
 // Now this page is: vite build → static .html file
-// ⚠️ Cannot use: cookies, form actions, dynamic request data`,
+// NOTE: Cannot use: cookies, form actions, dynamic request data`,
 			whenToUse: 'About pages, blog posts, docs, marketing pages.'
 		},
 		{
@@ -42,7 +42,7 @@ export const prerender = true;
 export const ssr = false;
 // Page skips SSR — starts as empty HTML
 // JS hydrates it client-side
-// ⚠️ SEO will be poor — Googlebot can't read the content`,
+// NOTE: SEO will be poor — Googlebot can't read the content`,
 			whenToUse:
 				'Admin dashboards, auth-gated pages where SEO is not needed. Combine with csr=true.'
 		},
@@ -56,7 +56,7 @@ export const ssr = false;
 			example: `// +page.ts
 export const csr = false;
 // 100% server-rendered HTML — no JS sent
-// ⚠️ onClick, $state, etc. will NOT work
+// NOTE: onClick, $state, etc. will NOT work
 // Good for: pure read-only content pages`,
 			whenToUse: 'Combine with prerender=true for totally static, zero-JS pages.'
 		},

@@ -38,6 +38,15 @@ const posts = [
 		date: '2025-05-10',
 		excerpt: 'When should you use server-side rendering vs client-side rendering?',
 		tags: ['ssr', 'performance']
+	},
+	{
+		id: 4,
+		slug: 'why-svelte-is-the-best-framework',
+		title: 'Why Svelte is the Best Modern Framework',
+		author: 'Antigravity',
+		date: '2026-04-30',
+		excerpt: 'Explore the revolutionary features that make Svelte a game-changer: true reactivity, zero boilerplate, and lightning-fast performance.',
+		tags: ['svelte', 'reactivity', 'DX']
 	}
 ];
 

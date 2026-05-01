@@ -15,6 +15,7 @@
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
 	import LessonIcon from '$lib/components/LessonIcon.svelte';
+	import { TriangleAlert } from 'lucide-svelte';
 	// Import remote functions as if they're local — SvelteKit generates the HTTP layer
 	import { getPosts, likePost, addPost } from '$lib/remote-demo.remote.js';
 
@@ -63,28 +64,28 @@
 	const remoteFileCode = `// src/lib/posts.remote.ts
 // .remote.ts — SvelteKit auto-generates the HTTP endpoint for each export
 // You NEVER write fetch() or +server.ts manually for these
-// ⚠️ NOTE: Must NOT be inside src/lib/server 
+// TriangleAlert NOTE: Must NOT be inside src/lib/server 
 import { query, command, form } from '$app/server';
 
 // query() — server-side read, callable from any component
 export const getPosts = query(async () => {
   return await db.select('SELECT * FROM posts');
   // Runs on server only — safe to query DB/secrets
-  // ⚠️ Without query(): must write +server.ts GET + fetch('/api/posts') manually
+  // TriangleAlert Without query(): must write +server.ts GET + fetch('/api/posts') manually
 });
 
 // command() — server-side mutation, called from JS (not HTML form)
 export const likePost = command(async (id: number) => {
   await db.run('UPDATE posts SET likes = likes + 1 WHERE id = ?', id);
   return { success: true };
-  // ⚠️ Without command(): must write +server.ts POST + manual fetch call
+  // TriangleAlert Without command(): must write +server.ts POST + manual fetch call
 });
 
 // form() — server-side mutation bound to an HTML <form>
 // Works WITHOUT JavaScript (progressive enhancement)
 export const addPost = form(async ({ title }) => {
   await db.run('INSERT INTO posts (title) VALUES (?)', title);
-  // ⚠️ Without form(): no JS-free form submission support
+  // TriangleAlert Without form(): no JS-free form submission support
 });`;
 
 	const usageCode = `<!-- +page.svelte — use remote functions like normal async calls -->
@@ -244,7 +245,7 @@ export const addPost = command(async (title: string) => {
 				<span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 text-[10px] font-bold uppercase tracking-widest">GET-like</span>
 			</div>
 			<p class="text-xs text-white/50 leading-relaxed">Reads data from the server. Returns a Promise. Useful for replacing load() inside a component.</p>
-			<div class="text-[10px] font-medium text-red-400/50 italic">⚠️ Without it: write +server.ts GET + fetch()</div>
+			<div class="text-[10px] font-medium text-red-400/50 italic flex items-center gap-1"><TriangleAlert size={10} /> Without it: write +server.ts GET + fetch()</div>
 		</div>
 		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4 hover:border-blue-500/30 transition-all">
 			<div class="flex items-center justify-between">
@@ -252,7 +253,7 @@ export const addPost = command(async (title: string) => {
 				<span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest">POST-like</span>
 			</div>
 			<p class="text-xs text-white/50 leading-relaxed">Sends data and mutates state. Pure JavaScript call. No progressive enhancement.</p>
-			<div class="text-[10px] font-medium text-red-400/50 italic">⚠️ Without it: write +server.ts POST + fetch()</div>
+			<div class="text-[10px] font-medium text-red-400/50 italic flex items-center gap-1"><TriangleAlert size={10} /> Without it: write +server.ts POST + fetch()</div>
 		</div>
 		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4 hover:border-green-500/30 transition-all">
 			<div class="flex items-center justify-between">
@@ -260,7 +261,7 @@ export const addPost = command(async (title: string) => {
 				<span class="px-2 py-0.5 rounded bg-green-500/20 text-green-400 text-[10px] font-bold uppercase tracking-widest">HTML Form POST</span>
 			</div>
 			<p class="text-xs text-white/50 leading-relaxed">Binds to HTML forms. Works without JS (progressive enhancement). Modern alternative to form actions.</p>
-			<div class="text-[10px] font-medium text-red-400/50 italic">⚠️ Without it: no JS-free submissions</div>
+			<div class="text-[10px] font-medium text-red-400/50 italic flex items-center gap-1"><TriangleAlert size={10} /> Without it: no JS-free submissions</div>
 		</div>
 		<div class="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4 hover:border-yellow-500/30 transition-all">
 			<div class="flex items-center justify-between">
@@ -268,7 +269,7 @@ export const addPost = command(async (title: string) => {
 				<span class="px-2 py-0.5 rounded bg-yellow-500/20 text-yellow-400 text-[10px] font-bold uppercase tracking-widest">Build time</span>
 			</div>
 			<p class="text-xs text-white/50 leading-relaxed">Runs at build time and generates static data. Zero server round-trips at runtime.</p>
-			<div class="text-[10px] font-medium text-red-400/50 italic">⚠️ Without it: dynamic queries add latency</div>
+			<div class="text-[10px] font-medium text-red-400/50 italic flex items-center gap-1"><TriangleAlert size={10} /> Without it: dynamic queries add latency</div>
 		</div>
 	</div>
 

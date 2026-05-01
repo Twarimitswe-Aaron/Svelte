@@ -15,6 +15,7 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { setContext } from 'svelte';
+	import { TriangleAlert } from 'lucide-svelte';
 
 	const lesson = lessons[6];
 	const { prev, next } = getAdjacentLessons(lesson.slug);
@@ -39,7 +40,7 @@
 		const url = new URL($page.url);
 		url.searchParams.set('n', String(n));
 		// goto() changes the URL without a full page reload
-		await goto(resolve(url.toString() as any), { keepFocus: true, replaceState: true });
+		await goto(resolve(url.toString() as "/"), { keepFocus: true, replaceState: true });
 	}
 
 	// ─── DEMO 3: Component-local state ─────────────────────────────────────────
@@ -77,7 +78,7 @@ async function setCount(n: number) {
   const url = new URL($page.url);
   url.searchParams.set('n', String(n));
   await goto(resolve(url.toString() as any), { replaceState: true });
-  // ⚠️ Without replaceState: every increment adds to browser history
+  // NOTE: Without replaceState: every increment adds to browser history
 }`;
 </script>
 
@@ -112,8 +113,8 @@ async function setCount(n: number) {
 				<button class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white flex items-center justify-center transition-all active:scale-95" onclick={() => contextCount++}>+</button>
 			</div>
 			
-			<p class="text-[11px] text-red-400/70 font-medium italic">
-				⚠️ If this were <code>let count = 0</code> at module level in a server file, all users
+			<p class="text-[11px] text-red-400/70 font-medium italic flex items-center gap-2">
+				<TriangleAlert size={14} /> If this were <code>let count = 0</code> at module level in a server file, all users
 				would share this counter!
 			</p>
 		</div>
@@ -162,7 +163,7 @@ async function setCount(n: number) {
 				<button class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white flex items-center justify-center transition-all active:scale-95" onclick={() => localCount++}>+</button>
 			</div>
 
-			<p class="text-[11px] text-yellow-400/50 font-medium italic">⚠️ Navigating away and back resets this to 0.</p>
+			<p class="text-[11px] text-yellow-400/50 font-medium italic flex items-center gap-2"><TriangleAlert size={14} /> Navigating away and back resets this to 0.</p>
 		</div>
 	</div>
 

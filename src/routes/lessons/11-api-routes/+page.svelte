@@ -13,6 +13,7 @@
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
 	import LessonIcon from '$lib/components/LessonIcon.svelte';
+	import { json } from '@sveltejs/kit';
 
 	const lesson = lessons[10];
 	const { prev, next } = getAdjacentLessons(lesson.slug);
@@ -61,7 +62,7 @@ import type { RequestHandler } from './$types';
 export const GET: RequestHandler = ({ url }) => {
   return json({ message: 'Hello!', url: url.toString() });
   // json() sets Content-Type: application/json + serialises
-  // ⚠️ Without json(): must manually return new Response(JSON.stringify(...))
+  // NOTE: Without json(): must manually return new Response(JSON.stringify(...))
 };
 
 export const POST: RequestHandler = async ({ request }) => {
@@ -71,7 +72,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
 export const DELETE: RequestHandler = () => {
   return json({ deleted: true });
-  // ⚠️ Returning nothing causes a 500 — always return a Response
+  // NOTE: Returning nothing causes a 500 — always return a Response
 };`;
 
 	const fetchCode = `<!-- Fetching from a server route in +page.svelte -->

@@ -27,7 +27,7 @@ export interface DemoPost {
 }
 
 // In-memory store (replace with a real DB in production)
-let posts: DemoPost[] = [
+const posts: DemoPost[] = [
 	{ id: 1, title: 'Getting Started with SvelteKit',  likes: 42, tags: ['tutorial'] },
 	{ id: 2, title: 'Svelte 5 Runes Deep Dive',        likes: 87, tags: ['svelte5'] },
 	{ id: 3, title: 'Remote Functions Are Amazing',    likes: 64, tags: ['remote'] }
@@ -44,7 +44,7 @@ export const getPosts = query(async () => {
 });
 
 // query with an argument — the argument is sent to the server as JSON
-// ⚠️ SvelteKit REQUIRES you to pass a validation schema as the first arg.
+// SvelteKit REQUIRES you to pass a validation schema as the first arg.
 export const getPost = query(v.number(), async (id: number) => {
 	return posts.find(p => p.id === id) ?? null;
 });

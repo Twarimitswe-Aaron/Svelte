@@ -30,6 +30,7 @@
   import Image from 'lucide-svelte/icons/image';
   import RotateCcw from 'lucide-svelte/icons/rotate-ccw';
   import AlertTriangle from 'lucide-svelte/icons/alert-triangle';
+  import TriangleAlert from 'lucide-svelte/icons/triangle-alert';
   import FileText from 'lucide-svelte/icons/file-text';
   import Lock from 'lucide-svelte/icons/lock';
   import Globe from 'lucide-svelte/icons/globe';
@@ -458,7 +459,7 @@
         class="px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all {authMode === 'jwt' ? 'bg-yellow-500/20 text-yellow-400' : 'text-white/40 hover:text-white/70'}" 
         onclick={() => { authMode = 'jwt'; authResult = null; }}
       >
-        ⚠️ JWT
+        <TriangleAlert size={14} class="text-yellow-400" /> JWT
       </button>
     </div>
 

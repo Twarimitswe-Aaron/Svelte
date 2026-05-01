@@ -181,7 +181,7 @@ export const load = ({ params }) => ({
 	</p>
 	<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
 		{#each ['/lessons/08-advanced-routing/foo', '/lessons/08-advanced-routing/foo/bar/baz', '/lessons/08-advanced-routing/any/deep/path'] as link (link)}
-			<a href={resolve(link as any)} class="flex items-center justify-between p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-(--color-accent)/50 transition-all group no-underline">
+			<a href={resolve(link as "/")} class="flex items-center justify-between p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-(--color-accent)/50 transition-all group no-underline">
 				<code class="text-xs text-white/70 group-hover:text-white truncate pr-4">{link}</code>
 				<LessonIcon name="ChevronRight" size={16} class="text-white/20 group-hover:text-(--color-accent) transition-colors shrink-0" />
 			</a>

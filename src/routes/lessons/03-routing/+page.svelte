@@ -47,7 +47,7 @@ import type { PageLoad } from './$types';
 // params.slug is extracted from the URL segment [slug]
 export const load: PageLoad = ({ params }) => {
   return { slug: params.slug };
-  // ⚠️ Without this file, data.slug in +page.svelte is undefined
+  // <TriangleAlert size={16} /> Without this file, data.slug in +page.svelte is undefined
 };`;
 
 	const layoutCode = `<!-- src/routes/+layout.svelte -->

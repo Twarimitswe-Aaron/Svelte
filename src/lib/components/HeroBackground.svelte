@@ -11,10 +11,10 @@
 		<!-- Gradient Bottom Layer -->
 		<div class="absolute bottom-0 left-0 right-0 h-[240px] overflow-hidden bg-linear-to-b from-transparent to-[#030712] z-2"></div>
 
-		<!-- Radial - Pink -->
+		<!-- Radial - Orange -->
 		<div
 			class="absolute top-[80px] right-[-480px] w-[994px] h-[800px] overflow-hidden z-1 flex-none"
-			style="background: radial-gradient(50% 50%, rgb(236, 72, 153) 0%, rgba(236, 72, 153, 0) 100%); opacity: 0.4; transform: rotate(-30deg);"
+			style="background: radial-gradient(50% 50%, #ff3c00 0%, rgba(255, 60, 0, 0) 100%); opacity: 0.4; transform: rotate(-30deg);"
 		></div>
 
 		<!-- Radial - Blue -->
