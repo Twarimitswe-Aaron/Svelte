@@ -48,9 +48,13 @@
 	}
 
 	const statusColor = $derived(
-		!status ? '' : 
-		status < 300 ? 'var(--color-success)' : 
-		status < 400 ? 'var(--color-warning)' : 'var(--color-danger)'
+		!status
+			? ''
+			: status < 300
+				? 'var(--color-success)'
+				: status < 400
+					? 'var(--color-warning)'
+					: 'var(--color-danger)'
 	);
 
 	const serverCode = `// src/routes/api/echo/+server.ts
@@ -118,22 +122,30 @@ export const load = async ({ params }) => {
 >
 	<!-- Interactive REST client -->
 	<section class="mb-12">
-		<h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+		<h3 class="text-xl font-bold text-white mb-6 gap-2 flex items-center">
 			<LessonIcon name="Globe" size={20} class="text-(--color-accent)" />
 			Live REST Client — /api/echo
 		</h3>
 		<p class="text-sm text-white/60 leading-relaxed mb-8">
-			This calls the live <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">/api/echo endpoint</code> at <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">src/routes/api/echo/+server.ts</code>. 
-			Select a method and send the request.
+			This calls the live <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono"
+				>/api/echo endpoint</code
+			>
+			at
+			<code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono"
+				>src/routes/api/echo/+server.ts</code
+			>. Select a method and send the request.
 		</p>
 
-		<div class="p-8 rounded-xl border border-white/10 bg-white/5 space-y-6">
-			<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+		<div class="p-8 rounded-xl border-white/10 bg-white/5 glass-blur space-y-6 border">
+			<div class="md:flex-row md:items-center gap-6 flex flex-col justify-between">
 				<!-- Method selector -->
-				<div class="flex p-1 bg-black/40 rounded-xl border border-white/5">
-					{#each (['GET', 'POST', 'DELETE', 'PATCH'] as const) as m (m)}
+				<div class="p-1 bg-black/40 rounded-xl border-white/5 glass-blur flex border">
+					{#each ['GET', 'POST', 'DELETE', 'PATCH'] as const as m (m)}
 						<button
-							class="px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all {method === m ? 'bg-(--color-accent) text-white shadow-lg shadow-(--color-accent)/20' : 'text-white/40 hover:text-white/70'}"
+							class="px-4 py-2 rounded-lg font-bold tracking-widest text-[10px] uppercase transition-all {method ===
+							m
+								? 'text-white shadow-lg bg-(--color-accent) shadow-(--color-accent)/20'
+								: 'text-white/40 hover:text-white/70'}"
 							onclick={() => (method = m)}
 						>
 							{m}
@@ -141,33 +153,44 @@ export const load = async ({ params }) => {
 					{/each}
 				</div>
 
-				<div class="flex items-center gap-3 px-4 py-2 rounded-full bg-black/40 border border-white/5">
-					<span class="px-2 py-0.5 rounded bg-white/10 text-[10px] font-bold text-white/40 uppercase tracking-widest">{method}</span>
-					<code class="text-sm font-mono text-(--color-accent)">/api/echo</code>
+				<div
+					class="mb-6 gap-3 rounded-lg px-4 py-3 flex items-center border border-(--color-border) bg-(--color-surface-2) text-[0.875rem]"
+				>
+					<span
+						class="font-bold shrink-0 text-[0.7rem] tracking-[0.08em] text-(--color-text-muted) uppercase"
+						>{method}</span
+					>
+					<code class="text-[0.9rem] text-(--color-success)">/api/echo</code>
 				</div>
 			</div>
 
 			<!-- Body input (POST/PATCH only) -->
 			{#if method === 'POST' || method === 'PATCH'}
 				<div class="space-y-3 animate-fade-in">
-					<label for="body-input" class="text-[10px] font-bold uppercase tracking-widest text-white/30">Request Body (JSON)</label>
-					<textarea 
-						id="body-input" 
-						bind:value={postBody} 
-						rows="3" 
+					<label
+						for="body-input"
+						class="font-bold tracking-widest text-white/30 text-[10px] uppercase"
+						>Request Body (JSON)</label
+					>
+					<textarea
+						id="body-input"
+						bind:value={postBody}
+						rows="3"
 						spellcheck="false"
-						class="w-full p-4 rounded-xl bg-black/40 border border-white/10 text-sm text-white font-mono placeholder-white/10 focus:border-(--color-accent) transition-all outline-none"
+						class="p-4 rounded-xl bg-black/40 border-white/10 text-sm text-white font-mono placeholder-white/10 glass-blur w-full border transition-all outline-none focus:border-(--color-accent)"
 					></textarea>
 				</div>
 			{/if}
 
-			<button 
-				class="w-full md:w-auto px-8 py-3 rounded-xl bg-(--color-accent) text-white font-bold text-sm hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:scale-100 flex items-center justify-center gap-2" 
-				onclick={sendRequest} 
+			<button
+				class="md:w-auto px-8 py-3 rounded-xl text-white font-bold text-sm gap-2 flex w-full items-center justify-center bg-(--color-accent) transition-all hover:scale-[1.02] active:scale-[0.98] disabled:scale-100 disabled:opacity-50"
+				onclick={sendRequest}
 				disabled={loading}
 			>
 				{#if loading}
-					<div class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+					<div
+						class="w-4 h-4 border-white/30 border-t-white animate-spin rounded-full border-2"
+					></div>
 					<span>Sending…</span>
 				{:else}
 					<LessonIcon name="Send" size={16} />
@@ -179,14 +202,21 @@ export const load = async ({ params }) => {
 			{#if status !== null}
 				<div class="mt-8 animate-fade-in space-y-3">
 					<div class="flex items-center justify-between">
-						<span class="text-[10px] font-bold uppercase tracking-widest text-white/30">Response</span>
-						<div class="flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 border border-white/10">
+						<span class="font-bold tracking-widest text-white/30 text-[10px] uppercase"
+							>Response</span
+						>
+						<div
+							class="gap-2 px-3 py-1 bg-black/40 border-white/10 flex items-center rounded-full border"
+						>
 							<div class="w-1.5 h-1.5 rounded-full" style="background-color: {statusColor};"></div>
-							<span class="text-xs font-bold font-mono" style="color: {statusColor};">{status}</span>
+							<span class="text-xs font-bold font-mono" style="color: {statusColor};">{status}</span
+							>
 						</div>
 					</div>
 					{#if response}
-						<div class="p-6 rounded-xl bg-black/60 border border-white/5 overflow-x-auto">
+						<div
+							class="p-6 rounded-xl bg-black/60 border-white/5 glass-blur overflow-x-auto border"
+						>
 							<pre class="text-xs text-white/70 font-mono leading-relaxed">{response}</pre>
 						</div>
 					{/if}
@@ -195,40 +225,45 @@ export const load = async ({ params }) => {
 		</div>
 	</section>
 
-	<div class="separator"></div>
+	<div class="my-6 h-px bg-(--color-border)"></div>
 
 	<!-- Route anatomy -->
-	<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
-			<div class="flex items-center gap-2">
+	<div class="md:grid-cols-3 gap-6 mb-12 grid grid-cols-1">
+		<div class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 border">
+			<div class="gap-2 flex items-center">
 				<LessonIcon name="FileText" size={18} class="text-(--color-accent)" />
 				<div class="text-sm font-bold text-white font-mono">+server.ts</div>
 			</div>
-			<p class="text-xs text-white/50 leading-relaxed">REST endpoint. No UI. GET/POST/etc exports. For programmatic access.</p>
-			<div class="text-[10px] font-medium text-white/30 italic">Used by: fetch(), curl, apps</div>
+			<p class="text-xs text-white/50 leading-relaxed">
+				REST endpoint. No UI. GET/POST/etc exports. For programmatic access.
+			</p>
+			<div class="font-medium text-white/30 text-[10px] italic">Used by: fetch(), curl, apps</div>
 		</div>
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
-			<div class="flex items-center gap-2">
+		<div class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 border">
+			<div class="gap-2 flex items-center">
 				<LessonIcon name="Settings" size={18} class="text-(--color-accent)" />
 				<div class="text-sm font-bold text-white font-mono">+page.server.ts</div>
 			</div>
-			<p class="text-xs text-white/50 leading-relaxed">Server load + form actions. Returns data for Svelte UI components.</p>
-			<div class="text-[10px] font-medium text-white/30 italic">Used by: SvelteKit routing</div>
+			<p class="text-xs text-white/50 leading-relaxed">
+				Server load + form actions. Returns data for Svelte UI components.
+			</p>
+			<div class="font-medium text-white/30 text-[10px] italic">Used by: SvelteKit routing</div>
 		</div>
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
-			<div class="flex items-center gap-2">
+		<div class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 border">
+			<div class="gap-2 flex items-center">
 				<LessonIcon name="ArrowRightLeft" size={18} class="text-(--color-accent)" />
 				<div class="text-sm font-bold text-white">Content Neg.</div>
 			</div>
-			<p class="text-xs text-white/50 leading-relaxed">Both in same dir: browser gets HTML, API clients get JSON from the same URL.</p>
-			<div class="text-[10px] font-medium text-white/30 italic">Accept header determines type</div>
+			<p class="text-xs text-white/50 leading-relaxed">
+				Both in same dir: browser gets HTML, API clients get JSON from the same URL.
+			</p>
+			<div class="font-medium text-white/30 text-[10px] italic">Accept header determines type</div>
 		</div>
 	</div>
 
-	<div class="separator"></div>
-	<h3 class="sub-heading">Code</h3>
+	<div class="my-6 h-px bg-(--color-border)"></div>
+	<h3 class="mb-3 font-bold text-white text-[0.95rem]">Code</h3>
 	<CodeBlock code={serverCode} lang="typescript" filename="+server.ts" />
 	<CodeBlock code={fetchCode} lang="svelte" filename="fetching from +page.svelte" />
 	<CodeBlock code={contentNegCode} lang="typescript" filename="content negotiation" />
 </LessonLayout>
-

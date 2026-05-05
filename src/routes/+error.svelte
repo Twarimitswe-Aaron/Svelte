@@ -10,7 +10,7 @@
 -->
 <script lang="ts">
 	import { page } from '$app/stores';
-	import {  resolve } from '$app/paths';
+	import { resolve } from '$app/paths';
 	import type { ComponentType, SvelteComponent } from 'svelte';
 	import type { IconProps } from 'lucide-svelte';
 
@@ -31,14 +31,19 @@
 	const status = $derived($page.status);
 	const message = $derived($page.error?.message ?? 'An unknown error occurred');
 
-	const statusInfo: Record<number, { icon: ComponentType<SvelteComponent<IconProps>>; title: string }> = {
+	const statusInfo: Record<
+		number,
+		{ icon: ComponentType<SvelteComponent<IconProps>>; title: string }
+	> = {
 		404: { icon: Search, title: 'Page Not Found' },
 		403: { icon: Lock, title: 'Access Denied' },
 		500: { icon: Bomb, title: 'Internal Server Error' },
 		422: { icon: FileWarning, title: 'Validation Error' }
 	};
 
-	const info = $derived(statusInfo[status] ?? { icon: AlertTriangle, title: 'Something went wrong' });
+	const info = $derived(
+		statusInfo[status] ?? { icon: AlertTriangle, title: 'Something went wrong' }
+	);
 </script>
 
 <svelte:head>
@@ -46,7 +51,7 @@
 </svelte:head>
 
 <div class="error-page">
-	<div class="error-card animate-fade-in">
+	<div class="error-card animate-fade-in glass-blur">
 		<div class="error-icon">
 			<info.icon size={64} strokeWidth={1.5} />
 		</div>
@@ -100,7 +105,7 @@
 	.error-card {
 		max-width: 520px;
 		width: 100%;
-		background: var(--color-surface);
+		background: rgba(255, 255, 255, 0.03);
 		border: 1px solid var(--color-border);
 		border-radius: 16px;
 		padding: 2rem;
@@ -157,8 +162,13 @@
 		gap: 1rem;
 	}
 
-	.meta-key { color: var(--color-text-muted); }
-	.meta-val { color: var(--color-text); font-weight: 600; }
+	.meta-key {
+		color: var(--color-text-muted);
+	}
+	.meta-val {
+		color: var(--color-text);
+		font-weight: 600;
+	}
 
 	.error-actions {
 		display: flex;
@@ -168,7 +178,9 @@
 		margin-bottom: 1.25rem;
 	}
 
-	.error-actions a { text-decoration: none; }
+	.error-actions a {
+		text-decoration: none;
+	}
 
 	.error-tip {
 		font-size: 0.78rem;

@@ -18,7 +18,6 @@
 	const lesson = lessons[9];
 	const { prev, next } = getAdjacentLessons(lesson.slug);
 
-
 	const expectedErrorCode = `// +page.server.ts
 import { error } from '@sveltejs/kit';
 
@@ -70,74 +69,101 @@ export const load = async () => {
 >
 	<!-- Live error demos -->
 	<section class="mb-12">
-		<h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+		<h3 class="text-xl font-bold text-white mb-6 gap-2 flex items-center">
 			<LessonIcon name="Bomb" size={20} class="text-(--color-accent)" />
 			Trigger a Live Error
 		</h3>
 		<p class="text-sm text-white/60 leading-relaxed mb-8">
-			Both buttons navigate to this same page with a <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">?trigger=</code> query param. The server
-			load reads it and throws the appropriate error. You'll see the <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">+error.svelte</code> page.
+			Both buttons navigate to this same page with a <code
+				class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">?trigger=</code
+			>
+			query param. The server load reads it and throws the appropriate error. You'll see the
+			<code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">+error.svelte</code> page.
 		</p>
 
-		<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+		<div class="sm:grid-cols-2 gap-4 mb-12 grid grid-cols-1">
 			<button
-				class="group flex items-start gap-4 p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-blue-500/30 transition-all text-left"
-				onclick={() => goto(resolve('?trigger=expected' as "/"))}
+				class="group gap-4 p-6 rounded-xl border-white/10 bg-white/5 glass-blur hover:bg-white/10 hover:border-blue-500/30 flex items-start border text-left transition-all"
+				onclick={() => goto(resolve('?trigger=expected' as '/'))}
 			>
-				<div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
+				<div
+					class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center transition-transform group-hover:scale-110"
+				>
 					<LessonIcon name="CircleAlert" size={24} />
 				</div>
 				<div>
 					<div class="text-sm font-bold text-white mb-1">Trigger 404 (Expected)</div>
-					<div class="text-xs text-white/40 leading-relaxed">Uses error(404, ...) — shows +error.svelte</div>
+					<div class="text-xs text-white/40 leading-relaxed">
+						Uses error(404, ...) — shows +error.svelte
+					</div>
 				</div>
 			</button>
 
 			<button
-				class="group flex items-start gap-4 p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-red-500/30 transition-all text-left"
-				onclick={() => goto(resolve('?trigger=unexpected' as "/"))}
+				class="group gap-4 p-6 rounded-xl border-white/10 bg-white/5 glass-blur hover:bg-white/10 hover:border-red-500/30 flex items-start border text-left transition-all"
+				onclick={() => goto(resolve('?trigger=unexpected' as '/'))}
 			>
-				<div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center text-red-400 group-hover:scale-110 transition-transform">
+				<div
+					class="w-12 h-12 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center transition-transform group-hover:scale-110"
+				>
 					<LessonIcon name="Bomb" size={24} />
 				</div>
 				<div>
 					<div class="text-sm font-bold text-white mb-1">Trigger 500 (Unexpected)</div>
-					<div class="text-xs text-white/40 leading-relaxed">Throws new Error() — handleError() called</div>
+					<div class="text-xs text-white/40 leading-relaxed">
+						Throws new Error() — handleError() called
+					</div>
 				</div>
 			</button>
 		</div>
 
 		<!-- Error Flow Visual -->
-		<div class="p-8 rounded-xl bg-black/40 border border-white/5 overflow-x-auto">
-			<div class="flex items-center justify-between min-w-[600px] gap-4">
-				<div class="flex flex-col items-center gap-3 w-32">
-					<div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-xl">💥</div>
-					<span class="text-[10px] font-bold uppercase tracking-widest text-white/40 text-center">Thrown in load()</span>
-				</div>
-				
-				<LessonIcon name="ArrowRight" size={20} class="text-white/10" />
-
-				<div class="flex flex-col items-center gap-3 w-32">
-					<div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-xl"><LessonIcon name="Search" size={20} /></div>
-					<span class="text-[10px] font-bold uppercase tracking-widest text-white/40 text-center">SvelteKit inspects</span>
+		<div class="p-8 rounded-xl bg-black/40 border-white/5 glass-blur overflow-x-auto border">
+			<div class="gap-4 flex min-w-[600px] items-center justify-between">
+				<div class="gap-3 w-32 flex flex-col items-center">
+					<div class="w-12 h-12 bg-white/10 text-xl flex items-center justify-center rounded-full">
+						💥
+					</div>
+					<span class="font-bold tracking-widest text-white/40 text-center text-[10px] uppercase"
+						>Thrown in load()</span
+					>
 				</div>
 
 				<LessonIcon name="ArrowRight" size={20} class="text-white/10" />
 
-				<div class="relative flex flex-col gap-6">
-					<div class="flex items-center gap-4 p-4 rounded-xl border border-blue-500/20 bg-blue-500/5 min-w-[200px]">
+				<div class="gap-3 w-32 flex flex-col items-center">
+					<div class="w-12 h-12 bg-white/10 text-xl flex items-center justify-center rounded-full">
+						<LessonIcon name="Search" size={20} />
+					</div>
+					<span class="font-bold tracking-widest text-white/40 text-center text-[10px] uppercase"
+						>SvelteKit inspects</span
+					>
+				</div>
+
+				<LessonIcon name="ArrowRight" size={20} class="text-white/10" />
+
+				<div class="gap-6 relative flex flex-col">
+					<div
+						class="gap-4 p-4 rounded-xl border-blue-500/20 bg-blue-500/5 glass-blur flex min-w-[200px] items-center border"
+					>
 						<div class="text-xl">🔵</div>
 						<div class="flex flex-col">
 							<span class="text-xs font-bold text-blue-400">HttpError</span>
-							<span class="text-[10px] text-blue-400/50">Render +error.svelte</span>
+							<span class="text-blue-400/50 text-[10px]">Render +error.svelte</span>
 						</div>
 					</div>
-					<div class="absolute left-1/2 -translate-x-1/2 -top-3 px-2 bg-black text-[10px] font-bold text-white/20">OR</div>
-					<div class="flex items-center gap-4 p-4 rounded-xl border border-red-500/20 bg-red-500/5 min-w-[200px]">
+					<div
+						class="-top-3 px-2 bg-black font-bold text-white/20 absolute left-1/2 -translate-x-1/2 text-[10px]"
+					>
+						OR
+					</div>
+					<div
+						class="gap-4 p-4 rounded-xl border-red-500/20 bg-red-500/5 glass-blur flex min-w-[200px] items-center border"
+					>
 						<div class="text-xl">🔴</div>
 						<div class="flex flex-col">
 							<span class="text-xs font-bold text-red-400">Other Error</span>
-							<span class="text-[10px] text-red-400/50">handleError() → +error.svelte</span>
+							<span class="text-red-400/50 text-[10px]">handleError() → +error.svelte</span>
 						</div>
 					</div>
 				</div>
@@ -145,53 +171,53 @@ export const load = async () => {
 		</div>
 	</section>
 
-	<div class="h-px bg-white/10 my-12"></div>
+	<div class="bg-white/10 my-12 h-px"></div>
 
 	<!-- Error page anatomy -->
-	<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-		<div class="p-8 rounded-xl border border-blue-500/20 bg-blue-500/5 space-y-6">
-			<div class="text-sm font-bold text-blue-400 flex items-center gap-2">
-				<div class="w-2 h-2 rounded-full bg-blue-500"></div>
+	<div class="md:grid-cols-2 gap-6 mb-12 grid grid-cols-1">
+		<div class="p-8 rounded-xl border-blue-500/20 bg-blue-500/5 space-y-6 glass-blur border">
+			<div class="text-sm font-bold text-blue-400 gap-2 flex items-center">
+				<div class="w-2 h-2 bg-blue-500 rounded-full"></div>
 				Expected Error
 			</div>
 			<ul class="space-y-3">
-				<li class="text-sm text-white/60 flex items-start gap-2 italic">
+				<li class="text-sm text-white/60 gap-2 flex items-start italic">
 					<LessonIcon name="Check" size={14} class="text-blue-500 mt-1 shrink-0" />
 					Created with <code class="text-blue-400">error(status, message)</code>
 				</li>
-				<li class="text-sm text-white/60 flex items-start gap-2 italic">
+				<li class="text-sm text-white/60 gap-2 flex items-start italic">
 					<LessonIcon name="Check" size={14} class="text-blue-500 mt-1 shrink-0" />
 					Has a specific HTTP status (404, 403, etc.)
 				</li>
-				<li class="text-sm text-white/60 flex items-start gap-2 italic">
+				<li class="text-sm text-white/60 gap-2 flex items-start italic">
 					<LessonIcon name="Check" size={14} class="text-blue-500 mt-1 shrink-0" />
 					User-triggered, anticipated
 				</li>
-				<li class="text-sm text-white/60 flex items-start gap-2 italic font-bold">
+				<li class="text-sm text-white/60 gap-2 font-bold flex items-start italic">
 					<LessonIcon name="X" size={14} class="text-red-500 mt-1 shrink-0" />
 					NOT sent to handleError()
 				</li>
 			</ul>
 		</div>
-		<div class="p-8 rounded-xl border border-red-500/20 bg-red-500/5 space-y-6">
-			<div class="text-sm font-bold text-red-400 flex items-center gap-2">
-				<div class="w-2 h-2 rounded-full bg-red-500"></div>
+		<div class="p-8 rounded-xl border-red-500/20 bg-red-500/5 space-y-6 glass-blur border">
+			<div class="text-sm font-bold text-red-400 gap-2 flex items-center">
+				<div class="w-2 h-2 bg-red-500 rounded-full"></div>
 				Unexpected Error
 			</div>
 			<ul class="space-y-3">
-				<li class="text-sm text-white/60 flex items-start gap-2 italic">
+				<li class="text-sm text-white/60 gap-2 flex items-start italic">
 					<LessonIcon name="Check" size={14} class="text-red-500 mt-1 shrink-0" />
 					Any thrown non-HttpError value
 				</li>
-				<li class="text-sm text-white/60 flex items-start gap-2 italic">
+				<li class="text-sm text-white/60 gap-2 flex items-start italic">
 					<LessonIcon name="Check" size={14} class="text-red-500 mt-1 shrink-0" />
 					Always results in status 500
 				</li>
-				<li class="text-sm text-white/60 flex items-start gap-2 italic">
+				<li class="text-sm text-white/60 gap-2 flex items-start italic">
 					<LessonIcon name="Check" size={14} class="text-red-500 mt-1 shrink-0" />
 					Programmer error, DB crash, etc.
 				</li>
-				<li class="text-sm flex items-start gap-2 italic font-bold text-green-400">
+				<li class="text-sm gap-2 font-bold text-green-400 flex items-start italic">
 					<LessonIcon name="Check" size={14} class="text-green-500 mt-1 shrink-0" />
 					IS sent to handleError() for logging
 				</li>
@@ -199,10 +225,9 @@ export const load = async () => {
 		</div>
 	</div>
 
-	<div class="h-px bg-white/10 my-12"></div>
-	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">Implementation</h3>
+	<div class="bg-white/10 my-12 h-px"></div>
+	<h3 class="text-lg font-bold mb-6 tracking-widest text-white/30 uppercase">Implementation</h3>
 	<CodeBlock code={expectedErrorCode} lang="typescript" filename="+page.server.ts — expected" />
 	<CodeBlock code={unexpectedErrorCode} lang="typescript" filename="+page.server.ts — unexpected" />
 	<CodeBlock code={errorPageCode} lang="svelte" filename="+error.svelte" />
 </LessonLayout>
-

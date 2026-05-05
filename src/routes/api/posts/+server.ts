@@ -26,8 +26,7 @@ const posts = [
 		title: 'Svelte 5 Runes Explained',
 		author: 'Rich Harris',
 		date: '2025-03-22',
-		excerpt:
-			'Svelte 5 introduces runes — a new reactivity system that replaces the old store API.',
+		excerpt: 'Svelte 5 introduces runes — a new reactivity system that replaces the old store API.',
 		tags: ['svelte5', 'runes']
 	},
 	{
@@ -45,7 +44,8 @@ const posts = [
 		title: 'Why Svelte is the Best Modern Framework',
 		author: 'Antigravity',
 		date: '2026-04-30',
-		excerpt: 'Explore the revolutionary features that make Svelte a game-changer: true reactivity, zero boilerplate, and lightning-fast performance.',
+		excerpt:
+			'Explore the revolutionary features that make Svelte a game-changer: true reactivity, zero boilerplate, and lightning-fast performance.',
 		tags: ['svelte', 'reactivity', 'DX']
 	}
 ];

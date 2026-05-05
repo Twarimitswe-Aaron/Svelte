@@ -36,26 +36,19 @@
 	const c = $derived(config[type]);
 </script>
 
-<div 
-	class="rounded-xl p-4 px-5 border transition-all duration-300 glass-blur"
+<div
+	class="rounded-xl p-4 px-5 glass-blur border transition-all duration-300"
 	style="border-color: {c.borderColor}; background-color: {c.bgColor};"
 >
-	<div class="flex items-center gap-2 mb-2">
+	<div class="gap-2 mb-2 flex items-center">
 		<span class="flex items-center justify-center" style="color: {c.labelColor};">
 			<c.icon size={16} strokeWidth={2.5} />
 		</span>
-		<span class="text-[0.75rem] font-bold tracking-widest uppercase" style="color: {c.labelColor};">
+		<span class="font-bold tracking-widest text-[0.75rem] uppercase" style="color: {c.labelColor};">
 			{c.label}
 		</span>
 	</div>
-	<p class="text-[0.875rem] text-(--color-text-muted) leading-relaxed m-0">
+	<p class="leading-relaxed m-0 text-[0.875rem] text-(--color-text-muted)">
 		{text}
 	</p>
 </div>
-<style>
-	.glass-blur {
-		backdrop-filter: blur(12px);
-		-webkit-backdrop-filter: blur(12px);
-		transform: translateZ(0);
-	}
-</style>

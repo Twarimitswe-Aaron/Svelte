@@ -24,26 +24,34 @@ $: modalId = $page.state.showModal;`;
 </svelte:head>
 
 <LessonLayout
-	{lesson} {prev} {next}
+	{lesson}
+	{prev}
+	{next}
 	whatItDoes="Lets you update the URL and the browser history without running a full navigation (load functions do not run again). Great for modals, tabs, or image galleries."
 	whatFails="Without shallow routing, opening a modal might require a full page load, losing client-side state and causing a jarring layout shift."
 >
-	<h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+	<h3 class="text-xl font-bold text-white mb-6 gap-2 flex items-center">
 		<LessonIcon name="Shuffle" size={20} class="text-(--color-accent)" />
 		State History
 	</h3>
-	<div class="p-8 rounded-xl border border-white/10 bg-white/5 space-y-4 mb-12">
+	<div class="p-8 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 mb-12 border">
 		<p class="text-sm text-white/70 leading-relaxed">
-			You can push objects into the history state using <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">pushState</code>. To access it, SvelteKit exposes <code class="px-1.5 py-0.5 rounded bg-white/10 text-(--color-accent) font-mono">$page.state</code>.
+			You can push objects into the history state using <code
+				class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">pushState</code
+			>. To access it, SvelteKit exposes
+			<code class="px-1.5 py-0.5 rounded bg-white/10 font-mono text-(--color-accent)"
+				>$page.state</code
+			>.
 		</p>
 		<p class="text-sm text-white/50 leading-relaxed italic">
-			If you just want to update the current history state without adding a new history entry, use <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">replaceState</code>.
+			If you just want to update the current history state without adding a new history entry, use <code
+				class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">replaceState</code
+			>.
 		</p>
 	</div>
 
-	<div class="h-px bg-white/10 my-12"></div>
+	<div class="bg-white/10 my-12 h-px"></div>
 
-	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">Example</h3>
+	<h3 class="text-lg font-bold mb-6 tracking-widest text-white/30 uppercase">Example</h3>
 	<CodeBlock code={shallowRoutingCode} lang="javascript" filename="Shallow routing for a modal" />
 </LessonLayout>
-

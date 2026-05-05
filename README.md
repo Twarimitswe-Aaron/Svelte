@@ -24,6 +24,7 @@ A comprehensive, hands-on learning application designed to take you from a Svelt
 The course is divided into **Core** and **Advanced** tracks:
 
 ### 🟢 Core Concepts (Lessons 01-06)
+
 1. **Introduction**: Project structure and setup.
 2. **Routing**: File-based routes, layouts, and error boundaries.
 3. **Loading Data**: Server-only vs. Universal load functions.
@@ -32,6 +33,7 @@ The course is divided into **Core** and **Advanced** tracks:
 6. **State Management**: Context API and Snapshot storage.
 
 ### 🔴 Advanced SvelteKit (Lessons 07-19)
+
 7. **Advanced Routing**: Layout groups, matchers, and breakouts.
 8. **Hooks**: Intercepting requests and responses on the server.
 9. **Error Handling**: Expected vs. unexpected errors.
@@ -49,14 +51,17 @@ The course is divided into **Core** and **Advanced** tracks:
 ## 🚀 Getting Started
 
 1. **Install Dependencies**:
+
    ```bash
    pnpm install
    ```
 
 2. **Run Development Server**:
+
    ```bash
    pnpm dev
    ```
+
    Open `http://localhost:5173` to explore the lessons.
 
 3. **Verify Implementation**:

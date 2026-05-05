@@ -35,25 +35,38 @@ self.addEventListener('install', (event) => {
 </svelte:head>
 
 <LessonLayout
-	{lesson} {prev} {next}
+	{lesson}
+	{prev}
+	{next}
 	whatItDoes="Provides a way to cache files and handle requests offline by injecting a service-worker.js at the root of the app."
 	whatFails="Without a service worker, your app cannot function when the user's device loses internet connection, and you can't implement PWA features like background sync or push notifications."
 >
-	<h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+	<h3 class="text-xl font-bold text-white mb-6 gap-2 flex items-center">
 		<LessonIcon name="Satellite" size={20} class="text-(--color-accent)" />
 		Service Worker Integration
 	</h3>
-	<div class="p-8 rounded-xl border border-white/10 bg-white/5 space-y-4 mb-12">
+	<div class="p-8 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 mb-12 border">
 		<p class="text-sm text-white/70 leading-relaxed">
-			If you create a <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">src/service-worker.js</code> (or <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">.ts</code>) file, SvelteKit will automatically build it and register it.
+			If you create a <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono"
+				>src/service-worker.js</code
+			>
+			(or <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">.ts</code>) file,
+			SvelteKit will automatically build it and register it.
 		</p>
 		<p class="text-sm text-white/50 leading-relaxed">
-			Inside the worker, SvelteKit provides the <code class="px-1.5 py-0.5 rounded bg-white/10 text-(--color-accent) font-mono">$service-worker</code> module which gives you access to the paths of all built assets and static files. This is essential for building <strong>Progressive Web Apps (PWAs)</strong>.
+			Inside the worker, SvelteKit provides the <code
+				class="px-1.5 py-0.5 rounded bg-white/10 font-mono text-(--color-accent)"
+				>$service-worker</code
+			>
+			module which gives you access to the paths of all built assets and static files. This is essential
+			for building <strong>Progressive Web Apps (PWAs)</strong>.
 		</p>
 	</div>
 
-	<div class="h-px bg-white/10 my-12"></div>
+	<div class="bg-white/10 my-12 h-px"></div>
 
-	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">Installation Example</h3>
+	<h3 class="text-lg font-bold mb-6 tracking-widest text-white/30 uppercase">
+		Installation Example
+	</h3>
 	<CodeBlock code={workerCode} lang="typescript" filename="src/service-worker.ts" />
 </LessonLayout>

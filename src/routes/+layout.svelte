@@ -36,8 +36,11 @@
 </script>
 
 <svelte:head>
-	<title>Gallereee — Directory & Curation</title>
-	<meta name="description" content="Build your own curation website with this template." />
+	<title>SvelteKit Course</title>
+	<meta
+		name="description"
+		content="Complete guide to building full-stack web apps with SvelteKit."
+	/>
 </svelte:head>
 
 <HeroBackground height="150vh" />
@@ -46,7 +49,7 @@
 	<!-- Mobile overlay -->
 	{#if sidebarOpen}
 		<button
-			class="fixed inset-0 z-29 cursor-pointer border-none bg-black/60 md:hidden"
+			class="inset-0 bg-black/60 md:hidden fixed z-29 cursor-pointer border-none"
 			aria-label="Close sidebar"
 			onclick={toggle}
 		></button>
@@ -55,25 +58,25 @@
 	<Sidebar bind:sidebarOpen />
 
 	<!-- ===== MAIN CONTENT ===== -->
-	<div class="flex min-w-0 flex-1 flex-col h-full overflow-hidden relative">
+	<div class="min-w-0 relative flex h-full flex-1 flex-col overflow-hidden">
 		<!-- Top bar (mobile only) -->
 		<header
-			class="sticky top-0 z-10 flex items-center gap-3 border-b border-white/10 bg-black/20 backdrop-blur-md p-4 md:hidden shrink-0"
+			class="top-0 gap-3 border-white/10 bg-black/20 backdrop-blur-md p-4 md:hidden sticky z-10 flex shrink-0 items-center border-b"
 		>
 			<button
-				class="flex cursor-pointer flex-col gap-1 border-none bg-transparent p-1"
+				class="gap-1 p-1 flex cursor-pointer flex-col border-none bg-transparent"
 				aria-label="Toggle menu"
 				onclick={toggle}
 			>
-				<span class="block h-0.5 w-5 rounded-sm bg-white"></span>
-				<span class="block h-0.5 w-5 rounded-sm bg-white"></span>
-				<span class="block h-0.5 w-5 rounded-sm bg-white"></span>
+				<span class="h-0.5 w-5 rounded-sm bg-white block"></span>
+				<span class="h-0.5 w-5 rounded-sm bg-white block"></span>
+				<span class="h-0.5 w-5 rounded-sm bg-white block"></span>
 			</button>
-			<span class="text-[0.9rem] font-bold text-white">Gallereee</span>
+			<span class="font-bold text-white text-[0.9rem]">SvelteKitt</span>
 		</header>
 
-		<main bind:this={mainElement} class="flex-1 overflow-y-auto scrollbar-hide">
-			<div class="framer-vsngcy w-full min-h-full">
+		<main bind:this={mainElement} class="scrollbar-hide flex-1 overflow-y-auto">
+			<div class="min-h-full w-full">
 				{@render children()}
 			</div>
 		</main>
@@ -89,5 +92,3 @@
 		display: none;
 	}
 </style>
-
-

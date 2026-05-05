@@ -28,17 +28,15 @@
 	// Client-side real-time validation state
 	let liveName = $state('');
 	let liveEmail = $state('');
-	
+
 	let nameError = $derived(
 		liveName.length > 0 && liveName.length < 3 ? 'Name must be at least 3 characters' : null
 	);
 	let emailError = $derived(
 		liveEmail.length > 0 && !liveEmail.includes('@') ? 'Invalid email format' : null
 	);
-	
-	let isLiveValid = $derived(
-		liveName.length >= 3 && liveEmail.includes('@')
-	);
+
+	let isLiveValid = $derived(liveName.length >= 3 && liveEmail.includes('@'));
 	let liveSubmitted = $state(false);
 
 	const actionCode = `// +page.server.ts — Define actions
@@ -91,14 +89,16 @@ ${scriptEnd}
 	<!-- Live form demo -->
 	<div class="space-y-12">
 		<section>
-			<h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+			<h3 class="text-xl font-bold text-white mb-6 gap-2 flex items-center">
 				<span class="text-2xl">✉️</span>
 				Live Contact Form
 			</h3>
 
 			{#if form?.success}
-				<div class="p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400 mb-8 animate-fade-in flex flex-col gap-1">
-					<div class="flex items-center gap-2 font-bold">
+				<div
+					class="p-4 rounded-xl bg-green-500/10 border-green-500/20 text-green-400 mb-8 animate-fade-in gap-1 glass-blur flex flex-col border"
+				>
+					<div class="gap-2 font-bold flex items-center">
 						<CircleCheck size={18} />
 						Message sent by {form.name}!
 					</div>
@@ -115,43 +115,59 @@ ${scriptEnd}
 						submitting = false;
 					};
 				}}
-				class="space-y-6 max-w-xl p-8 rounded-xl border border-white/10 bg-white/5 relative overflow-hidden"
+				class="space-y-6 max-w-xl p-8 rounded-xl border-white/10 bg-white/5 glass-blur relative overflow-hidden border"
 			>
-				<div class="absolute -top-12 -right-12 w-48 h-48 bg-(--color-accent)/10 rounded-full blur-3xl"></div>
+				<div
+					class="-top-12 -right-12 w-48 h-48 blur-3xl absolute rounded-full bg-(--color-accent)/10"
+				></div>
 
 				<div class="space-y-2 relative z-10">
-					<label for="name" class="text-xs font-bold uppercase tracking-widest text-white/40">Name *</label>
+					<label for="name" class="text-xs font-bold tracking-widest text-white/40 uppercase"
+						>Name *</label
+					>
 					<input
 						id="name"
 						name="name"
 						type="text"
 						placeholder="Your name"
 						value={form?.name ?? ''}
-						class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 focus:border-(--color-accent) focus:ring-1 focus:ring-(--color-accent) transition-all outline-none {form?.field === 'name' ? 'border-red-500/50 focus:border-red-500' : ''}"
+						class="px-4 py-3 rounded-xl bg-white/5 border-white/10 text-white placeholder-white/20 w-full border transition-all outline-none focus:border-(--color-accent) focus:ring-1 focus:ring-(--color-accent) {form?.field ===
+						'name'
+							? 'border-red-500/50 focus:border-red-500'
+							: ''}"
 					/>
 					{#if form?.field === 'name'}
-						<span class="text-xs text-red-400 flex items-center gap-1 font-medium"><TriangleAlert size={12} /> {form.error}</span>
+						<span class="text-xs text-red-400 gap-1 font-medium flex items-center"
+							><TriangleAlert size={12} /> {form.error}</span
+						>
 					{/if}
 				</div>
 
 				<div class="space-y-2 relative z-10">
-					<label for="message" class="text-xs font-bold uppercase tracking-widest text-white/40">Message *</label>
+					<label for="message" class="text-xs font-bold tracking-widest text-white/40 uppercase"
+						>Message *</label
+					>
 					<textarea
 						id="message"
 						name="message"
 						placeholder="Write something... (min 5 chars)"
 						rows="3"
-						class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 focus:border-(--color-accent) focus:ring-1 focus:ring-(--color-accent) transition-all outline-none {form?.field === 'message' ? 'border-red-500/50 focus:border-red-500' : ''}"
-					>{form?.message ?? ''}</textarea>
+						class="px-4 py-3 rounded-xl bg-white/5 border-white/10 text-white placeholder-white/20 w-full border transition-all outline-none focus:border-(--color-accent) focus:ring-1 focus:ring-(--color-accent) {form?.field ===
+						'message'
+							? 'border-red-500/50 focus:border-red-500'
+							: ''}">{form?.message ?? ''}</textarea
+					>
 					{#if form?.field === 'message'}
-						<span class="text-xs text-red-400 flex items-center gap-1 font-medium"><TriangleAlert size={12} /> {form.error}</span>
+						<span class="text-xs text-red-400 gap-1 font-medium flex items-center"
+							><TriangleAlert size={12} /> {form.error}</span
+						>
 					{/if}
 				</div>
 
-				<div class="flex items-center gap-4 pt-2 relative z-10">
-					<button 
-						type="submit" 
-						class="px-6 py-3 rounded-xl bg-(--color-accent) text-white font-bold text-sm hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:scale-100 flex items-center gap-2" 
+				<div class="gap-4 pt-2 relative z-10 flex items-center">
+					<button
+						type="submit"
+						class="px-6 py-3 rounded-xl text-white font-bold text-sm gap-2 flex items-center bg-(--color-accent) transition-all hover:scale-[1.02] active:scale-[0.98] disabled:scale-100 disabled:opacity-50"
 						disabled={submitting}
 					>
 						{#if submitting}
@@ -162,78 +178,100 @@ ${scriptEnd}
 							<span>Send (with use:enhance)</span>
 						{/if}
 					</button>
-					<span class="text-[10px] font-bold uppercase tracking-widest text-white/30">No page reload!</span>
+					<span class="font-bold tracking-widest text-white/30 text-[10px] uppercase"
+						>No page reload!</span
+					>
 				</div>
 			</form>
 
 			<!-- Test without enhance -->
-			<form method="POST" class="mt-6 flex items-center gap-4">
+			<form method="POST" class="mt-6 gap-4 flex items-center">
 				<input name="name" type="text" value="Test" hidden />
 				<input name="message" type="text" value="Testing without enhance" hidden />
-				<button type="submit" class="text-[11px] font-bold uppercase tracking-widest text-white/30 hover:text-red-400 transition-colors flex items-center gap-2">
+				<button
+					type="submit"
+					class="font-bold tracking-widest text-white/30 hover:text-red-400 gap-2 flex items-center text-[11px] uppercase transition-colors"
+				>
 					<ShieldAlert size={14} />
 					Submit WITHOUT use:enhance (triggers reload)
 				</button>
 			</form>
 		</section>
 
-		<div class="h-px bg-white/10"></div>
+		<div class="my-6 h-px bg-(--color-border)"></div>
 
 		<!-- Client-side real-time validation demo -->
 		<section>
-			<h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+			<h3 class="text-xl font-bold text-white mb-4 gap-2 flex items-center">
 				<Zap size={22} class="text-(--color-accent)" />
 				Client-Side Real-Time Validation
 			</h3>
 			<p class="text-sm text-white/60 leading-relaxed mb-8">
-				This form uses Svelte 5 <code>$state</code> and <code>$derived</code> to validate as you type. 
-				SvelteKit doesn't have a built-in client validation rule engine, so Svelte reactivity is the standard way to do it.
+				This form uses Svelte 5 <code>$state</code> and <code>$derived</code> to validate as you type.
+				SvelteKit doesn't have a built-in client validation rule engine, so Svelte reactivity is the standard
+				way to do it.
 			</p>
-			
+
 			{#if liveSubmitted}
-				<div class="p-4 rounded-xl bg-(--color-accent)/10 border border-(--color-accent)/20 text-(--color-accent) mb-8 animate-fade-in font-bold flex items-center gap-2">
+				<div
+					class="p-4 rounded-xl mb-8 animate-fade-in font-bold gap-2 glass-blur flex items-center border border-(--color-accent)/20 bg-(--color-accent)/10 text-(--color-accent)"
+				>
 					<CircleCheck size={20} />
 					Everything is valid! You can now submit this to the server.
 				</div>
 			{/if}
 
-			<div class="space-y-6 max-w-xl p-8 rounded-xl border border-white/10 bg-black/40">
+			<div class="space-y-6 max-w-xl p-8 rounded-xl border-white/10 bg-black/40 glass-blur border">
 				<div class="space-y-2">
-					<label for="live-name" class="text-xs font-bold uppercase tracking-widest text-white/40">Name (min 3 chars)</label>
+					<label for="live-name" class="text-xs font-bold tracking-widest text-white/40 uppercase"
+						>Name (min 3 chars)</label
+					>
 					<input
 						id="live-name"
 						type="text"
 						placeholder="Type your name..."
 						bind:value={liveName}
-						oninput={() => liveSubmitted = false}
-						class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 focus:border-(--color-accent) focus:ring-1 focus:ring-(--color-accent) transition-all outline-none {nameError ? 'border-red-500/50 focus:border-red-500' : ''}"
+						oninput={() => (liveSubmitted = false)}
+						class="px-4 py-3 rounded-xl bg-white/5 border-white/10 text-white placeholder-white/20 w-full border transition-all outline-none focus:border-(--color-accent) focus:ring-1 focus:ring-(--color-accent) {nameError
+							? 'border-red-500/50 focus:border-red-500'
+							: ''}"
 					/>
 					{#if nameError}
-						<span class="text-xs text-red-400 flex items-center gap-1 font-medium animate-fade-in"><TriangleAlert size={12} /> {nameError}</span>
+						<span class="text-xs text-red-400 gap-1 font-medium animate-fade-in flex items-center"
+							><TriangleAlert size={12} /> {nameError}</span
+						>
 					{/if}
 				</div>
 
 				<div class="space-y-2">
-					<label for="live-email" class="text-xs font-bold uppercase tracking-widest text-white/40">Email (must contain @)</label>
+					<label for="live-email" class="text-xs font-bold tracking-widest text-white/40 uppercase"
+						>Email (must contain @)</label
+					>
 					<input
 						id="live-email"
 						type="email"
 						placeholder="Type your email..."
 						bind:value={liveEmail}
-						oninput={() => liveSubmitted = false}
-						class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 focus:border-(--color-accent) focus:ring-1 focus:ring-(--color-accent) transition-all outline-none {emailError ? 'border-red-500/50 focus:border-red-500' : ''}"
+						oninput={() => (liveSubmitted = false)}
+						class="px-4 py-3 rounded-xl bg-white/5 border-white/10 text-white placeholder-white/20 w-full border transition-all outline-none focus:border-(--color-accent) focus:ring-1 focus:ring-(--color-accent) {emailError
+							? 'border-red-500/50 focus:border-red-500'
+							: ''}"
 					/>
 					{#if emailError}
-						<span class="text-xs text-red-400 flex items-center gap-1 font-medium animate-fade-in"><TriangleAlert size={12} /> {emailError}</span>
+						<span class="text-xs text-red-400 gap-1 font-medium animate-fade-in flex items-center"
+							><TriangleAlert size={12} /> {emailError}</span
+						>
 					{/if}
 				</div>
 
 				<div class="pt-2">
-					<button 
-						type="button" 
-						class="px-6 py-3 rounded-xl bg-white/10 text-white font-bold text-sm hover:bg-white/20 transition-all disabled:opacity-30 disabled:scale-100 {isLiveValid ? 'bg-(--color-accent) hover:bg-(--color-accent)/80 text-white' : ''}" 
+					<button
+						type="button"
+						class="px-6 py-3 rounded-xl bg-white/10 text-white font-bold text-sm hover:bg-white/20 transition-all disabled:scale-100 disabled:opacity-30 {isLiveValid
+							? 'text-white bg-(--color-accent) hover:bg-(--color-accent)/80'
+							: ''}"
 						disabled={!isLiveValid}
-						onclick={() => liveSubmitted = true}
+						onclick={() => (liveSubmitted = true)}
 					>
 						{isLiveValid ? 'Ready to Submit' : 'Fix errors to submit'}
 					</button>
@@ -244,21 +282,27 @@ ${scriptEnd}
 		<!-- Messages list -->
 		{#if data.messages.length > 0}
 			<section class="space-y-6">
-				<h4 class="text-sm font-bold uppercase tracking-widest text-white/30 flex items-center gap-2">
-					<div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+				<h4
+					class="text-sm font-bold tracking-widest text-white/30 gap-2 flex items-center uppercase"
+				>
+					<div class="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
 					Received Messages ({data.messages.length})
 				</h4>
-				<div class="grid grid-cols-1 gap-4">
+				<div class="gap-4 grid grid-cols-1">
 					{#each data.messages as msg (msg.time)}
-						<div class="p-6 rounded-xl border border-white/5 bg-white/2 hover:bg-white/4 transition-all">
-							<div class="flex items-center justify-between mb-4">
-								<div class="flex items-center gap-2">
-									<div class="w-8 h-8 rounded-full bg-(--color-accent)/10 flex items-center justify-center text-(--color-accent) font-bold text-xs uppercase">
+						<div
+							class="p-6 rounded-xl border-white/5 bg-white/2 hover:bg-white/4 glass-blur border transition-all"
+						>
+							<div class="mb-4 flex items-center justify-between">
+								<div class="gap-2 flex items-center">
+									<div
+										class="w-8 h-8 font-bold text-xs flex items-center justify-center rounded-full bg-(--color-accent)/10 text-(--color-accent) uppercase"
+									>
 										{msg.name.charAt(0)}
 									</div>
 									<span class="text-sm font-bold text-white">{msg.name}</span>
 								</div>
-								<span class="text-[10px] font-mono text-white/30">{msg.time}</span>
+								<span class="font-mono text-white/30 text-[10px]">{msg.time}</span>
 							</div>
 							<p class="text-sm text-white/60 leading-relaxed">{msg.message}</p>
 						</div>
@@ -268,34 +312,51 @@ ${scriptEnd}
 		{/if}
 	</div>
 
-	<div class="separator"></div>
+	<div class="my-6 h-px bg-(--color-border)"></div>
 
-	<h3 class="sub-heading">Code</h3>
+	<h3 class="mb-3 font-bold text-white text-[0.95rem]">Code</h3>
 	<CodeBlock code={actionCode} lang="typescript" filename="+page.server.ts" />
 	<CodeBlock code={formCode} lang="svelte" filename="+page.svelte" />
 
 	<!-- Actions cheatsheet -->
-	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
-			<div class="text-[10px] font-bold uppercase tracking-widest text-(--color-accent)">Default</div>
-			<code class="block px-2 py-1 rounded bg-black/40 text-[10px] text-white/80 font-mono">&lt;form method="POST"&gt;</code>
+	<div class="sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12 grid grid-cols-1">
+		<div class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 border">
+			<div class="font-bold tracking-widest text-[10px] text-(--color-accent) uppercase">
+				Default
+			</div>
+			<code class="px-2 py-1 rounded bg-black/40 text-white/80 font-mono block text-[10px]"
+				>&lt;form method="POST"&gt;</code
+			>
 			<p class="text-xs text-white/50 leading-relaxed">One action per page. Simple forms.</p>
 		</div>
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
-			<div class="text-[10px] font-bold uppercase tracking-widest text-(--color-accent)">Named</div>
-			<code class="block px-2 py-1 rounded bg-black/40 text-[10px] text-white/80 font-mono">&lt;form action="?/login"&gt;</code>
-			<p class="text-xs text-white/50 leading-relaxed">Multiple actions on one page (login + register).</p>
+		<div class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 border">
+			<div class="font-bold tracking-widest text-[10px] text-(--color-accent) uppercase">Named</div>
+			<code class="px-2 py-1 rounded bg-black/40 text-white/80 font-mono block text-[10px]"
+				>&lt;form action="?/login"&gt;</code
+			>
+			<p class="text-xs text-white/50 leading-relaxed">
+				Multiple actions on one page (login + register).
+			</p>
 		</div>
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
-			<div class="text-[10px] font-bold uppercase tracking-widest text-(--color-accent)">fail()</div>
-			<code class="block px-2 py-1 rounded bg-black/40 text-[10px] text-white/80 font-mono">return fail(422, &#123; error &#125;)</code>
-			<p class="text-xs text-white/50 leading-relaxed">Returns validation errors to the form without redirect.</p>
+		<div class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 border">
+			<div class="font-bold tracking-widest text-[10px] text-(--color-accent) uppercase">
+				fail()
+			</div>
+			<code class="px-2 py-1 rounded bg-black/40 text-white/80 font-mono block text-[10px]"
+				>return fail(422, &#123; error &#125;)</code
+			>
+			<p class="text-xs text-white/50 leading-relaxed">
+				Returns validation errors to the form without redirect.
+			</p>
 		</div>
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
-			<div class="text-[10px] font-bold uppercase tracking-widest text-(--color-accent)">redirect()</div>
-			<code class="block px-2 py-1 rounded bg-black/40 text-[10px] text-white/80 font-mono">throw redirect(303, '/...')</code>
+		<div class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 border">
+			<div class="font-bold tracking-widest text-[10px] text-(--color-accent) uppercase">
+				redirect()
+			</div>
+			<code class="px-2 py-1 rounded bg-black/40 text-white/80 font-mono block text-[10px]"
+				>throw redirect(303, '/...')</code
+			>
 			<p class="text-xs text-white/50 leading-relaxed">After success, send user to another page.</p>
 		</div>
 	</div>
 </LessonLayout>
-

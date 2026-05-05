@@ -24,7 +24,8 @@
 			default_val: 'false',
 			emoji: '🏗️',
 			what: 'Generates a static HTML file at build time instead of rendering on each request. Ideal for content that never changes.',
-			fails: "If your page uses form actions or reads request-specific data (cookies), prerendering fails — you'll get a build error.",
+			fails:
+				"If your page uses form actions or reads request-specific data (cookies), prerendering fails — you'll get a build error.",
 			example: `// +page.ts or +page.server.ts
 export const prerender = true;
 // Now this page is: vite build → static .html file
@@ -37,7 +38,8 @@ export const prerender = true;
 			default_val: 'true',
 			emoji: '🖥️',
 			what: 'Server-side rendering: the page HTML is generated on the server before sending to the browser. Enables SEO and fast first paint.',
-			fails: "Disabling SSR (ssr = false) means the page is blank on first load until JavaScript runs — search engines can't index it. Also, load() still runs on server unless you disable SSR.",
+			fails:
+				"Disabling SSR (ssr = false) means the page is blank on first load until JavaScript runs — search engines can't index it. Also, load() still runs on server unless you disable SSR.",
 			example: `// +page.ts
 export const ssr = false;
 // Page skips SSR — starts as empty HTML
@@ -52,7 +54,8 @@ export const ssr = false;
 			default_val: 'true',
 			emoji: '🌐',
 			what: 'Client-side rendering: JavaScript runs in the browser to hydrate and enable interactivity. Required for any reactivity.',
-			fails: 'Setting csr = false turns the page into pure HTML — no reactivity, no event listeners, no Svelte state. Clicks and inputs do nothing.',
+			fails:
+				'Setting csr = false turns the page into pure HTML — no reactivity, no event listeners, no Svelte state. Clicks and inputs do nothing.',
 			example: `// +page.ts
 export const csr = false;
 // 100% server-rendered HTML — no JS sent
@@ -66,7 +69,8 @@ export const csr = false;
 			default_val: '"never"',
 			emoji: '🔗',
 			what: 'Controls whether trailing slashes are added/removed from URLs. "never" redirects /about/ → /about. "always" adds the slash.',
-			fails: 'Inconsistent trailing slashes cause duplicate content issues for SEO. Without configuring this, /about and /about/ may return different responses.',
+			fails:
+				'Inconsistent trailing slashes cause duplicate content issues for SEO. Without configuring this, /about and /about/ may return different responses.',
 			example: `// +page.ts
 export const trailingSlash = 'always';
 // /about → redirects to → /about/
@@ -101,10 +105,13 @@ export const prerender = false; // this one is NOT prerendered`;
 >
 	<!-- Interactive option explorer -->
 	<div class="space-y-8">
-		<div class="flex flex-wrap gap-2">
+		<div class="gap-2 flex flex-wrap">
 			{#each options as opt (opt.name)}
 				<button
-					class="px-4 py-2 rounded-xl border transition-all text-sm font-medium flex items-center gap-2 {selected === opt ? 'bg-(--color-accent) border-(--color-accent) text-white shadow-lg shadow-(--color-accent)/20' : 'bg-white/5 border-white/10 text-white/60 hover:bg-white/10 hover:text-white'}"
+					class="px-4 py-2 rounded-xl text-sm font-medium gap-2 flex items-center border transition-all {selected ===
+					opt
+						? 'text-white shadow-lg border-(--color-accent) bg-(--color-accent) shadow-(--color-accent)/20'
+						: 'bg-white/5 border-white/10 text-white/60 hover:bg-white/10 hover:text-white'}"
 					onclick={() => (selected = opt)}
 				>
 					<span class="text-lg">{opt.emoji}</span>
@@ -114,66 +121,88 @@ export const prerender = false; // this one is NOT prerendered`;
 		</div>
 
 		{#key selected.name}
-		<div class="p-8 rounded-xl border border-white/10 bg-white/5 animate-fade-in">
-			<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 pb-8 border-b border-white/10">
-				<div>
-					<h3 class="text-xl font-bold text-white flex items-center gap-2 mb-2">
-						<span class="text-2xl">{selected.emoji}</span>
-						<code class="text-lg text-(--color-accent)">export const {selected.name}</code>
-					</h3>
-					<div class="flex flex-wrap gap-3">
-						<span class="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-white/40">Type: <code class="text-white/80">{selected.type}</code></span>
-						<span class="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-white/40">Default: <code class="text-white/80">{selected.default_val}</code></span>
+			<div class="p-8 rounded-xl border-white/10 bg-white/5 glass-blur animate-fade-in border">
+				<div
+					class="md:flex-row md:items-center gap-6 mb-8 pb-8 border-white/10 flex flex-col justify-between border-b"
+				>
+					<div>
+						<h3 class="text-xl font-bold text-white gap-2 mb-2 flex items-center">
+							<span class="text-2xl">{selected.emoji}</span>
+							<code class="text-lg text-(--color-accent)">export const {selected.name}</code>
+						</h3>
+						<div class="gap-3 flex flex-wrap">
+							<span
+								class="px-2 py-1 rounded-md bg-white/5 border-white/10 font-bold tracking-widest text-white/40 border text-[10px] uppercase"
+								>Type: <code class="text-white/80">{selected.type}</code></span
+							>
+							<span
+								class="px-2 py-1 rounded-md bg-white/5 border-white/10 font-bold tracking-widest text-white/40 border text-[10px] uppercase"
+								>Default: <code class="text-white/80">{selected.default_val}</code></span
+							>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
-				<div class="p-6 rounded-xl border border-white/5 bg-white/2 space-y-3">
-					<span class="text-[10px] font-bold uppercase tracking-widest text-white/30 flex items-center gap-2">
-						<LessonIcon name="Lightbulb" size={14} class="text-(--color-accent)" />
-						What it does
-					</span>
-					<p class="text-sm text-white/70 leading-relaxed">{selected.what}</p>
+				<div class="lg:grid-cols-3 gap-6 mb-10 grid grid-cols-1">
+					<div class="p-6 rounded-xl border-white/5 bg-white/2 space-y-3 glass-blur border">
+						<span
+							class="font-bold tracking-widest text-white/30 gap-2 flex items-center text-[10px] uppercase"
+						>
+							<LessonIcon name="Lightbulb" size={14} class="text-(--color-accent)" />
+							What it does
+						</span>
+						<p class="text-sm text-white/70 leading-relaxed">{selected.what}</p>
+					</div>
+					<div class="p-6 rounded-xl border-white/5 bg-white/2 space-y-3 glass-blur border">
+						<span
+							class="font-bold tracking-widest text-white/30 gap-2 flex items-center text-[10px] uppercase"
+						>
+							<LessonIcon name="ShieldAlert" size={14} class="text-red-400" />
+							Failure mode
+						</span>
+						<p class="text-sm text-white/70 leading-relaxed">{selected.fails}</p>
+					</div>
+					<div class="p-6 rounded-xl border-white/5 bg-white/2 space-y-3 glass-blur border">
+						<span
+							class="font-bold tracking-widest text-white/30 gap-2 flex items-center text-[10px] uppercase"
+						>
+							<LessonIcon name="CheckCircle" size={14} class="text-green-400" />
+							When to use
+						</span>
+						<p class="text-sm text-white/70 leading-relaxed">{selected.whenToUse}</p>
+					</div>
 				</div>
-				<div class="p-6 rounded-xl border border-white/5 bg-white/2 space-y-3">
-					<span class="text-[10px] font-bold uppercase tracking-widest text-white/30 flex items-center gap-2">
-						<LessonIcon name="ShieldAlert" size={14} class="text-red-400" />
-						Failure mode
-					</span>
-					<p class="text-sm text-white/70 leading-relaxed">{selected.fails}</p>
-				</div>
-				<div class="p-6 rounded-xl border border-white/5 bg-white/2 space-y-3">
-					<span class="text-[10px] font-bold uppercase tracking-widest text-white/30 flex items-center gap-2">
-						<LessonIcon name="CheckCircle" size={14} class="text-green-400" />
-						When to use
-					</span>
-					<p class="text-sm text-white/70 leading-relaxed">{selected.whenToUse}</p>
-				</div>
-			</div>
 
-			<CodeBlock code={selected.example} lang="typescript" filename="+page.ts" />
-		</div>
+				<CodeBlock code={selected.example} lang="typescript" filename="+page.ts" />
+			</div>
 		{/key}
 	</div>
 
-	<div class="h-px bg-white/10 my-12"></div>
+	<div class="bg-white/10 my-12 h-px"></div>
 
 	<h3 class="text-xl font-bold text-white mb-6">Combining Options</h3>
 	<CodeBlock code={exportCode} lang="typescript" filename="+layout.ts / +page.ts" />
 
 	<!-- Visual matrix -->
-	<div class="mt-12 overflow-hidden rounded-xl border border-white/10 bg-white/5">
-		<table class="w-full text-left border-collapse">
+	<div class="mt-12 rounded-xl border-white/10 bg-white/5 glass-blur overflow-hidden border">
+		<table class="w-full border-collapse text-left">
 			<thead>
-				<tr class="bg-white/2 border-b border-white/10">
-					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">Use case</th>
-					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">prerender</th>
-					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">ssr</th>
-					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">csr</th>
+				<tr class="bg-white/2 border-white/10 border-b">
+					<th class="px-6 py-4 font-bold tracking-widest text-white/40 text-[10px] uppercase"
+						>Use case</th
+					>
+					<th class="px-6 py-4 font-bold tracking-widest text-white/40 text-[10px] uppercase"
+						>prerender</th
+					>
+					<th class="px-6 py-4 font-bold tracking-widest text-white/40 text-[10px] uppercase"
+						>ssr</th
+					>
+					<th class="px-6 py-4 font-bold tracking-widest text-white/40 text-[10px] uppercase"
+						>csr</th
+					>
 				</tr>
 			</thead>
-			<tbody class="divide-y divide-white/5">
+			<tbody class="divide-white/5 divide-y">
 				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium">Blog post</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-mono">true</td>
@@ -202,4 +231,3 @@ export const prerender = false; // this one is NOT prerendered`;
 		</table>
 	</div>
 </LessonLayout>
-

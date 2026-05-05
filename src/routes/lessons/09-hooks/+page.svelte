@@ -79,94 +79,153 @@ export const load = ({ locals }) => {
 >
 	<!-- Live proof: hooks are active -->
 	<section class="mb-12">
-		<h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+		<h3 class="text-xl font-bold text-white mb-6 gap-2 flex items-center">
 			<LessonIcon name="Activity" size={20} class="text-(--color-accent)" />
 			Live proof: hooks are active
 		</h3>
 		<p class="text-sm text-white/60 leading-relaxed mb-8">
-			The following user data was injected by <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">hooks.server.ts handle()</code> into
-			<code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">event.locals</code>, then read by <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">+page.server.ts</code>. Without the hook, all
-			fields would be <code class="text-red-400 font-mono italic">undefined</code>.
+			The following user data was injected by <code
+				class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono"
+				>hooks.server.ts handle()</code
+			>
+			into
+			<code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">event.locals</code>, then
+			read by
+			<code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">+page.server.ts</code>.
+			Without the hook, all fields would be
+			<code class="text-red-400 font-mono italic">undefined</code>.
 		</p>
 
-		<div class="p-8 rounded-xl border {data.hookActive ? 'border-green-500/20 bg-green-500/5 shadow-lg shadow-green-500/5' : 'border-red-500/20 bg-red-500/5 shadow-lg shadow-red-500/5'} transition-all relative overflow-hidden group">
-			<div class="absolute -top-12 -right-12 w-48 h-48 {data.hookActive ? 'bg-green-500/10' : 'bg-red-500/10'} rounded-full blur-3xl"></div>
-			
-			<div class="flex items-center gap-2 mb-8 relative z-10">
-				<div class="w-2.5 h-2.5 rounded-full {data.hookActive ? 'bg-green-500 animate-pulse' : 'bg-red-500'}"></div>
-				<span class="text-xs font-bold uppercase tracking-widest {data.hookActive ? 'text-green-400' : 'text-red-400'}">
+		<div
+			class="p-8 rounded-xl border {data.hookActive
+				? 'border-green-500/20 bg-green-500/5 shadow-lg shadow-green-500/5'
+				: 'border-red-500/20 bg-red-500/5 shadow-lg shadow-red-500/5'} group relative overflow-hidden transition-all"
+		>
+			<div
+				class="-top-12 -right-12 w-48 h-48 absolute {data.hookActive
+					? 'bg-green-500/10'
+					: 'bg-red-500/10'} blur-3xl rounded-full"
+			></div>
+
+			<div class="gap-2 mb-8 relative z-10 flex items-center">
+				<div
+					class="w-2.5 h-2.5 rounded-full {data.hookActive
+						? 'bg-green-500 animate-pulse'
+						: 'bg-red-500'}"
+				></div>
+				<span
+					class="text-xs font-bold tracking-widest uppercase {data.hookActive
+						? 'text-green-400'
+						: 'text-red-400'}"
+				>
 					{data.hookActive ? 'hooks.server.ts is active' : 'hook inactive'}
 				</span>
 			</div>
 
 			{#if data.user}
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
-					<div class="p-4 rounded-xl bg-white/5 border border-white/5 space-y-1">
-						<span class="text-[10px] font-bold uppercase tracking-widest text-white/30">event.locals.user.id</span>
+				<div class="md:grid-cols-2 gap-4 relative z-10 grid grid-cols-1">
+					<div class="p-4 rounded-xl bg-white/5 border-white/5 space-y-1 glass-blur border">
+						<span class="font-bold tracking-widest text-white/30 text-[10px] uppercase"
+							>event.locals.user.id</span
+						>
 						<code class="text-sm text-white block truncate">{data.user.id}</code>
 					</div>
-					<div class="p-4 rounded-xl bg-white/5 border border-white/5 space-y-1">
-						<span class="text-[10px] font-bold uppercase tracking-widest text-white/30">event.locals.user.name</span>
+					<div class="p-4 rounded-xl bg-white/5 border-white/5 space-y-1 glass-blur border">
+						<span class="font-bold tracking-widest text-white/30 text-[10px] uppercase"
+							>event.locals.user.name</span
+						>
 						<code class="text-sm text-white block truncate">{data.user.name}</code>
 					</div>
-					<div class="p-4 rounded-xl bg-white/5 border border-white/5 space-y-1">
-						<span class="text-[10px] font-bold uppercase tracking-widest text-white/30">event.locals.user.role</span>
-						<div class="flex items-center gap-2">
+					<div class="p-4 rounded-xl bg-white/5 border-white/5 space-y-1 glass-blur border">
+						<span class="font-bold tracking-widest text-white/30 text-[10px] uppercase"
+							>event.locals.user.role</span
+						>
+						<div class="gap-2 flex items-center">
 							<code class="text-sm text-white">{data.user.role}</code>
-							<span class="px-1.5 py-0.5 rounded bg-(--color-accent)/20 text-(--color-accent) text-[10px] font-bold uppercase tracking-widest">Active</span>
+							<span
+								class="px-1.5 py-0.5 rounded font-bold tracking-widest bg-(--color-accent)/20 text-[10px] text-(--color-accent) uppercase"
+								>Active</span
+							>
 						</div>
 					</div>
-					<div class="p-4 rounded-xl bg-white/5 border border-white/5 space-y-1">
-						<span class="text-[10px] font-bold uppercase tracking-widest text-white/30">Response header</span>
-						<code class="text-[11px] text-(--color-accent) block">X-SvelteKit-Lesson: 09-hooks</code>
+					<div class="p-4 rounded-xl bg-white/5 border-white/5 space-y-1 glass-blur border">
+						<span class="font-bold tracking-widest text-white/30 text-[10px] uppercase"
+							>Response header</span
+						>
+						<code class="block text-[11px] text-(--color-accent)">X-SvelteKit-Lesson: 09-hooks</code
+						>
 					</div>
 				</div>
 			{/if}
 		</div>
 	</section>
 
-	<div class="h-px bg-white/10 my-12"></div>
+	<div class="bg-white/10 my-12 h-px"></div>
 
 	<!-- Hooks overview cards -->
-	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
+	<div class="sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 grid grid-cols-1">
+		<div class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 border">
 			<div class="space-y-1">
 				<div class="text-sm font-bold text-white font-mono">handle()</div>
-				<div class="text-[10px] font-bold uppercase tracking-widest text-white/30">hooks.server.ts</div>
+				<div class="font-bold tracking-widest text-white/30 text-[10px] uppercase">
+					hooks.server.ts
+				</div>
 			</div>
-			<p class="text-xs text-white/50 leading-relaxed">Runs on EVERY request. Must call <code class="text-white/70">event</code>. Set locals, modify response.</p>
-			<div class="text-[10px] font-medium text-red-400 italic flex items-center gap-1"><TriangleAlert size={10} /> Missing await = blank app</div>
+			<p class="text-xs text-white/50 leading-relaxed">
+				Runs on EVERY request. Must call <code class="text-white/70">event</code>. Set locals,
+				modify response.
+			</p>
+			<div class="font-medium text-red-400 gap-1 flex items-center text-[10px] italic">
+				<TriangleAlert size={10} /> Missing await = blank app
+			</div>
 		</div>
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
+		<div class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 border">
 			<div class="space-y-1">
 				<div class="text-sm font-bold text-white font-mono">handleError()</div>
-				<div class="text-[10px] font-bold uppercase tracking-widest text-white/30">hooks.server.ts</div>
+				<div class="font-bold tracking-widest text-white/30 text-[10px] uppercase">
+					hooks.server.ts
+				</div>
 			</div>
-			<p class="text-xs text-white/50 leading-relaxed">Catches unexpected thrown errors. Log them to Sentry/Datadog here.</p>
-			<div class="text-[10px] font-medium text-red-400 italic flex items-center gap-1"><TriangleAlert size={10} /> Missing = stack traces leak</div>
+			<p class="text-xs text-white/50 leading-relaxed">
+				Catches unexpected thrown errors. Log them to Sentry/Datadog here.
+			</p>
+			<div class="font-medium text-red-400 gap-1 flex items-center text-[10px] italic">
+				<TriangleAlert size={10} /> Missing = stack traces leak
+			</div>
 		</div>
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
+		<div class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 border">
 			<div class="space-y-1">
 				<div class="text-sm font-bold text-white font-mono">handleFetch()</div>
-				<div class="text-[10px] font-bold uppercase tracking-widest text-white/30">hooks.server.ts</div>
+				<div class="font-bold tracking-widest text-white/30 text-[10px] uppercase">
+					hooks.server.ts
+				</div>
 			</div>
-			<p class="text-xs text-white/50 leading-relaxed">Intercepts fetch() inside server load functions. Add API keys.</p>
-			<div class="text-[10px] font-medium text-red-400 italic flex items-center gap-1"><TriangleAlert size={10} /> Missing = no shared auth headers</div>
+			<p class="text-xs text-white/50 leading-relaxed">
+				Intercepts fetch() inside server load functions. Add API keys.
+			</p>
+			<div class="font-medium text-red-400 gap-1 flex items-center text-[10px] italic">
+				<TriangleAlert size={10} /> Missing = no shared auth headers
+			</div>
 		</div>
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4">
+		<div class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 border">
 			<div class="space-y-1">
 				<div class="text-sm font-bold text-white font-mono">reroute()</div>
-				<div class="text-[10px] font-bold uppercase tracking-widest text-white/30">hooks.ts (universal)</div>
+				<div class="font-bold tracking-widest text-white/30 text-[10px] uppercase">
+					hooks.ts (universal)
+				</div>
 			</div>
-			<p class="text-xs text-white/50 leading-relaxed">Modify which routes are matched before routing. A/B testing.</p>
-			<div class="text-[10px] font-medium text-red-400 italic flex items-center gap-1"><TriangleAlert size={10} /> Missing = no routing logic</div>
+			<p class="text-xs text-white/50 leading-relaxed">
+				Modify which routes are matched before routing. A/B testing.
+			</p>
+			<div class="font-medium text-red-400 gap-1 flex items-center text-[10px] italic">
+				<TriangleAlert size={10} /> Missing = no routing logic
+			</div>
 		</div>
 	</div>
 
-	<div class="h-px bg-white/10 my-12"></div>
-	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">Implementation</h3>
+	<div class="bg-white/10 my-12 h-px"></div>
+	<h3 class="text-lg font-bold mb-6 tracking-widest text-white/30 uppercase">Implementation</h3>
 	<CodeBlock code={handleCode} lang="typescript" filename="hooks.server.ts — handle()" />
 	<CodeBlock code={handleErrorCode} lang="typescript" filename="hooks.server.ts — handleError()" />
 	<CodeBlock code={localsCode} lang="typescript" filename="Using locals in load()" />
 </LessonLayout>
-

@@ -28,9 +28,9 @@ export interface DemoPost {
 
 // In-memory store (replace with a real DB in production)
 const posts: DemoPost[] = [
-	{ id: 1, title: 'Getting Started with SvelteKit',  likes: 42, tags: ['tutorial'] },
-	{ id: 2, title: 'Svelte 5 Runes Deep Dive',        likes: 87, tags: ['svelte5'] },
-	{ id: 3, title: 'Remote Functions Are Amazing',    likes: 64, tags: ['remote'] }
+	{ id: 1, title: 'Getting Started with SvelteKit', likes: 42, tags: ['tutorial'] },
+	{ id: 2, title: 'Svelte 5 Runes Deep Dive', likes: 87, tags: ['svelte5'] },
+	{ id: 3, title: 'Remote Functions Are Amazing', likes: 64, tags: ['remote'] }
 ];
 
 // ─── query ───────────────────────────────────────────────────────────────────
@@ -46,7 +46,7 @@ export const getPosts = query(async () => {
 // query with an argument — the argument is sent to the server as JSON
 // SvelteKit REQUIRES you to pass a validation schema as the first arg.
 export const getPost = query(v.number(), async (id: number) => {
-	return posts.find(p => p.id === id) ?? null;
+	return posts.find((p) => p.id === id) ?? null;
 });
 
 // ─── command ─────────────────────────────────────────────────────────────────
@@ -55,7 +55,7 @@ export const getPost = query(v.number(), async (id: number) => {
 // WHY: Use command when you need to trigger side-effects from JS (not forms).
 // WHAT FAILS: Without command(), you'd need a +server.ts POST endpoint + fetch calls.
 export const likePost = command(v.number(), async (id: number) => {
-	const post = posts.find(p => p.id === id);
+	const post = posts.find((p) => p.id === id);
 	if (post) {
 		post.likes++;
 		return { success: true as const, newLikes: post.likes };

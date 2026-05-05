@@ -28,26 +28,31 @@ export const handleError: HandleServerError = ({ error, event, status, message }
 </svelte:head>
 
 <LessonLayout
-	{lesson} {prev} {next}
+	{lesson}
+	{prev}
+	{next}
 	whatItDoes="Allows you to track application health, errors, performance, and user metrics using hooks and specialized libraries."
 	whatFails="Without observability, you are flying blind—bugs in production might remain hidden until users complain, and performance bottlenecks are difficult to isolate."
 >
-	<h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+	<h3 class="text-xl font-bold text-white mb-6 gap-2 flex items-center">
 		<LessonIcon name="Activity" size={20} class="text-(--color-accent)" />
 		Logging & Tracing
 	</h3>
-	<div class="p-8 rounded-xl border border-white/10 bg-white/5 space-y-4 mb-12">
+	<div class="p-8 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 mb-12 border">
 		<p class="text-sm text-white/70 leading-relaxed">
-			SvelteKit's <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">handleError</code> hook is the ideal place to report unhandled issues to external services like Sentry.
+			SvelteKit's <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono"
+				>handleError</code
+			> hook is the ideal place to report unhandled issues to external services like Sentry.
 		</p>
 		<p class="text-sm text-white/50 leading-relaxed italic">
-			Similarly, the <code class="px-1.5 py-0.5 rounded bg-white/10 text-(--color-accent) font-mono">handle</code> hook can be used to track API latency or request volumes globally.
+			Similarly, the <code class="px-1.5 py-0.5 rounded bg-white/10 font-mono text-(--color-accent)"
+				>handle</code
+			> hook can be used to track API latency or request volumes globally.
 		</p>
 	</div>
 
-	<div class="h-px bg-white/10 my-12"></div>
+	<div class="bg-white/10 my-12 h-px"></div>
 
-	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">Example</h3>
+	<h3 class="text-lg font-bold mb-6 tracking-widest text-white/30 uppercase">Example</h3>
 	<CodeBlock code={observabilityCode} lang="typescript" filename="src/hooks.server.ts" />
 </LessonLayout>
-

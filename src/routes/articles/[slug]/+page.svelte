@@ -48,8 +48,6 @@
 		<h2 class="text-white mt-8 mb-4">4. Built-in Animation</h2>
 		<p>Svelte is the only major framework that includes a robust animation and transition engine out of the box. Creating beautiful, fluid UIs is a first-class citizen in the Svelte ecosystem.</p>
 	`;
-
-
 </script>
 
 <svelte:head>
@@ -58,52 +56,73 @@
 	{/if}
 </svelte:head>
 
-<div class="w-full mx-auto px-6 py-12 pb-24 animate-fade-in max-w-[800px]">
-	<a href={resolve('/articles')} class="inline-flex items-center gap-2 text-white/30 hover:text-(--color-accent) transition-colors mb-12 no-underline text-xs font-bold uppercase tracking-widest">
+<div class="px-6 py-12 pb-24 animate-fade-in mx-auto w-full max-w-[800px]">
+	<a
+		href={resolve('/articles')}
+		class="gap-2 text-white/30 mb-12 text-xs font-bold tracking-widest inline-flex items-center uppercase no-underline transition-colors hover:text-(--color-accent)"
+	>
 		<LessonIcon name="ArrowLeft" size={14} />
 		Back to Articles
 	</a>
 
 	{#if loading}
-		<div class="flex items-center justify-center py-24">
-			<div class="w-8 h-8 border-2 border-(--color-accent)/20 border-t-(--color-accent) rounded-full animate-spin"></div>
+		<div class="py-24 flex items-center justify-center">
+			<div
+				class="w-8 h-8 animate-spin rounded-full border-2 border-(--color-accent)/20 border-t-(--color-accent)"
+			></div>
 		</div>
 	{:else if post}
 		<article>
 			<header class="mb-12">
-				<div class="flex items-center gap-3 mb-6">
+				<div class="gap-3 mb-6 flex items-center">
 					{#each post.tags as tag (tag)}
-						<span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-(--color-accent)/10 border border-(--color-accent)/20 text-(--color-accent)">{tag}</span>
+						<span
+							class="px-3 py-1 font-bold tracking-widest rounded-full border border-(--color-accent)/20 bg-(--color-accent)/10 text-[10px] text-(--color-accent) uppercase"
+							>{tag}</span
+						>
 					{/each}
 				</div>
-				<h1 class="text-[2.5rem] font-black leading-tight mb-6 text-white sm:text-[3.5rem] tracking-tight">
+				<h1
+					class="font-black leading-tight mb-6 text-white sm:text-[3.5rem] tracking-tight text-[2.5rem]"
+				>
 					{post.title}
 				</h1>
-				<div class="flex items-center gap-4 py-6 border-y border-white/5">
-					<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+				<div class="gap-4 py-6 border-white/5 flex items-center border-y">
+					<div
+						class="w-10 h-10 bg-white/5 border-white/10 flex items-center justify-center rounded-full border"
+					>
 						<LessonIcon name="User" size={18} class="text-white/40" />
 					</div>
 					<div class="flex flex-col">
 						<span class="text-sm font-bold text-white">{post.author}</span>
-						<span class="text-[10px] uppercase font-bold tracking-widest text-white/30">{post.date}</span>
+						<span class="font-bold tracking-widest text-white/30 text-[10px] uppercase"
+							>{post.date}</span
+						>
 					</div>
 				</div>
 			</header>
 
-			<div class="prose prose-invert max-w-none text-white/60 leading-relaxed text-lg">
+			<div class="prose prose-invert text-white/60 leading-relaxed text-lg max-w-none">
 				{#if post.slug === 'why-svelte-is-the-best-framework'}
 					<SafeHtml content={svelteBestContent} />
 				{:else}
 					<p>{post.excerpt}</p>
-					<p class="mt-8 italic text-white/30 underline decoration-dotted">This is a mock article preview. Full content is not yet available for this post.</p>
+					<p class="mt-8 text-white/30 italic underline decoration-dotted">
+						This is a mock article preview. Full content is not yet available for this post.
+					</p>
 				{/if}
 			</div>
 		</article>
 	{:else}
-		<div class="text-center py-24">
+		<div class="py-24 text-center">
 			<h2 class="text-2xl font-bold text-white mb-4">Article Not Found</h2>
-			<p class="text-white/50 mb-8">The article you are looking for doesn't exist or has been moved.</p>
-			<a href={resolve('/articles')} class="px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-xs hover:bg-white/10 transition-all">
+			<p class="text-white/50 mb-8">
+				The article you are looking for doesn't exist or has been moved.
+			</p>
+			<a
+				href={resolve('/articles')}
+				class="px-6 py-3 rounded-xl bg-white/5 border-white/10 text-white font-bold text-xs hover:bg-white/10 glass-blur border transition-all"
+			>
 				Browse All Articles
 			</a>
 		</div>

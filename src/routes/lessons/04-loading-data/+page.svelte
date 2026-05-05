@@ -11,7 +11,16 @@
 	import LessonLayout from '$lib/components/LessonLayout.svelte';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { lessons, getAdjacentLessons } from '$lib/lessons.js';
-	import { Lock, User, Calendar, Timer, Play, Loader2, CircleCheck, TriangleAlert } from 'lucide-svelte';
+	import {
+		Lock,
+		User,
+		Calendar,
+		Timer,
+		Play,
+		Loader2,
+		CircleCheck,
+		TriangleAlert
+	} from 'lucide-svelte';
 
 	const lesson = lessons[3];
 	const { prev, next } = getAdjacentLessons(lesson.slug);
@@ -74,6 +83,7 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 <h1>{data.posts.length} posts loaded</h1>
 <p>Server timestamp: {data.serverTimestamp}</p>`;
 </script>
+
 <svelte:head>
 	<title>Lesson 04 — Loading Data · SvelteKit Course</title>
 </svelte:head>
@@ -86,11 +96,13 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 	whatFails="Without load(), your page has no data prop. Without +page.server.ts you can't safely access cookies/DB. Without the enhanced fetch from SvelteKit, relative URLs fail on the server."
 >
 	<!-- SECTION 1: Server load output -->
-	<div class="grid grid-cols-1 gap-6 mb-10">
-		<div class="rounded-xl border border-white/10 bg-white/5 overflow-hidden">
-			<div class="px-6 py-4 border-b border-white/10 bg-white/2 flex items-center justify-between">
-				<div class="flex items-center gap-2">
-					<span class="px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+	<div class="gap-6 mb-10 grid grid-cols-1">
+		<div class="rounded-xl border-white/10 bg-white/5 glass-blur overflow-hidden border">
+			<div class="px-6 py-4 border-white/10 bg-white/2 flex items-center justify-between border-b">
+				<div class="gap-2 flex items-center">
+					<span
+						class="px-2 py-0.5 bg-red-500/20 text-red-400 font-bold tracking-wider gap-1 flex items-center rounded-full text-[10px] uppercase"
+					>
 						<Lock size={12} />
 						Server Load
 					</span>
@@ -98,17 +110,19 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 				</div>
 			</div>
 			<div class="p-6 space-y-4">
-				<div class="flex items-center justify-between py-2 border-b border-white/5">
+				<div class="py-2 border-white/5 flex items-center justify-between border-b">
 					<span class="text-sm text-white/50">Posts fetched</span>
 					<span class="text-sm font-bold text-white">{data.serverPosts?.length ?? 0} posts</span>
 				</div>
-				<div class="flex items-center justify-between py-2 border-b border-white/5">
+				<div class="py-2 border-white/5 flex items-center justify-between border-b">
 					<span class="text-sm text-white/50">Server timestamp</span>
-					<code class="text-xs text-(--color-accent) font-mono">{data.serverTimestamp}</code>
+					<code class="text-xs font-mono text-(--color-accent)">{data.serverTimestamp}</code>
 				</div>
-				<div class="flex items-center justify-between py-2">
+				<div class="py-2 flex items-center justify-between">
 					<span class="text-sm text-white/50">Loaded on</span>
-					<span class="px-2 py-0.5 rounded-md bg-purple-500/20 text-purple-400 text-[10px] font-bold uppercase tracking-wider">
+					<span
+						class="px-2 py-0.5 rounded-md bg-purple-500/20 text-purple-400 font-bold tracking-wider text-[10px] uppercase"
+					>
 						{data.loadedOn}
 					</span>
 				</div>
@@ -118,33 +132,47 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 
 	<!-- Posts rendered from server load -->
 	{#if data.serverPosts?.length}
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+		<div class="md:grid-cols-2 gap-4 mb-10 grid grid-cols-1">
 			{#each data.serverPosts as post (post.id)}
-				<div class="p-5 rounded-xl border border-white/10 bg-white/2 hover:bg-white/4 transition-all group">
-					<div class="flex items-start justify-between mb-3">
-						<h4 class="text-lg font-bold text-white group-hover:text-(--color-accent) transition-colors">{post.title}</h4>
-						<div class="flex gap-1">
+				<div
+					class="p-5 rounded-xl border-white/10 bg-white/2 hover:bg-white/4 group glass-blur border transition-all"
+				>
+					<div class="mb-3 flex items-start justify-between">
+						<h4
+							class="text-lg font-bold text-white transition-colors group-hover:text-(--color-accent)"
+						>
+							{post.title}
+						</h4>
+						<div class="gap-1 flex">
 							{#each post.tags as tag (tag)}
-								<span class="px-1.5 py-0.5 rounded-md bg-(--color-accent)/10 text-(--color-accent) text-[9px] font-bold uppercase tracking-tighter">
+								<span
+									class=" py-0.5 bg-black/40 backdrop-blur-md text-xs px-2 text-white border-white/10 rounded-full border"
+								>
 									{tag}
 								</span>
 							{/each}
 						</div>
 					</div>
 					<p class="text-sm text-white/60 leading-relaxed mb-4 line-clamp-2">{post.excerpt}</p>
-					<div class="flex items-center gap-4 text-[11px] text-white/40 font-medium uppercase tracking-wider">
-						<span class="flex items-center gap-1.5"><User size={12} class="text-(--color-accent)" /> {post.author}</span>
-						<span class="flex items-center gap-1.5"><Calendar size={12} class="text-(--color-accent)" /> {post.date}</span>
+					<div
+						class="gap-4 text-white/40 font-medium tracking-wider flex items-center text-[11px] uppercase"
+					>
+						<span class="gap-1.5 flex items-center"
+							><User size={12} class="text-(--color-accent)" /> {post.author}</span
+						>
+						<span class="gap-1.5 flex items-center"
+							><Calendar size={12} class="text-(--color-accent)" /> {post.date}</span
+						>
 					</div>
 				</div>
 			{/each}
 		</div>
 	{/if}
 
-	<div class="h-px bg-white/10 my-10"></div>
+	<div class="bg-white/10 my-10 h-px"></div>
 
 	<!-- SECTION 2: await streaming demo -->
-	<h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+	<h3 class="text-xl font-bold text-white mb-4 gap-2 flex items-center">
 		<Timer size={22} class="text-(--color-accent)" />
 		Streaming with &#123;#await&#125;
 	</h3>
@@ -153,9 +181,9 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 		trigger a 2-second delayed promise and watch the &#123;#await&#125; block transition.
 	</p>
 
-	<button 
-		class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-(--color-accent) text-white font-bold text-sm hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:scale-100 mb-8" 
-		onclick={startStream} 
+	<button
+		class="gap-2 px-6 py-3 rounded-xl text-white font-bold text-sm mb-8 inline-flex cursor-pointer items-center bg-(--color-accent) transition-all hover:scale-[1.02] active:scale-[0.98] disabled:scale-100 disabled:opacity-50"
+		onclick={startStream}
 		disabled={streamPromise !== null}
 	>
 		{#if streamPromise}
@@ -168,17 +196,23 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 	</button>
 
 	{#if streamPromise}
-		<div class="p-8 rounded-xl border border-white/10 bg-white/5 mb-10 overflow-hidden relative">
+		<div
+			class="p-8 rounded-xl border-white/10 bg-white/5 glass-blur mb-10 relative overflow-hidden border"
+		>
 			{#await streamPromise}
-				<div class="flex flex-col items-center justify-center gap-4 py-4">
+				<div class="gap-4 py-4 flex flex-col items-center justify-center">
 					<div class="relative">
 						<Loader2 size={32} class="animate-spin text-(--color-accent)" />
-						<div class="absolute inset-0 blur-xl bg-(--color-accent)/30 animate-pulse"></div>
+						<div class="inset-0 blur-xl animate-pulse absolute bg-(--color-accent)/30"></div>
 					</div>
-					<span class="text-sm font-medium text-white/60 animate-pulse">Streaming data from server...</span>
+					<span class="text-sm font-medium text-white/60 animate-pulse"
+						>Streaming data from server...</span
+					>
 				</div>
 			{:then result}
-				<div class="flex items-center gap-3 p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400 animate-fade-in">
+				<div
+					class="gap-3 p-4 rounded-xl bg-green-500/10 border-green-500/20 text-green-400 animate-fade-in glass-blur flex items-center border"
+				>
 					<CircleCheck size={20} />
 					<span class="font-medium text-sm">{result}</span>
 				</div>
@@ -186,26 +220,32 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 		</div>
 	{/if}
 
-	<div class="h-px bg-white/10 my-10"></div>
+	<div class="bg-white/10 my-10 h-px"></div>
 
 	<!-- Code blocks -->
-	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">Implementation</h3>
+	<h3 class="text-lg font-bold mb-6 tracking-widest text-white/30 uppercase">Implementation</h3>
 	<CodeBlock code={serverLoadCode} lang="typescript" filename="+page.server.ts" />
 	<CodeBlock code={universalLoadCode} lang="typescript" filename="+page.ts (universal)" />
 	<CodeBlock code={awaitCode} lang="svelte" filename="streaming with #await" />
 	<CodeBlock code={pageDataCode} lang="svelte" filename="+page.svelte" />
 
 	<!-- Comparison table -->
-	<div class="mt-12 overflow-hidden rounded-xl border border-white/10 bg-white/5">
-		<table class="w-full text-left border-collapse">
+	<div class="mt-12 rounded-xl border-white/10 bg-white/5 glass-blur overflow-hidden border">
+		<table class="w-full border-collapse text-left">
 			<thead>
-				<tr class="bg-white/2 border-b border-white/10">
-					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">Feature</th>
-					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">+page.server.ts</th>
-					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">+page.ts</th>
+				<tr class="bg-white/2 border-white/10 border-b">
+					<th class="px-6 py-4 font-bold tracking-widest text-white/40 text-[10px] uppercase"
+						>Feature</th
+					>
+					<th class="px-6 py-4 font-bold tracking-widest text-white/40 text-[10px] uppercase"
+						>+page.server.ts</th
+					>
+					<th class="px-6 py-4 font-bold tracking-widest text-white/40 text-[10px] uppercase"
+						>+page.ts</th
+					>
 				</tr>
 			</thead>
-			<tbody class="divide-y divide-white/5">
+			<tbody class="divide-white/5 divide-y">
 				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium">Runs on server</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-bold">✅ Always</td>
@@ -224,7 +264,7 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 				<tr class="hover:bg-white/1 transition-colors">
 					<td class="px-6 py-4 text-sm text-white font-medium">Database access</td>
 					<td class="px-6 py-4 text-sm text-green-400 font-bold">✅ Safe</td>
-					<td class="px-6 py-4 text-sm text-red-400/70 font-bold italic flex items-center gap-1">
+					<td class="px-6 py-4 text-sm text-red-400/70 font-bold gap-1 flex items-center italic">
 						<TriangleAlert size={14} /> Unsafe
 					</td>
 				</tr>
@@ -237,4 +277,3 @@ export const load: PageLoad = async ({ fetch, url, params }) => {
 		</table>
 	</div>
 </LessonLayout>
-

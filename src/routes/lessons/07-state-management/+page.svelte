@@ -40,7 +40,7 @@
 		const url = new URL($page.url);
 		url.searchParams.set('n', String(n));
 		// goto() changes the URL without a full page reload
-		await goto(resolve(url.toString() as "/"), { keepFocus: true, replaceState: true });
+		await goto(resolve(url.toString() as '/'), { keepFocus: true, replaceState: true });
 	}
 
 	// ─── DEMO 3: Component-local state ─────────────────────────────────────────
@@ -93,37 +93,57 @@ async function setCount(n: number) {
 	whatItDoes="SvelteKit runs on the server and client. Module-level state (let x = 0) is SHARED across all users on the server — dangerous! Context API ($setContext) scopes state to a component tree. The URL ($page.url) makes state bookmarkable."
 	whatFails="Using module-level state on the server leaks one user's data to another. Without context API, deeply nested components can't share state without prop-drilling. Without URL state, refreshing the page loses the current view."
 >
-	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+	<div class="md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 grid grid-cols-1">
 		<!-- DEMO 1: Context Counter -->
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4 flex flex-col justify-between">
+		<div
+			class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 flex flex-col justify-between border"
+		>
 			<div class="space-y-2">
-				<div class="flex items-center gap-2">
-					<span class="px-2 py-0.5 rounded-md bg-purple-500/20 text-purple-400 text-[10px] font-bold uppercase tracking-widest">Context API</span>
+				<div class="gap-2 flex items-center">
+					<span
+						class="px-2 py-0.5 rounded-md bg-purple-500/20 text-purple-400 font-bold tracking-widest text-[10px] uppercase"
+						>Context API</span
+					>
 					<span class="text-xs font-bold text-white/40 font-mono">setContext / getContext</span>
 				</div>
 				<p class="text-sm text-white/60 leading-relaxed">
-					This counter uses <code>setContext</code> — scoped to this component tree, safe on the
-					server. Each user gets their own instance.
+					This counter uses <code>setContext</code> — scoped to this component tree, safe on the server.
+					Each user gets their own instance.
 				</p>
 			</div>
-			
-			<div class="flex items-center justify-center gap-4 py-4 bg-black/40 rounded-xl border border-white/5">
-				<button class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white flex items-center justify-center transition-all active:scale-95" onclick={() => contextCount--}>−</button>
-				<span class="text-3xl font-bold text-(--color-accent) min-w-12 text-center font-mono">{contextCount}</span>
-				<button class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white flex items-center justify-center transition-all active:scale-95" onclick={() => contextCount++}>+</button>
+
+			<div
+				class="gap-4 py-4 bg-black/40 rounded-xl border-white/5 glass-blur flex items-center justify-center border"
+			>
+				<button
+					class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border-white/10 text-white flex items-center justify-center border transition-all active:scale-95"
+					onclick={() => contextCount--}>−</button
+				>
+				<span class="text-3xl font-bold min-w-12 font-mono text-center text-(--color-accent)"
+					>{contextCount}</span
+				>
+				<button
+					class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border-white/10 text-white flex items-center justify-center border transition-all active:scale-95"
+					onclick={() => contextCount++}>+</button
+				>
 			</div>
-			
-			<p class="text-[11px] text-red-400/70 font-medium italic flex items-center gap-2">
-				<TriangleAlert size={14} /> If this were <code>let count = 0</code> at module level in a server file, all users
-				would share this counter!
+
+			<p class="text-red-400/70 font-medium gap-2 flex items-center text-[11px] italic">
+				<TriangleAlert size={14} /> If this were <code>let count = 0</code> at module level in a server
+				file, all users would share this counter!
 			</p>
 		</div>
 
 		<!-- DEMO 2: URL state -->
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4 flex flex-col justify-between">
+		<div
+			class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 flex flex-col justify-between border"
+		>
 			<div class="space-y-2">
-				<div class="flex items-center gap-2">
-					<span class="px-2 py-0.5 rounded-md bg-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest">URL State</span>
+				<div class="gap-2 flex items-center">
+					<span
+						class="px-2 py-0.5 rounded-md bg-blue-500/20 text-blue-400 font-bold tracking-widest text-[10px] uppercase"
+						>URL State</span
+					>
 					<span class="text-xs font-bold text-white/40 font-mono">?n= search param</span>
 				</div>
 				<p class="text-sm text-white/60 leading-relaxed">
@@ -132,86 +152,166 @@ async function setCount(n: number) {
 				</p>
 			</div>
 
-			<div class="flex items-center justify-center gap-4 py-4 bg-black/40 rounded-xl border border-white/5">
-				<button class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white flex items-center justify-center transition-all active:scale-95" onclick={() => setUrlCount(urlCount - 1)}>−</button>
-				<span class="text-3xl font-bold text-(--color-accent) min-w-12 text-center font-mono">{urlCount}</span>
-				<button class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white flex items-center justify-center transition-all active:scale-95" onclick={() => setUrlCount(urlCount + 1)}>+</button>
+			<div
+				class="gap-4 py-4 bg-black/40 rounded-xl border-white/5 glass-blur flex items-center justify-center border"
+			>
+				<button
+					class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border-white/10 text-white flex items-center justify-center border transition-all active:scale-95"
+					onclick={() => setUrlCount(urlCount - 1)}>−</button
+				>
+				<span class="text-3xl font-bold min-w-12 font-mono text-center text-(--color-accent)"
+					>{urlCount}</span
+				>
+				<button
+					class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border-white/10 text-white flex items-center justify-center border transition-all active:scale-95"
+					onclick={() => setUrlCount(urlCount + 1)}>+</button
+				>
 			</div>
 
-			<div class="px-3 py-1.5 rounded-md bg-white/5 border border-white/10 flex items-center justify-between gap-2 overflow-hidden">
-				<span class="text-[10px] font-bold uppercase tracking-widest text-white/20 whitespace-nowrap">URL:</span>
-				<code class="text-[10px] text-white/60 font-mono truncate">{$page.url.pathname}{$page.url.search || ''}</code>
+			<div
+				class="px-3 py-1.5 rounded-md bg-white/5 border-white/10 gap-2 flex items-center justify-between overflow-hidden border"
+			>
+				<span
+					class="font-bold tracking-widest text-white/20 text-[10px] whitespace-nowrap uppercase"
+					>URL:</span
+				>
+				<code class="text-white/60 font-mono truncate text-[10px]"
+					>{$page.url.pathname}{$page.url.search || ''}</code
+				>
 			</div>
 		</div>
 
 		<!-- DEMO 3: Local state -->
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4 flex flex-col justify-between">
+		<div
+			class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 flex flex-col justify-between border"
+		>
 			<div class="space-y-2">
-				<div class="flex items-center gap-2">
-					<span class="px-2 py-0.5 rounded-md bg-green-500/20 text-green-400 text-[10px] font-bold uppercase tracking-widest">Local $state</span>
+				<div class="gap-2 flex items-center">
+					<span
+						class="px-2 py-0.5 rounded-md bg-green-500/20 text-green-400 font-bold tracking-widest text-[10px] uppercase"
+						>Local $state</span
+					>
 					<span class="text-xs font-bold text-white/40 font-mono">Component-scoped rune</span>
 				</div>
 				<p class="text-sm text-white/60 leading-relaxed">
-					Plain <code>$state()</code> — fine for UI-only state that doesn't need to survive
-					navigation or be shared between components.
+					Plain <code>$state()</code> — fine for UI-only state that doesn't need to survive navigation
+					or be shared between components.
 				</p>
 			</div>
 
-			<div class="flex items-center justify-center gap-4 py-4 bg-black/40 rounded-xl border border-white/5">
-				<button class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white flex items-center justify-center transition-all active:scale-95" onclick={() => localCount--}>−</button>
-				<span class="text-3xl font-bold text-(--color-accent) min-w-12 text-center font-mono">{localCount}</span>
-				<button class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white flex items-center justify-center transition-all active:scale-95" onclick={() => localCount++}>+</button>
+			<div
+				class="gap-4 py-4 bg-black/40 rounded-xl border-white/5 glass-blur flex items-center justify-center border"
+			>
+				<button
+					class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border-white/10 text-white flex items-center justify-center border transition-all active:scale-95"
+					onclick={() => localCount--}>−</button
+				>
+				<span class="text-3xl font-bold min-w-12 font-mono text-center text-(--color-accent)"
+					>{localCount}</span
+				>
+				<button
+					class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border-white/10 text-white flex items-center justify-center border transition-all active:scale-95"
+					onclick={() => localCount++}>+</button
+				>
 			</div>
 
-			<p class="text-[11px] text-yellow-400/50 font-medium italic flex items-center gap-2"><TriangleAlert size={14} /> Navigating away and back resets this to 0.</p>
+			<p class="text-yellow-400/50 font-medium gap-2 flex items-center text-[11px] italic">
+				<TriangleAlert size={14} /> Navigating away and back resets this to 0.
+			</p>
 		</div>
 	</div>
 
-	<div class="h-px bg-white/10 my-12"></div>
+	<div class="my-6 h-px bg-(--color-border)"></div>
 
-	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">Code Patterns</h3>
+	<h3 class="mb-3 font-bold text-white text-[0.95rem]">Code Patterns</h3>
 	<CodeBlock code={badCode} lang="typescript" filename="❌ WRONG — module state on server" />
 	<CodeBlock code={goodCode} lang="typescript" filename="✅ CORRECT — context API" />
 	<CodeBlock code={urlStateCode} lang="typescript" filename="URL as persistent state" />
 
 	<!-- When to use which -->
-	<div class="mt-12 overflow-hidden rounded-xl border border-white/10 bg-white/5">
-		<table class="w-full text-left border-collapse">
+	<div class="mt-4 overflow-x-auto">
+		<table class="w-full border-collapse text-[0.825rem]">
 			<thead>
-				<tr class="bg-white/2 border-b border-white/10">
-					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">State Type</th>
-					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">Survives navigation</th>
-					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">Shareable URL</th>
-					<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-white/40">Safe on server</th>
+				<tr>
+					<th
+						class="px-3 py-2.5 font-bold border-b border-(--color-border) bg-(--color-surface-2) text-left text-[0.72rem] tracking-[0.06em] text-(--color-text-muted) uppercase"
+						>State Type</th
+					>
+					<th
+						class="px-3 py-2.5 font-bold border-b border-(--color-border) bg-(--color-surface-2) text-left text-[0.72rem] tracking-[0.06em] text-(--color-text-muted) uppercase"
+						>Survives navigation</th
+					>
+					<th
+						class="px-3 py-2.5 font-bold border-b border-(--color-border) bg-(--color-surface-2) text-left text-[0.72rem] tracking-[0.06em] text-(--color-text-muted) uppercase"
+						>Shareable URL</th
+					>
+					<th
+						class="px-3 py-2.5 font-bold border-b border-(--color-border) bg-(--color-surface-2) text-left text-[0.72rem] tracking-[0.06em] text-(--color-text-muted) uppercase"
+						>Safe on server</th
+					>
 				</tr>
 			</thead>
-			<tbody class="divide-y divide-white/5">
-				<tr class="hover:bg-white/1 transition-colors">
-					<td class="px-6 py-4 text-sm text-white font-medium"><code>$state()</code> in component</td>
-					<td class="px-6 py-4 text-sm text-red-400 font-bold font-mono">❌ No</td>
-					<td class="px-6 py-4 text-sm text-red-400 font-bold font-mono">❌ No</td>
-					<td class="px-6 py-4 text-sm text-green-400 font-bold font-mono">✅ Yes</td>
+			<tbody class="">
+				<tr class="transition-colors hover:bg-(--color-surface-2)">
+					<td class="px-3 py-2.5 border-b border-(--color-border) text-(--color-accent)"
+						><code>$state()</code> in component</td
+					>
+					<td
+						class="px-3 py-2.5 font-bold font-mono border-b border-(--color-border) text-(--color-success)"
+						>❌ No</td
+					>
+					<td
+						class="px-3 py-2.5 font-bold font-mono border-b border-(--color-border) text-(--color-success)"
+						>❌ No</td
+					>
+					<td
+						class="px-3 py-2.5 font-bold font-mono border-b border-(--color-border) text-(--color-text-muted)"
+						>✅ Yes</td
+					>
 				</tr>
-				<tr class="hover:bg-white/1 transition-colors">
-					<td class="px-6 py-4 text-sm text-white font-medium"><code>setContext()</code></td>
-					<td class="px-6 py-4 text-sm text-red-400 font-bold font-mono">❌ No</td>
-					<td class="px-6 py-4 text-sm text-red-400 font-bold font-mono">❌ No</td>
-					<td class="px-6 py-4 text-sm text-green-400 font-bold font-mono">✅ Yes</td>
+				<tr class="transition-colors hover:bg-(--color-surface-2)">
+					<td class="px-3 py-2.5 border-b border-(--color-border) text-(--color-accent)"
+						><code>setContext()</code></td
+					>
+					<td
+						class="px-3 py-2.5 font-bold font-mono border-b border-(--color-border) text-(--color-success)"
+						>❌ No</td
+					>
+					<td
+						class="px-3 py-2.5 font-bold font-mono border-b border-(--color-border) text-(--color-success)"
+						>❌ No</td
+					>
+					<td
+						class="px-3 py-2.5 font-bold font-mono border-b border-(--color-border) text-(--color-text-muted)"
+						>✅ Yes</td
+					>
 				</tr>
-				<tr class="hover:bg-white/1 transition-colors">
-					<td class="px-6 py-4 text-sm text-white font-medium">URL search params</td>
-					<td class="px-6 py-4 text-sm text-green-400 font-bold font-mono">✅ Yes</td>
-					<td class="px-6 py-4 text-sm text-green-400 font-bold font-mono">✅ Yes</td>
-					<td class="px-6 py-4 text-sm text-green-400 font-bold font-mono">✅ Yes</td>
+				<tr class="transition-colors hover:bg-(--color-surface-2)">
+					<td class="px-3 py-2.5 border-b border-(--color-border) text-(--color-accent)"
+						>URL search params</td
+					>
+					<td
+						class="px-3 py-2.5 font-bold font-mono border-b border-(--color-border) text-(--color-success)"
+						>✅ Yes</td
+					>
+					<td
+						class="px-3 py-2.5 font-bold font-mono border-b border-(--color-border) text-(--color-success)"
+						>✅ Yes</td
+					>
+					<td
+						class="px-3 py-2.5 font-bold font-mono border-b border-(--color-border) text-(--color-text-muted)"
+						>✅ Yes</td
+					>
 				</tr>
-				<tr class="hover:bg-white/1 transition-colors">
-					<td class="px-6 py-4 text-sm text-white font-medium">Module-level <code>let</code> (server)</td>
-					<td class="px-6 py-4 text-sm text-green-400 font-bold font-mono">✅ Yes</td>
-					<td class="px-6 py-4 text-sm text-red-400 font-bold font-mono">❌ No</td>
-					<td class="px-6 py-4 text-sm text-red-600 font-bold font-mono italic">🚨 DANGER</td>
+				<tr class="transition-colors hover:bg-(--color-surface-2)">
+					<td class="px-3 py-2.5 border-b-0 text-(--color-accent)"
+						>Module-level <code>let</code> (server)</td
+					>
+					<td class="px-3 py-2.5 font-bold font-mono border-b-0 text-(--color-success)">✅ Yes</td>
+					<td class="px-3 py-2.5 font-bold font-mono border-b-0 text-(--color-success)">❌ No</td>
+					<td class="px-3 py-2.5 text-red-600 font-bold font-mono border-b-0 italic">🚨 DANGER</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 </LessonLayout>
-

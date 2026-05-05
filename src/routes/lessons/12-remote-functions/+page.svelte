@@ -26,7 +26,7 @@
 	// getPosts() is a remote query — on first render it returns a Promise.
 	// In a real app you'd use {#await} or $derived with async.
 	let postsPromise = $state(getPosts());
-	
+
 	let addTitle = $state('');
 	let adding = $state(false);
 	let likingId = $state<number | null>(null);
@@ -156,17 +156,26 @@ export const addPost = command(async (title: string) => {
 	<!-- Live demo -->
 	<section class="mb-12">
 		<div class="mb-8">
-			<h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+			<h3 class="text-xl font-bold text-white mb-4 gap-2 flex items-center">
 				<LessonIcon name="Zap" size={22} class="text-(--color-accent)" />
 				Live Demo — Remote Functions in Action
 			</h3>
 			<p class="text-sm text-white/60 leading-relaxed max-w-3xl">
-				The posts below come from <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">getPosts()</code> — a <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">query()</code> in
-				<code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">src/lib/server/remote-demo.remote.ts</code>. Liking calls
-				<code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">likePost(id)</code> — a <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">command()</code>. No manually written endpoints!
+				The posts below come from <code
+					class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">getPosts()</code
+				>
+				— a <code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">query()</code> in
+				<code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono"
+					>src/lib/server/remote-demo.remote.ts</code
+				>. Liking calls
+				<code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">likePost(id)</code> — a
+				<code class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">command()</code>. No
+				manually written endpoints!
 			</p>
 			{#if lastAction}
-				<div class="mt-4 px-4 py-2 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-bold animate-fade-in inline-flex items-center gap-2">
+				<div
+					class="mt-4 px-4 py-2 rounded-lg bg-green-500/10 border-green-500/20 text-green-400 text-xs font-bold animate-fade-in gap-2 inline-flex items-center border"
+				>
 					<LessonIcon name="CheckCircle" size={14} />
 					{lastAction}
 				</div>
@@ -174,58 +183,81 @@ export const addPost = command(async (title: string) => {
 		</div>
 
 		{#await postsPromise}
-			<div class="p-12 rounded-xl border border-white/10 bg-white/5 flex flex-col items-center justify-center gap-4">
-				<div class="w-8 h-8 border-2 border-white/20 border-t-(--color-accent) rounded-full animate-spin"></div>
+			<div
+				class="p-12 rounded-xl border-white/10 bg-white/5 glass-blur gap-4 flex flex-col items-center justify-center border"
+			>
+				<div
+					class="w-8 h-8 border-white/20 animate-spin rounded-full border-2 border-t-(--color-accent)"
+				></div>
 				<span class="text-sm text-white/40 font-medium">Fetching posts via query()…</span>
 			</div>
 		{:then posts}
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+			<div class="md:grid-cols-2 gap-4 mb-8 grid grid-cols-1">
 				{#each posts as post (post.id)}
-					<div class="group p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all flex items-center justify-between gap-6">
+					<div
+						class="group p-6 rounded-xl border-white/10 bg-white/5 glass-blur hover:bg-white/10 hover:border-white/20 gap-6 flex items-center justify-between border transition-all"
+					>
 						<div class="space-y-3">
-							<div class="flex items-center gap-3">
-								<span class="px-2 py-0.5 rounded bg-white/10 text-[10px] font-mono text-white/40 uppercase tracking-widest">#{post.id}</span>
-								<span class="text-sm font-bold text-white group-hover:text-(--color-accent) transition-colors">{post.title}</span>
+							<div class="gap-3 flex items-center">
+								<span
+									class="px-2 py-0.5 rounded bg-white/10 font-mono text-white/40 tracking-widest text-[10px] uppercase"
+									>#{post.id}</span
+								>
+								<span
+									class="text-sm font-bold text-white transition-colors group-hover:text-(--color-accent)"
+									>{post.title}</span
+								>
 							</div>
-							<div class="flex flex-wrap gap-2">
+							<div class="gap-2 flex flex-wrap">
 								{#each post.tags as tag (tag)}
-									<span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] text-white/40">{tag}</span>
+									<span
+										class="px-2 py-0.5 rounded-md bg-white/5 border-white/10 text-white/40 border text-[10px]"
+										>{tag}</span
+									>
 								{/each}
 							</div>
 						</div>
 						<button
-							class="flex flex-col items-center gap-1 p-3 rounded-xl border border-white/10 bg-white/5 hover:bg-red-500/10 hover:border-red-500/30 transition-all active:scale-90 disabled:opacity-30"
+							class="gap-1 p-3 rounded-xl border-white/10 bg-white/5 glass-blur hover:bg-red-500/10 hover:border-red-500/30 flex flex-col items-center border transition-all active:scale-90 disabled:opacity-30"
 							onclick={() => handleLike(post.id)}
 							disabled={likingId === post.id}
 						>
 							{#if likingId === post.id}
-								<div class="w-4 h-4 border-2 border-white/20 border-t-red-500 rounded-full animate-spin"></div>
+								<div
+									class="w-4 h-4 border-white/20 border-t-red-500 animate-spin rounded-full border-2"
+								></div>
 							{:else}
-								<span class="text-red-500 text-lg group-hover:scale-125 transition-transform">❤️</span>
+								<span class="text-red-500 text-lg transition-transform group-hover:scale-125"
+									>❤️</span
+								>
 							{/if}
-							<span class="text-[10px] font-bold text-white/60">{post.likes}</span>
+							<span class="font-bold text-white/60 text-[10px]">{post.likes}</span>
 						</button>
 					</div>
 				{/each}
 			</div>
 		{:catch err}
-			<div class="p-8 rounded-xl border border-red-500/20 bg-red-500/5 text-red-400 text-sm font-medium">
+			<div
+				class="p-8 rounded-xl border-red-500/20 bg-red-500/5 text-red-400 text-sm font-medium glass-blur border"
+			>
 				Failed to load: {err.message}
 			</div>
 		{/await}
 
 		<!-- Add post via command() -->
-		<div class="max-w-xl p-1 bg-white/5 border border-white/10 rounded-xl flex items-center gap-2 pr-1 shadow-2xl">
+		<div
+			class="max-w-xl p-1 bg-white/5 border-white/10 rounded-xl gap-2 pr-1 shadow-2xl glass-blur flex items-center border"
+		>
 			<input
 				type="text"
 				bind:value={addTitle}
 				placeholder="New post title (calls addPost command)"
-				class="flex-1 bg-transparent border-none outline-none px-5 py-3 text-sm text-white placeholder-white/20"
+				class="px-5 py-3 text-sm text-white placeholder-white/20 flex-1 border-none bg-transparent outline-none"
 				onkeydown={(e) => e.key === 'Enter' && handleAdd()}
 			/>
-			<button 
-				class="px-6 py-2.5 rounded-xl bg-(--color-accent) text-white font-bold text-sm hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-30 disabled:scale-100 flex items-center gap-2" 
-				onclick={handleAdd} 
+			<button
+				class="px-6 py-2.5 rounded-xl text-white font-bold text-sm gap-2 flex items-center bg-(--color-accent) transition-all hover:scale-[1.02] active:scale-[0.98] disabled:scale-100 disabled:opacity-30"
+				onclick={handleAdd}
 				disabled={adding || !addTitle.trim()}
 			>
 				{adding ? '⏳' : '➕'}
@@ -234,65 +266,112 @@ export const addPost = command(async (title: string) => {
 		</div>
 	</section>
 
-	<div class="h-px bg-white/10 my-12"></div>
+	<div class="my-6 h-px bg-(--color-border)"></div>
 
 	<!-- 4 flavours grid -->
-	<h3 class="text-lg font-bold mb-6 uppercase tracking-widest text-white/30">4 Remote Function Flavours</h3>
-	<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4 hover:border-purple-500/30 transition-all">
+	<h3 class="text-lg font-bold mb-6 tracking-widest text-white/30 uppercase">
+		4 Remote Function Flavours
+	</h3>
+	<div class="sm:grid-cols-2 gap-4 mb-12 grid grid-cols-1">
+		<div
+			class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 hover:border-purple-500/30 border transition-all"
+		>
 			<div class="flex items-center justify-between">
 				<div class="text-sm font-bold text-white font-mono">query()</div>
-				<span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 text-[10px] font-bold uppercase tracking-widest">GET-like</span>
+				<span
+					class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 font-bold tracking-widest text-[10px] uppercase"
+					>GET-like</span
+				>
 			</div>
-			<p class="text-xs text-white/50 leading-relaxed">Reads data from the server. Returns a Promise. Useful for replacing load() inside a component.</p>
-			<div class="text-[10px] font-medium text-red-400/50 italic flex items-center gap-1"><TriangleAlert size={10} /> Without it: write +server.ts GET + fetch()</div>
+			<p class="text-xs text-white/50 leading-relaxed">
+				Reads data from the server. Returns a Promise. Useful for replacing load() inside a
+				component.
+			</p>
+			<div class="font-medium text-red-400/50 gap-1 flex items-center text-[10px] italic">
+				<TriangleAlert size={10} /> Without it: write +server.ts GET + fetch()
+			</div>
 		</div>
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4 hover:border-blue-500/30 transition-all">
+		<div
+			class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 hover:border-blue-500/30 border transition-all"
+		>
 			<div class="flex items-center justify-between">
 				<div class="text-sm font-bold text-white font-mono">command()</div>
-				<span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest">POST-like</span>
+				<span
+					class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-bold tracking-widest text-[10px] uppercase"
+					>POST-like</span
+				>
 			</div>
-			<p class="text-xs text-white/50 leading-relaxed">Sends data and mutates state. Pure JavaScript call. No progressive enhancement.</p>
-			<div class="text-[10px] font-medium text-red-400/50 italic flex items-center gap-1"><TriangleAlert size={10} /> Without it: write +server.ts POST + fetch()</div>
+			<p class="text-xs text-white/50 leading-relaxed">
+				Sends data and mutates state. Pure JavaScript call. No progressive enhancement.
+			</p>
+			<div class="font-medium text-red-400/50 gap-1 flex items-center text-[10px] italic">
+				<TriangleAlert size={10} /> Without it: write +server.ts POST + fetch()
+			</div>
 		</div>
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4 hover:border-green-500/30 transition-all">
+		<div
+			class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 hover:border-green-500/30 border transition-all"
+		>
 			<div class="flex items-center justify-between">
 				<div class="text-sm font-bold text-white font-mono">form()</div>
-				<span class="px-2 py-0.5 rounded bg-green-500/20 text-green-400 text-[10px] font-bold uppercase tracking-widest">HTML Form POST</span>
+				<span
+					class="px-2 py-0.5 rounded bg-green-500/20 text-green-400 font-bold tracking-widest text-[10px] uppercase"
+					>HTML Form POST</span
+				>
 			</div>
-			<p class="text-xs text-white/50 leading-relaxed">Binds to HTML forms. Works without JS (progressive enhancement). Modern alternative to form actions.</p>
-			<div class="text-[10px] font-medium text-red-400/50 italic flex items-center gap-1"><TriangleAlert size={10} /> Without it: no JS-free submissions</div>
+			<p class="text-xs text-white/50 leading-relaxed">
+				Binds to HTML forms. Works without JS (progressive enhancement). Modern alternative to form
+				actions.
+			</p>
+			<div class="font-medium text-red-400/50 gap-1 flex items-center text-[10px] italic">
+				<TriangleAlert size={10} /> Without it: no JS-free submissions
+			</div>
 		</div>
-		<div class="p-6 rounded-xl border border-white/10 bg-white/5 space-y-4 hover:border-yellow-500/30 transition-all">
+		<div
+			class="p-6 rounded-xl border-white/10 bg-white/5 glass-blur space-y-4 hover:border-yellow-500/30 border transition-all"
+		>
 			<div class="flex items-center justify-between">
 				<div class="text-sm font-bold text-white font-mono">prerender()</div>
-				<span class="px-2 py-0.5 rounded bg-yellow-500/20 text-yellow-400 text-[10px] font-bold uppercase tracking-widest">Build time</span>
+				<span
+					class="px-2 py-0.5 rounded bg-yellow-500/20 text-yellow-400 font-bold tracking-widest text-[10px] uppercase"
+					>Build time</span
+				>
 			</div>
-			<p class="text-xs text-white/50 leading-relaxed">Runs at build time and generates static data. Zero server round-trips at runtime.</p>
-			<div class="text-[10px] font-medium text-red-400/50 italic flex items-center gap-1"><TriangleAlert size={10} /> Without it: dynamic queries add latency</div>
+			<p class="text-xs text-white/50 leading-relaxed">
+				Runs at build time and generates static data. Zero server round-trips at runtime.
+			</p>
+			<div class="font-medium text-red-400/50 gap-1 flex items-center text-[10px] italic">
+				<TriangleAlert size={10} /> Without it: dynamic queries add latency
+			</div>
 		</div>
 	</div>
 
-	<div class="h-px bg-white/10 my-12"></div>
+	<div class="my-6 h-px bg-(--color-border)"></div>
 
 	<!-- Version note -->
-	<div class="p-6 rounded-xl bg-yellow-500/5 border border-yellow-500/20 text-yellow-500/80 mb-12">
-		<div class="flex items-center gap-2 mb-2 font-bold text-sm">
+	<div
+		class="p-6 rounded-xl bg-yellow-500/5 border-yellow-500/20 text-yellow-500/80 mb-12 glass-blur border"
+	>
+		<div class="gap-2 mb-2 font-bold text-sm flex items-center">
 			<LessonIcon name="AlertCircle" size={18} />
 			Version Required
 		</div>
 		<p class="text-sm leading-relaxed">
 			Remote functions require <strong>SvelteKit ≥ 2.27</strong>. Check your version with
-			<code class="px-1.5 py-0.5 rounded bg-yellow-500/10 text-yellow-500 font-mono">pnpm list @sveltejs/kit</code>. If your version is older, use
-			<code class="px-1.5 py-0.5 rounded bg-yellow-500/10 text-yellow-500 font-mono">+server.ts</code> + manual <code class="px-1.5 py-0.5 rounded bg-yellow-500/10 text-yellow-500 font-mono">fetch()</code> instead.
+			<code class="px-1.5 py-0.5 rounded bg-yellow-500/10 text-yellow-500 font-mono"
+				>pnpm list @sveltejs/kit</code
+			>. If your version is older, use
+			<code class="px-1.5 py-0.5 rounded bg-yellow-500/10 text-yellow-500 font-mono"
+				>+server.ts</code
+			>
+			+ manual
+			<code class="px-1.5 py-0.5 rounded bg-yellow-500/10 text-yellow-500 font-mono">fetch()</code> instead.
 		</p>
 	</div>
 
-	<div class="separator"></div>
+	<div class="my-6 h-px bg-(--color-border)"></div>
 
-	<h3 class="sub-heading">Code</h3>
+	<h3 class="mb-3 font-bold text-white text-[0.95rem]">Code</h3>
 	<CodeBlock code={remoteFileCode} lang="typescript" filename="posts.remote.ts" />
 	<CodeBlock code={usageCode} lang="svelte" filename="+page.svelte" />
 	<CodeBlock code={compareCode} lang="typescript" filename="old way vs remote functions" />
 </LessonLayout>
-

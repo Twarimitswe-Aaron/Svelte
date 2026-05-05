@@ -52,7 +52,11 @@ export const DELETE: RequestHandler = () => {
 // PATCH /api/echo — demonstrates that each method is its own named export
 export const PATCH: RequestHandler = async ({ request }) => {
 	let body: unknown;
-	try { body = await request.json(); } catch { body = null; }
+	try {
+		body = await request.json();
+	} catch {
+		body = null;
+	}
 
 	return json({
 		method: 'PATCH',
